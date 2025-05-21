@@ -1,0 +1,25 @@
+@reference "../../styles.css";
+
+.hero-slider__content {
+  @apply 4k:absolute left-[17%] md:max-w-[550px] w-full;
+}
+
+.hero-slider__subtitle {
+  @apply text-mobile uppercase tracking-small mb-1;
+}
+
+.hero-slider__title {
+  @apply font-normal mb-4 text-title-mobile md:mb-6 md:text-[62px];
+}
+
+.hero-slider__text {
+  @apply text-mobile md:text-base mb-4 md:mb-6 tracking-[-.14px] leading-[1.5];
+}
+
+.hero-slider__badge {
+  @apply absolute left-4 bottom-4 py-1 px-2 rounded-sm bg-seashell;
+}
+
+.hero-slider__media {
+  @apply relative h-[var(--custom-height-mobile)] md:h-full w-full order-0 md:order-1;
+}
