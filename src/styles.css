@@ -3,8 +3,6 @@
 
 @theme {
   --color-seashell: #f6f2ed;
-  --color-text-white: #ffffff;
-  --color-text-black: #000000;
   --breakpoint-4k: 240rem;
   --text-mobile: 14px;
   --text-title-mobile: 38px;
@@ -14,4 +12,10 @@
 :root {
   --custom-height-mobile: 250px;
   --custom-height: 750px;
+  --bg-overlay: linear-gradient(
+    22deg,
+    rgba(21, 21, 21, 1) 9%,
+    rgba(255, 79, 173, 0) 64%,
+    rgba(255, 70, 199, 0) 70%
+  );
 }

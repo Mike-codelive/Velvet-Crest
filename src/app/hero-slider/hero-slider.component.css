@@ -23,3 +23,7 @@
 .hero-slider__media {
   @apply relative h-[var(--custom-height-mobile)] md:h-full w-full order-0 md:order-1;
 }
+
+.swiper-slide__overlay::after {
+  @apply bg-[image:var(--bg-overlay)] content-[''] absolute top-0 left-0 w-full h-full;
+}
