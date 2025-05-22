@@ -27,10 +27,11 @@ export class HeroSliderComponent implements AfterViewInit {
         el: '.swiper-pagination',
         clickable: true,
       },
-      autoplay: {
-        delay: 5000,
-        pauseOnMouseEnter: true,
-      },
+      autoplay: false,
+      // autoplay: {
+      //   delay: 5000,
+      //   pauseOnMouseEnter: true,
+      // },
       loop: true,
       effect: 'fade',
       fadeEffect: {

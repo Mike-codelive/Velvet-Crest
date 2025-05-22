@@ -5,15 +5,15 @@
 }
 
 .hero-slider__subtitle {
-  @apply text-mobile uppercase tracking-small mb-1;
+  @apply text-mobile uppercase tracking-small mb-1 font-text;
 }
 
 .hero-slider__title {
-  @apply font-normal mb-4 text-title-mobile md:mb-6 md:text-[62px];
+  @apply font-normal mb-4 text-title-mobile md:mb-6 md:text-[62px] font-title;
 }
 
 .hero-slider__text {
-  @apply text-mobile md:text-base mb-4 md:mb-6 tracking-[-.14px] leading-[1.5];
+  @apply text-mobile md:text-base mb-4 md:mb-6 tracking-[-.14px] leading-[1.5] font-text;
 }
 
 .hero-slider__badge {
