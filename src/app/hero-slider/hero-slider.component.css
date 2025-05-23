@@ -9,7 +9,7 @@
 }
 
 .hero-slider__title {
-  @apply font-normal mb-4 text-title-mobile md:mb-6 md:text-[62px] font-title;
+  @apply font-normal mb-4 text-title-mobile md:mb-6 md:text-[62px] font-title leading-[1.1] tracking-[-1px];
 }
 
 .hero-slider__text {

@@ -2,6 +2,7 @@ import { Component, AfterViewInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { ButtonComponent } from '../button/button.component';
 
 Swiper.use([Navigation, Pagination, Autoplay]);
 
@@ -9,7 +10,7 @@ Swiper.use([Navigation, Pagination, Autoplay]);
   selector: 'app-hero-slider',
   templateUrl: './hero-slider.component.html',
   styleUrls: ['./hero-slider.component.css'],
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonComponent],
 })
 export class HeroSliderComponent implements AfterViewInit {
   swiper!: Swiper;
