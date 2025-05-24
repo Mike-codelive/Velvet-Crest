@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { HeroSliderComponent } from './hero-slider/hero-slider.component';
 // import { RouterOutlet } from '@angular/router';
 
@@ -9,6 +9,10 @@ import { HeroSliderComponent } from './hero-slider/hero-slider.component';
   styleUrl: './app.component.css',
   imports: [HeroSliderComponent],
 })
-export class AppComponent {
-  title = 'VelvetCrest';
+export class AppComponent implements AfterViewInit {
+  isLoaded = false;
+
+  ngAfterViewInit(): void {
+    this.isLoaded = true;
+  }
 }

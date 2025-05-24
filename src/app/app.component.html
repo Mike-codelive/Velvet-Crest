@@ -1,1 +1,7 @@
-<app-hero-slider> </app-hero-slider>
+<div
+  [class.opacity-0]="!isLoaded"
+  [class.opacity-100]="isLoaded"
+  class="transition-opacity duration-1000 min-h-screen"
+>
+  <app-hero-slider> </app-hero-slider>
+</div>
