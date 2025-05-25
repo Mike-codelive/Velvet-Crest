@@ -6,6 +6,7 @@
   --color-seashell: #f6f2ed;
   --color-dark-slate-green: #39473e;
   --breakpoint-4k: 240rem;
+  --breakpoint-md-wrapper: 52.125rem;
   --text-mobile: 14px;
   --text-title-mobile: 38px;
   --tracking-small: 1.12px;
@@ -22,10 +23,15 @@
     rgba(255, 79, 173, 0) 64%,
     rgba(255, 70, 199, 0) 70%
   );
+  --bg-collection: linear-gradient(1deg, #0006 2%, #0000 95%);
 }
 
 body {
   -webkit-font-smoothing: antialiased;
+}
+
+.wrapper {
+  @apply w-full max-w-[1440px] px-4 md-wrapper:px-10 mx-auto;
 }
 
 .btn-primary {

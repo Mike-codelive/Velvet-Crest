@@ -1,0 +1,25 @@
+<section>
+  <div class="wrapper">
+    <div class="featured-collections">
+      <a
+        *ngFor="let collection of collections"
+        class="featured-collection group"
+        [href]="collection.link"
+        [attr.aria-label]="'View ' + collection.title + ' collection'"
+      >
+        <div class="picture-element-wrapper">
+          <img
+            class="picture-element group-hover:blur-[2px]"
+            [src]="collection.image"
+            [attr.alt]="collection.alt"
+            loading="lazy"
+          />
+          <div class="featured-collection-content">
+            <h3 class="capitalize">{{ collection.title }}</h3>
+            <p class="featured-collection-text">{{ collection.description }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
