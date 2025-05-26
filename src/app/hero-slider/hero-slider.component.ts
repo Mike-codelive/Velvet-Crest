@@ -1,10 +1,10 @@
-import { Component, AfterViewInit, Input } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import Swiper from 'swiper';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import { ButtonComponent } from '../button/button.component';
 
-Swiper.use([Navigation, Pagination, Autoplay]);
+Swiper.use([Pagination, Autoplay, EffectFade]);
 
 @Component({
   selector: 'app-hero-slider',
@@ -15,25 +15,46 @@ Swiper.use([Navigation, Pagination, Autoplay]);
 export class HeroSliderComponent implements AfterViewInit {
   swiper!: Swiper;
 
+  private heroSwiperBulletStyles(index: number): void {
+    const paginationBullet = document.querySelectorAll(
+      '.swiper-pagination-hero .swiper-pagination-bullet'
+    );
+
+    if (index === 1) {
+      paginationBullet.forEach((el) => {
+        el.classList.add('hero-swiper-pagination-bullet');
+        el.classList.contains('swiper-pagination-bullet-active') &&
+          el.classList.add('hero-swiper-pagination-bullet-active');
+      });
+    } else {
+      paginationBullet.forEach((el) => {
+        el.classList.remove('hero-swiper-pagination-bullet');
+        el.classList.remove('hero-swiper-pagination-bullet-active');
+      });
+    }
+  }
+
   ngAfterViewInit() {
     this.swiper = new Swiper('.hero-swiper', {
-      modules: [Navigation, Pagination, Autoplay],
+      modules: [Pagination, Autoplay, EffectFade],
       slidesPerView: 1,
       spaceBetween: 0,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
       pagination: {
-        el: '.swiper-pagination',
+        el: '.swiper-pagination-hero',
         clickable: true,
       },
-      autoplay: false,
-      // autoplay: {
-      //   delay: 5000,
-      //   pauseOnMouseEnter: true,
-      // },
+      autoplay: {
+        delay: 5000,
+        pauseOnMouseEnter: true,
+      },
       loop: true,
+      on: {
+        slideChange: (swiper) => {
+          const activeIndex = swiper.realIndex;
+          this.heroSwiperBulletStyles(activeIndex);
+        },
+      },
+
       effect: 'fade',
       fadeEffect: {
         crossFade: true,

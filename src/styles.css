@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@400;600;700&display=swap");
 @import "tailwindcss";
 @import "swiper/css";
+@import "swiper/css/pagination";
+@import "swiper/css/effect-fade";
 
 @theme {
   --color-seashell: #f6f2ed;
@@ -44,4 +46,25 @@ body {
 
 .btn-outline {
   @apply hover:bg-white hover:text-black;
+}
+
+#hero-swiper-pagination {
+  position: inherit;
+  @apply bottom-10 left-10 z-50 w-fit hidden md-wrapper:block;
+}
+
+#hero-swiper-pagination .swiper-pagination-bullet {
+  @apply bg-transparent opacity-100 border w-[9px] h-[9px] transition-colors duration-[.3s] ease-in;
+}
+
+#hero-swiper-pagination .swiper-pagination-bullet-active {
+  @apply bg-black;
+}
+
+#hero-swiper-pagination .hero-swiper-pagination-bullet {
+  @apply border-white;
+}
+
+#hero-swiper-pagination .hero-swiper-pagination-bullet-active {
+  @apply bg-white;
 }
