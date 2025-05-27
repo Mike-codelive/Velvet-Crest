@@ -1,0 +1,17 @@
+@reference "../../styles.css";
+
+.cta-inner {
+  @apply bg-seashell grid grid-cols-1 gap-6 rounded-sm md-wrapper:grid-cols-2 md-wrapper:gap-0 select-none;
+}
+
+.cta-text-content {
+  @apply flex justify-center items-center px-4 py-6 md-wrapper:pl-[85px];
+}
+
+.cta-text-separator {
+  @apply w-[100px] mb-4 border-t-[var(--bg-text-cta-separator)];
+}
+
+.cta-img {
+  @apply rounded-tl-sm rounded-bl-sm object-cover h-full;
+}

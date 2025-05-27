@@ -26,6 +26,7 @@
     rgba(255, 70, 199, 0) 70%
   );
   --bg-collection: linear-gradient(1deg, #0006 2%, #0000 95%);
+  --bg-text-cta-separator: #00000029;
 }
 
 body {
@@ -41,7 +42,7 @@ body {
 }
 
 .btn-secondary {
-  @apply hover:bg-dark-slate-green hover:text-white;
+  @apply hover:bg-dark-slate-green border-0 bg-black text-white;
 }
 
 .btn-outline {
