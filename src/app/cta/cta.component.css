@@ -1,11 +1,7 @@
 @reference "../../styles.css";
 
-.cta-inner {
-  @apply bg-seashell grid grid-cols-1 gap-6 rounded-sm md-wrapper:grid-cols-2 md-wrapper:gap-0 select-none;
-}
-
 .cta-text-content {
-  @apply flex justify-center items-center px-4 py-6 md-wrapper:pl-[85px];
+  @apply flex justify-center items-center px-4 py-6 md-wrapper:w-1/2;
 }
 
 .cta-text-separator {
@@ -14,4 +10,44 @@
 
 .cta-img {
   @apply rounded-tl-sm rounded-bl-sm object-cover h-full;
+}
+
+.cta-padding-y {
+  @apply py-6 md-wrapper:py-16;
+}
+
+#cta .cta-inner-reverse {
+  @apply md-wrapper:flex-row-reverse;
+}
+
+.cta-inner {
+  @apply bg-seashell flex flex-col gap-6 rounded-sm md-wrapper:flex-row md-wrapper:gap-0 select-none;
+}
+
+.cta-images {
+  @apply grid grid-cols-2 grid-rows-2 gap-4;
+}
+
+.cta-multiple-img {
+  @apply w-full h-full object-cover rounded-sm;
+}
+
+.cta-img-container {
+  @apply md-wrapper:w-1/2 flex items-center;
+}
+
+.cta-text-p-lefth {
+  @apply md-wrapper:pl-[85px];
+}
+
+.cta-headline {
+  @apply uppercase font-text mb-2;
+}
+
+.cta-subheadline {
+  @apply text-3xl font-title mb-4 leading-[1.3] font-normal;
+}
+
+.cta-description {
+  @apply font-text text-[16px] leading-6 mb-4;
 }

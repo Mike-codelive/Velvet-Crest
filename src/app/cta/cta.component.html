@@ -1,25 +1,43 @@
-<section>
+<section id="cta" [ngClass]="[bgColor, paddingY ? 'cta-padding-y' : '']">
   <div class="wrapper">
-    <div class="cta-inner">
-      <div>
-        <img class="cta-img" src="/cta.jpg" alt="cta image" />
+    <div class="cta-inner" [ngClass]="reverseLayout ? 'cta-inner-reverse' : ''">
+      <div class="cta-img-container">
+        <ng-container *ngIf="images.length === 1; else multiImage">
+          <img class="cta-img" [src]="images[0].src" [alt]="images[0].alt" />
+        </ng-container>
+        <ng-template #multiImage>
+          <div class="cta-images">
+            <img
+              *ngFor="let image of images; let i = index"
+              [src]="image.src"
+              [alt]="image.alt"
+              [ngClass]="
+                i === 0
+                  ? 'col-start-1 row-start-1 cta-multiple-img hidden md-wrapper:block'
+                  : i === 1
+                  ? 'col-start-1 row-start-2 cta-multiple-img hidden md-wrapper:block'
+                  : 'col-span-2 row-span-2 cta-multiple-img md-wrapper:col-start-2 md-wrapper:row-start-1 md-wrapper:row-span-2 md-wrapper:col-span-1'
+              "
+            />
+          </div>
+        </ng-template>
       </div>
-      <div class="cta-text-content">
+      <div
+        class="cta-text-content"
+        [ngClass]="textPaddingLefth ? 'cta-text-p-lefth' : ''"
+      >
         <div class="cta-text-content-inner">
-          <p class="uppercase font-text mb-2">
-            BACK IN STOCK: Discover our rarest opal
+          <p class="cta-headline">
+            {{ headline }}
           </p>
-          <p class="text-3xl font-title mb-4 leading-[1.3] font-normal">
-            Herzegovinian Opal - A singular gemstone marvel
+          <p class="cta-subheadline">
+            {{ subheadline }}
           </p>
           <hr class="cta-text-separator" />
-          <p class="font-text text-[16px] leading-6 mb-4">
-            If you missed out last year, now’s your chance to experience
-            something truly unique - these rare Herzegovinian opals, small as a
-            pearl, shimmer with hues of azure, violet, and gold. A must-have for
-            those seeking timeless luxury and distinction.
+          <p class="cta-description">
+            {{ description }}
           </p>
-          <app-button [style]="'secondary'">shop now</app-button>
+          <app-button [style]="buttonStyle">{{ buttonText }}</app-button>
         </div>
       </div>
     </div>
