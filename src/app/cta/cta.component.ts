@@ -11,6 +11,7 @@ import { ButtonComponent } from '../button/button.component';
 })
 export class CtaComponent {
   @Input() headline: string = 'BACK IN STOCK: Discover our rarest opal';
+  @Input() headlineTag: boolean = false;
   @Input() subheadline: string =
     'Herzegovinian Opal - A singular gemstone marvel';
   @Input() description: string =
@@ -18,9 +19,12 @@ export class CtaComponent {
   @Input() buttonText: string = 'Shop Now';
   @Input() buttonStyle: 'primary' | 'secondary' | 'outline' = 'secondary';
   @Input() bgColor: string = 'bg-seashell';
+  @Input() innerBg: string = 'bg-seashell';
   @Input() reverseLayout: boolean = false;
   @Input() paddingY: boolean = false;
   @Input() textPaddingLefth: boolean = true;
+  @Input() showSeparator: boolean = false;
+  @Input() showBanner: boolean = false;
   @Input() images: { src: string; alt: string }[] = [
     { src: '/cta.jpg', alt: 'CTA image' },
   ];

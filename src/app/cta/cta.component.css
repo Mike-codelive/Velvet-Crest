@@ -21,7 +21,7 @@
 }
 
 .cta-inner {
-  @apply bg-seashell flex flex-col gap-6 rounded-sm md-wrapper:flex-row md-wrapper:gap-0 select-none;
+  @apply flex flex-col gap-6 rounded-sm md-wrapper:flex-row md-wrapper:gap-0 select-none;
 }
 
 .cta-images {
@@ -50,4 +50,24 @@
 
 .cta-description {
   @apply font-text text-[16px] leading-6 mb-4;
+}
+
+.cta-text-content-pl-zero {
+  @apply pl-0;
+}
+
+.cta-headline-tag {
+  @apply bg-desert-gold w-fit text-white text-[10px] rounded-sm py-1 px-2 tracking-[.8px];
+}
+
+.cta-banner {
+  @apply flex items-center gap-2 bg-[var(--bg-cta-banner)] py-5 px-4 mb-4 rounded-sm;
+}
+
+.cta-banner-text {
+  @apply text-[12px] font-text -tracking-[.12px];
+}
+
+.cta-banner-icon {
+  @apply w-10 p-[5px] bg-white rounded-full;
 }

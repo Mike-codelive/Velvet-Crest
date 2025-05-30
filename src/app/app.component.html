@@ -12,6 +12,7 @@
     buttonText="Shop Now"
     buttonStyle="secondary"
     bgColor="null"
+    [showSeparator]="true"
   ></app-cta>
   <app-cta
     [paddingY]="true"
@@ -28,5 +29,21 @@
     ]"
     [reverseLayout]="true"
     bgColor="bg-seashell"
+  ></app-cta>
+  <app-cta
+    [paddingY]="true"
+    [textPaddingLefth]="true"
+    headline="ORIGIN OF THE WEEK"
+    [headlineTag]="true"
+    subheadline="Mexico City - Diversa Estate"
+    description="Nestled in the vibrant heart of Mexico City’s gem district, VelvetCrest curates the world’s finest collection of rare opals and gems, including the radiant Aztec Fire opal and or Luna Glow gems, exclusive to VelvetCrest."
+    buttonText="Discover Now"
+    [showBanner]="true"
+    buttonStyle="secondary"
+    [images]="[{ src: '/cta_4.jpg', alt: 'Mexico City Opal 1' }]"
+    [reverseLayout]="false"
+    [showSeparator]="true"
+    bgColor="null"
+    innerBg="null"
   ></app-cta>
 </section>

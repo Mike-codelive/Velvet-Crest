@@ -1,6 +1,9 @@
 <section id="cta" [ngClass]="[bgColor, paddingY ? 'cta-padding-y' : '']">
   <div class="wrapper">
-    <div class="cta-inner" [ngClass]="reverseLayout ? 'cta-inner-reverse' : ''">
+    <div
+      class="cta-inner"
+      [ngClass]="[reverseLayout ? 'cta-inner-reverse' : '', innerBg]"
+    >
       <div class="cta-img-container">
         <ng-container *ngIf="images.length === 1; else multiImage">
           <img class="cta-img" [src]="images[0].src" [alt]="images[0].alt" />
@@ -24,19 +27,38 @@
       </div>
       <div
         class="cta-text-content"
-        [ngClass]="textPaddingLefth ? 'cta-text-p-lefth' : ''"
+        [ngClass]="[
+          textPaddingLefth ? 'cta-text-p-lefth' : '',
+          reverseLayout ? 'cta-text-content-pl-zero' : ''
+        ]"
       >
         <div class="cta-text-content-inner">
-          <p class="cta-headline">
+          <p
+            class="cta-headline"
+            [ngClass]="headlineTag ? 'cta-headline-tag' : null"
+          >
             {{ headline }}
           </p>
           <p class="cta-subheadline">
             {{ subheadline }}
           </p>
-          <hr class="cta-text-separator" />
+          <hr *ngIf="showSeparator" class="cta-text-separator" />
           <p class="cta-description">
             {{ description }}
           </p>
+          <div *ngIf="showBanner" class="cta-banner">
+            <span
+              class="material-symbols-outlined cta-banner-icon animate-bounce-down-up"
+            >
+              pin_drop
+            </span>
+            <div>
+              <p class="cta-banner-text">
+                Use code ORIGINOFTHEWEEK at checkout for 20% off all our Mexico
+                City luxury's this week!
+              </p>
+            </div>
+          </div>
           <app-button [style]="buttonStyle">{{ buttonText }}</app-button>
         </div>
       </div>
