@@ -1,12 +1,20 @@
 <section id="cta" [ngClass]="[bgColor, paddingY ? 'cta-padding-y' : '']">
   <div class="wrapper">
     <div
-      class="cta-inner"
-      [ngClass]="[reverseLayout ? 'cta-inner-reverse' : '', innerBg]"
+      [ngClass]="[
+        reverseLayout ? 'cta-inner-reverse' : '',
+        innerBg,
+        'cta-inner'
+      ]"
     >
       <div class="cta-img-container">
         <ng-container *ngIf="images.length === 1; else multiImage">
-          <img class="cta-img" [src]="images[0].src" [alt]="images[0].alt" />
+          <img
+            [ngClass]="['cta-img', roundedImage ? 'rounded' : '']"
+            class="cta-img"
+            [src]="images[0].src"
+            [alt]="images[0].alt"
+          />
         </ng-container>
         <ng-template #multiImage>
           <div class="cta-images">
@@ -26,16 +34,15 @@
         </ng-template>
       </div>
       <div
-        class="cta-text-content"
         [ngClass]="[
           textPaddingLefth ? 'cta-text-p-lefth' : '',
-          reverseLayout ? 'cta-text-content-pl-zero' : ''
+          reverseLayout ? 'cta-text-content-pl-zero' : '',
+          'cta-text-content'
         ]"
       >
         <div class="cta-text-content-inner">
           <p
-            class="cta-headline"
-            [ngClass]="headlineTag ? 'cta-headline-tag' : null"
+            [ngClass]="[headlineTag ? 'cta-headline-tag' : '', 'cta-headline']"
           >
             {{ headline }}
           </p>

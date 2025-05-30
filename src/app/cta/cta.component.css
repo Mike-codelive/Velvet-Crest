@@ -12,6 +12,10 @@
   @apply rounded-tl-sm rounded-bl-sm object-cover h-full;
 }
 
+.cta-img.rounded {
+  @apply rounded-sm;
+}
+
 .cta-padding-y {
   @apply py-6 md-wrapper:py-16;
 }
