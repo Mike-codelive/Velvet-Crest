@@ -1,0 +1,41 @@
+@reference "../../styles.css";
+
+.collection-slider-content {
+  @apply flex justify-between items-center mb-6;
+}
+
+.collection-slider-cta {
+  @apply flex items-center gap-1 text-[10px] font-text cursor-pointer;
+}
+
+.collection-slider-title {
+  @apply font-title text-2xl font-[500];
+}
+
+.thin-icon {
+  font-variation-settings: "wght" 100;
+}
+
+#collection-swiper .collection-swiper-img {
+  @apply w-full h-[560px] md-wrapper:h-[250px] rounded-sm object-cover transition-[filter] ease-in group-hover:blur-[2px];
+}
+
+#collection-swiper .collection-swiper-img-wrapper {
+  @apply overflow-hidden relative;
+}
+
+#collection-swiper .collection-swiper-text {
+  @apply absolute w-full translate-y-[30px] text-white left-0 bottom-0 text-center transition-[translate] duration-[.3s] ease-in-out group-hover:translate-y-0;
+}
+
+#collection-swiper .collection-swiper-text-title {
+  @apply mb-2 text-[24px] font-medium font-title;
+}
+
+#collection-swiper .collection-swiper-text-link {
+  @apply mb-2 text-[14px] font-semibold font-text;
+}
+
+#collection-swiper .swiper-slide {
+  @apply cursor-pointer;
+}
