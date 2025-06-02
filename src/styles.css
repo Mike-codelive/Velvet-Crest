@@ -7,8 +7,10 @@
 
 @theme {
   --color-seashell: #f6f2ed;
+  --color-opal-cream: #f2e9dd;
   --color-dark-slate-green: #39473e;
   --color-desert-gold: #c5af8b;
+  --color-green-star: #219653;
   --breakpoint-4k: 240rem;
   --breakpoint-md-wrapper: 52.125rem;
   --text-mobile: 14px;

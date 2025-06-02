@@ -1,0 +1,41 @@
+@reference "../../../styles.css";
+
+.card-item {
+  @apply flex flex-col bg-seashell transition-[background-color] hover:bg-opal-cream ease-in-out duration-[.4s] cursor-pointer rounded-lg p-8 min-h-[340px] select-none;
+}
+
+.card-icon-top {
+  @apply mb-6;
+}
+
+.card-icon-bottom {
+  @apply mt-auto flex justify-end;
+}
+
+.card-quote {
+  @apply text-sm font-text;
+}
+
+.card-author {
+  @apply mb-[17px] font-medium font-text text-sm;
+}
+
+.card-rating {
+  @apply flex gap-[13px];
+}
+
+.card-rating-stars {
+  @apply flex gap-0.5;
+}
+
+.card-rating-stars svg {
+  @apply w-5 h-5 bg-green-star p-0.5;
+}
+
+.card-rating-text {
+  @apply flex items-center text-[11.1px] font-bold;
+}
+
+.card-rating-text svg path {
+  @apply fill-green-star;
+}

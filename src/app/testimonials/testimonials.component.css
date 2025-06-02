@@ -1,0 +1,9 @@
+@reference "../../styles.css";
+
+.testimonials-title {
+  @apply font-title max-w-[80%] md-wrapper:max-w-full text-[22px] md-wrapper:text-[30px] mb-6 text-center;
+}
+
+.testimonials-wrapper {
+  @apply grid grid-cols-4 gap-2;
+}
