@@ -5,5 +5,11 @@
 }
 
 .testimonials-wrapper {
-  @apply grid grid-cols-4 gap-2;
+  /* @apply grid grid-cols-4 max-[1240px]:grid-cols-3 gap-2; */
+}
+
+@media (min-width: 834px) {
+  .testimonials-wrapper {
+    @apply grid grid-cols-4 max-[1240px]:grid-cols-3 gap-2;
+  }
 }
