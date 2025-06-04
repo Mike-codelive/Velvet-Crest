@@ -2,8 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { CardComponent } from '../UI/card/card.component';
 import Swiper from 'swiper';
-
-Swiper.use([]);
+import { Pagination } from 'swiper/modules';
 
 @Component({
   selector: 'app-testimonials',
@@ -59,20 +58,16 @@ export class TestimonialsComponent {
   isMobile: boolean = window.innerWidth <= 832;
 
   initSwiper() {
-    this.swiper = new Swiper('.collection-swiper', {
-      modules: [],
+    this.swiper = new Swiper('.testimonials-swiper', {
+      modules: [Pagination],
       centeredSlides: true,
-      slidesPerView: 1,
+      slidesPerView: 1.5,
       spaceBetween: 8,
-      // breakpoints: {
-      //   833: {
-      //     enabled: false,
-      //   },
-      // },
-      // pagination: {
-      //   el: '.swiper-pagination-hero',
-      //   clickable: true,
-      // },
+      pagination: {
+        el: '.testimonials-pagination',
+        type: 'progressbar',
+      },
+      loop: true,
     });
   }
 
@@ -89,8 +84,12 @@ export class TestimonialsComponent {
 
     if (this.isMobile && !wasMobile) {
       setTimeout(() => this.initSwiper(), 0);
-    } else if (!this.isMobile && wasMobile) {
-      this.swiper?.destroy(true, true);
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.swiper) {
+      this.swiper.destroy(true, true);
       this.swiper = null;
     }
   }

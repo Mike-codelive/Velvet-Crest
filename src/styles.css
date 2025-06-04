@@ -11,6 +11,7 @@
   --color-dark-slate-green: #39473e;
   --color-desert-gold: #c5af8b;
   --color-green-star: #219653;
+  --color-swiper-progress-bar: #39473e;
   --breakpoint-4k: 240rem;
   --breakpoint-md-wrapper: 52.125rem;
   --text-mobile: 14px;
@@ -74,6 +75,18 @@ body {
 
 #hero-swiper-pagination .hero-swiper-pagination-bullet-active {
   @apply bg-white;
+}
+
+#testimonials-swiper .swiper-pagination-progressbar-fill {
+  @apply bg-swiper-progress-bar rounded-sm overflow-hidden;
+}
+
+#testimonials-swiper .testimonials-pagination {
+  @apply -bottom-6 bg-transparent top-[unset] max-w-[200px] text-center h-0.5 static;
+}
+
+#testimonials-swiper .swiper-wrapper {
+  @apply mb-6;
 }
 
 #collection-swiper .swiper-slide {
