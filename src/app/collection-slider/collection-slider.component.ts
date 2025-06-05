@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
+import { Pagination } from 'swiper/modules';
 import Swiper from 'swiper';
-
-Swiper.use([]);
 
 @Component({
   selector: 'app-collection-slider',
@@ -54,7 +53,7 @@ export class CollectionSliderComponent {
 
   ngAfterViewInit() {
     this.swiper = new Swiper('.collection-swiper', {
-      modules: [],
+      modules: [Pagination],
       // autoHeight: true,
       slidesPerView: 1,
       spaceBetween: 8,
@@ -63,10 +62,10 @@ export class CollectionSliderComponent {
         1025: { slidesPerView: 3.2 },
         1200: { slidesPerView: 4.2 },
       },
-      // pagination: {
-      //   el: '.swiper-pagination-hero',
-      //   clickable: true,
-      // },
+      pagination: {
+        el: '.collection-pagination',
+        type: 'progressbar',
+      },
     });
   }
 }

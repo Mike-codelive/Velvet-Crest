@@ -77,12 +77,12 @@ body {
   @apply bg-white;
 }
 
-#testimonials-swiper .swiper-pagination-progressbar-fill {
-  @apply bg-swiper-progress-bar rounded-sm overflow-hidden;
+.swiper-pagination.progress-pagination {
+  @apply -bottom-6 bg-transparent top-[unset] max-w-[200px] text-center h-0.5 static;
 }
 
-#testimonials-swiper .testimonials-pagination {
-  @apply -bottom-6 bg-transparent top-[unset] max-w-[200px] text-center h-0.5 static;
+.progress-pagination .swiper-pagination-progressbar-fill {
+  @apply bg-swiper-progress-bar rounded-sm overflow-hidden;
 }
 
 #testimonials-swiper .swiper-wrapper {

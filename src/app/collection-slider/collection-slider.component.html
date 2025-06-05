@@ -8,7 +8,7 @@
       </p>
     </div>
     <div id="collection-swiper" class="swiper collection-swiper">
-      <div class="swiper-wrapper">
+      <div class="swiper-wrapper collection-swiper-wrapper">
         @for (slide of slides; track slide.id) {
         <div class="swiper-slide group">
           <div class="collection-swiper-img-wrapper">
@@ -27,7 +27,11 @@
         </div>
         }
       </div>
-      <!-- <div class="swiper-pagination"></div> -->
+      <div class="flex justify-center w-full">
+        <div
+          class="swiper-pagination collection-pagination progress-pagination"
+        ></div>
+      </div>
     </div>
   </div>
 </section>

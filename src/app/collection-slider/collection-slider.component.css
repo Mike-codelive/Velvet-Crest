@@ -17,7 +17,7 @@
 }
 
 #collection-swiper .collection-swiper-img {
-  @apply w-full h-[560px] md-wrapper:h-[250px] rounded-sm object-cover transition-[filter] ease-in group-hover:blur-[2px];
+  @apply w-full h-[329px] md-wrapper:max-h-[318px] rounded-sm object-cover transition-[filter] ease-in group-hover:blur-[2px];
 }
 
 #collection-swiper .collection-swiper-img-wrapper {
@@ -38,4 +38,12 @@
 
 #collection-swiper .swiper-slide {
   @apply cursor-pointer;
+}
+
+#collection-swiper .progress-pagination {
+  @apply block md-wrapper:hidden;
+}
+
+#collection-swiper .collection-swiper-wrapper {
+  @apply mb-6;
 }
