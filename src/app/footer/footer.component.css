@@ -1,0 +1,21 @@
+@reference "../../styles.css";
+
+footer {
+  @apply bg-white-smoke;
+}
+
+.footer-menu-wrapper {
+  @apply flex flex-col flex-1 grow shrink basis-0;
+}
+
+.footer-menu {
+  @apply flex gap-12 py-10 ml-10 font-text;
+}
+
+.footer-menu-title {
+  @apply uppercase mb-4 text-sm;
+}
+
+.footer-menu-item {
+  @apply capitalize mb-4 text-[12px];
+}
