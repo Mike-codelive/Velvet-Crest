@@ -19,3 +19,39 @@ footer {
 .footer-menu-item {
   @apply capitalize mb-4 text-[12px];
 }
+
+.footer-newsletter {
+  @apply relative min-w-[420px] max-w-[40%] pr-[40px] pt-[35px];
+}
+
+.footer-newsletter-bg {
+  @apply absolute bg-footer-newsletter-background top-0 left-0 right-0 h-full w-[100vw];
+}
+
+.footer-newsletter-wrapper {
+  @apply ml-[40px] relative z-10;
+}
+
+.footer-newsletter-title {
+  @apply font-title mb-4 text-3xl;
+}
+
+.footer-newsletter-text {
+  @apply font-title mb-6 text-sm;
+}
+
+.footer-newsletter-form {
+  @apply flex gap-2 flex-wrap items-center mb-4;
+}
+
+.footer-newsletter-form input {
+  @apply w-full border border-black rounded-sm py-3.5 px-4 text-[12px];
+}
+
+.footer-newsletter-social-links {
+  @apply flex items-center gap-6 mb-10;
+}
+
+.footer-newsletter-bottom {
+  @apply flex justify-end gap-4 py-4 text-[12px];
+}
