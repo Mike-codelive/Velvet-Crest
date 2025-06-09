@@ -4,12 +4,16 @@ footer {
   @apply bg-white-smoke;
 }
 
+.footer-content {
+  @apply flex flex-col-reverse md-wrapper:flex-row;
+}
+
 .footer-menu-wrapper {
   @apply flex flex-col flex-1 grow shrink basis-0;
 }
 
 .footer-menu {
-  @apply flex gap-12 py-10 ml-10 font-text;
+  @apply flex gap-12 py-10 md-wrapper:ml-10 font-text grow;
 }
 
 .footer-menu-title {
@@ -20,16 +24,20 @@ footer {
   @apply capitalize mb-4 text-[12px];
 }
 
+.footer-menu-copyright {
+  @apply py-4 text-[12px] md-wrapper:ml-10 border-t border-gray-footer-line;
+}
+
 .footer-newsletter {
-  @apply relative min-w-[420px] max-w-[40%] pr-[40px] pt-[35px];
+  @apply relative md-wrapper:min-w-[420px] md-wrapper:max-w-[40%] md-wrapper:pr-[40px] md-wrapper:pt-[35px];
 }
 
 .footer-newsletter-bg {
-  @apply absolute bg-footer-newsletter-background top-0 left-0 right-0 h-full w-[100vw];
+  @apply absolute md-wrapper:bg-footer-newsletter-background top-0 left-0 right-0 h-full w-[100vw];
 }
 
 .footer-newsletter-wrapper {
-  @apply ml-[40px] relative z-10;
+  @apply md-wrapper:ml-[40px] pt-[35px] md-wrapper:pt-0 relative z-10;
 }
 
 .footer-newsletter-title {
@@ -37,7 +45,7 @@ footer {
 }
 
 .footer-newsletter-text {
-  @apply font-title mb-6 text-sm;
+  @apply hidden md-wrapper:block font-title mb-6 text-sm;
 }
 
 .footer-newsletter-form {
@@ -53,5 +61,5 @@ footer {
 }
 
 .footer-newsletter-bottom {
-  @apply flex justify-end gap-4 py-4 text-[12px];
+  @apply hidden md-wrapper:flex justify-end gap-4 py-4 text-[12px] border-t border-gray-footer-line;
 }

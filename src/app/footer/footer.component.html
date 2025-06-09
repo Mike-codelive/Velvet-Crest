@@ -1,6 +1,6 @@
 <section>
   <footer class="overflow-hidden" id="footer">
-    <div class="wrapper flex">
+    <div class="wrapper footer-content">
       <div class="footer-menu-wrapper">
         <div class="footer-menu">
           <ul class="footer-menu-column">
@@ -26,6 +26,9 @@
             <li class="footer-menu-item">My Account</li>
           </ul>
         </div>
+        <div class="footer-menu-copyright">
+          © {{ currentYear }} VelvetCrest. All Rights Reserved
+        </div>
       </div>
       <div class="footer-newsletter">
         <div class="footer-newsletter-bg"></div>
@@ -47,7 +50,12 @@
               name="contact"
               type="text"
             />
-            <app-button [style]="'secondary'">join now</app-button>
+            <app-button
+              class="w-full md-wrapper:w-[auto]"
+              [wFull]="true"
+              [style]="'secondary'"
+              >join now</app-button
+            >
           </div>
           <div class="footer-newsletter-social-links">
             <div class="cursor-pointer">

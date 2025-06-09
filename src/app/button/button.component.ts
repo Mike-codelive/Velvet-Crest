@@ -11,6 +11,7 @@ export class ButtonComponent {
   @Input() style: 'primary' | 'secondary' | 'outline' = 'primary';
   @Input() disabled = false;
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
+  @Input() wFull: boolean = false;
   @Output() buttonClick = new EventEmitter<void>();
 
   onClick(): void {

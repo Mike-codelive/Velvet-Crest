@@ -7,4 +7,10 @@ import { ButtonComponent } from '../button/button.component';
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css',
 })
-export class FooterComponent {}
+export class FooterComponent {
+  currentYear!: number;
+
+  ngOnInit() {
+    this.currentYear = new Date().getFullYear();
+  }
+}
