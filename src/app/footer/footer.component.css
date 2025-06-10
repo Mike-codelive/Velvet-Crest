@@ -16,6 +16,14 @@ footer {
   @apply flex gap-12 py-10 md-wrapper:ml-10 font-text grow;
 }
 
+.footer-menu-desktop {
+  @apply hidden md-wrapper:flex gap-12;
+}
+
+.footer-menu-mobile {
+  @apply block md-wrapper:hidden w-full;
+}
+
 .footer-menu-title {
   @apply uppercase mb-4 text-sm;
 }
@@ -26,6 +34,10 @@ footer {
 
 .footer-menu-copyright {
   @apply py-4 text-[12px] md-wrapper:ml-10 border-t border-gray-footer-line;
+}
+
+.footer-menu-column {
+  @apply w-full border-t border-gray-footer-line;
 }
 
 .footer-newsletter {
