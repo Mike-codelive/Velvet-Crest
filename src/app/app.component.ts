@@ -5,6 +5,7 @@ import { CtaComponent } from './cta/cta.component';
 import { CollectionSliderComponent } from './collection-slider/collection-slider.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { FooterComponent } from './footer/footer.component';
+import { NavbarComponent } from './navbar/navbar.component';
 // import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -19,6 +20,7 @@ import { FooterComponent } from './footer/footer.component';
     CollectionSliderComponent,
     TestimonialsComponent,
     FooterComponent,
+    NavbarComponent,
   ],
 })
 export class AppComponent implements AfterViewInit {

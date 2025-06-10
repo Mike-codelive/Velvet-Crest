@@ -1,0 +1,33 @@
+@reference "../../styles.css";
+
+.navbar {
+  @apply sticky top-0 z-10;
+}
+
+.navbar-header {
+  @apply bg-white text-black border-b border-black/10;
+}
+
+.navbar-wrapper {
+  @apply flex max-[1240px]:px-4 items-center justify-between gap-4;
+}
+
+.navbar-header-left {
+  @apply flex-1;
+}
+
+.navbar-header-links {
+  @apply flex items-center gap-6 max-[1240px]:gap-5;
+}
+
+.navbar-header-link {
+  @apply font-text text-[12px] py-[25px] uppercase;
+}
+
+.navbar-header-logo {
+  @apply grow-0 font-title font-bold;
+}
+
+.navbar-header-right {
+  @apply flex flex-1 items-center justify-end gap-6;
+}
