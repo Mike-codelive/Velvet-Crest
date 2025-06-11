@@ -31,3 +31,27 @@
 .navbar-header-right {
   @apply flex flex-1 items-center justify-end gap-6;
 }
+
+.navbar-header-icons {
+  @apply flex justify-center;
+}
+
+.navbar-header-icon {
+  @apply text-[16px] cursor-pointer;
+}
+
+.navbar-header-search {
+  @apply relative mr-2;
+}
+
+.navbar-header-icon-wrapper {
+  @apply p-2;
+}
+
+.navbar-header-search-input {
+  @apply border-none rounded-[100px] py-2.5 pr-10 pl-4 text-[10px] font-text max-w-[150px] bg-gray-search-bar;
+}
+
+.navbar-header-search-btn {
+  @apply absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer;
+}
