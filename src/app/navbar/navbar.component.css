@@ -1,7 +1,7 @@
 @reference "../../styles.css";
 
 .navbar {
-  @apply sticky top-0 z-10;
+  @apply sticky top-0 z-50;
 }
 
 .navbar-header {
@@ -9,15 +9,19 @@
 }
 
 .navbar-wrapper {
-  @apply flex max-[1240px]:px-4 items-center justify-between gap-4;
+  @apply flex py-4 md-navbar:py-0 px-4 items-center justify-between gap-4;
 }
 
 .navbar-header-left {
   @apply flex-1;
 }
 
+.navbar-header-left span {
+  @apply text-[32px];
+}
+
 .navbar-header-links {
-  @apply flex items-center gap-6 max-[1240px]:gap-5;
+  @apply hidden md-navbar:flex items-center md-navbar:gap-6 gap-5;
 }
 
 .navbar-header-link {
@@ -41,11 +45,11 @@
 }
 
 .navbar-header-search {
-  @apply relative mr-2;
+  @apply hidden md-navbar:block relative mr-2;
 }
 
 .navbar-header-icon-wrapper {
-  @apply p-2;
+  @apply p-2 w-8 h-8;
 }
 
 .navbar-header-search-input {
