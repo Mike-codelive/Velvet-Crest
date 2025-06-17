@@ -16,7 +16,7 @@
   @apply flex-1;
 }
 
-.navbar-header-left span {
+.navbar-header-left .navbar-header-menu-icon {
   @apply text-[32px];
 }
 
@@ -78,5 +78,29 @@
 }
 
 .megamenu-link {
-  @apply text-[#1e1e1e] uppercase font-text text-[12px] mb-4;
+  @apply text-[#1e1e1e] cursor-pointer uppercase font-text text-[12px] mb-4;
+}
+
+.megamenu-badge {
+  @apply inline-block mx-2.5 w-2.5 h-2.5 rounded-full;
+}
+
+.md-dark {
+  @apply bg-badge-md-dark;
+}
+
+.md {
+  @apply bg-badge-md;
+}
+
+.megamenu-badge-text {
+  @apply text-[12px] text-badge-md-dark;
+}
+
+.megamenu-badge-watch {
+  @apply bg-seashell py-1 px-2 rounded-[4px] ml-4;
+}
+
+.megamenu-bottom-bar {
+  @apply bg-seashell rounded-sm p-2.5 text-[10.5px] text-center mt-[60px];
 }
