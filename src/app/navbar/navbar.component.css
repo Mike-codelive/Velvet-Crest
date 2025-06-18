@@ -69,6 +69,10 @@
   @apply relative flex gap-9;
 }
 
+.megamenu-type-4 {
+  @apply grid-cols-4 gap-6 p-6 group-hover:grid;
+}
+
 .megamenu-left {
   @apply flex-1 shrink-0 basis-auto;
 }
@@ -134,13 +138,37 @@
 }
 
 .megamenu-banner {
-  @apply bg-[#39473e] rounded-sm text-white flex flex-col justify-between p-4 max-w-[322px];
+  @apply bg-dark-slate-green rounded-sm text-white flex flex-col justify-between p-4 max-w-[322px];
 }
 
 .megamenu-banner-text {
-  @apply text-[24px] font-title font-medium;
+  @apply text-[24px] font-title font-medium leading-[1.3];
 }
 
 .megamenu-banner-link {
-  @apply underline font-text font-semibold underline-offset-[8px];
+  @apply uppercase underline font-text font-semibold underline-offset-[8px];
+}
+
+.megamenu-banner-default {
+  @apply bg-dark-slate-green text-white flex flex-col justify-between p-6 rounded-sm;
+}
+
+.megamenu-banner-img {
+  @apply rounded-tl-sm rounded-tr-sm overflow-hidden cursor-pointer select-none;
+}
+
+.megamenu-banner-img img {
+  @apply object-cover h-[220px] rounded-tl-sm rounded-tr-sm;
+}
+
+.megamenu-banner-img .megamenu-banner-content {
+  @apply bg-white-smoke pt-4 pr-[48px] pb-[38px] pl-4;
+}
+
+.megamenu-banner-title {
+  @apply font-title text-2xl font-medium mb-2 capitalize;
+}
+
+.megamenu-banner-img-text {
+  @apply font-text text-sm font-normal;
 }
