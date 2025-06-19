@@ -69,6 +69,10 @@
   @apply relative flex gap-9;
 }
 
+.megamenu-type-3 {
+  @apply py-6 group-hover:flex gap-6 justify-between;
+}
+
 .megamenu-type-4 {
   @apply grid-cols-4 gap-6 p-6 group-hover:grid;
 }
@@ -87,6 +91,10 @@
 
 .megamenu-link {
   @apply text-[#1e1e1e] cursor-pointer uppercase font-text text-[12px] mb-4;
+}
+
+.megamenu-link-1 {
+  @apply capitalize max-w-fit;
 }
 
 .megamenu-badge {
@@ -142,11 +150,11 @@
 }
 
 .megamenu-banner-text {
-  @apply text-[24px] font-title font-medium leading-[1.3];
+  @apply text-[24px] font-title font-medium leading-[1.3] text-white;
 }
 
 .megamenu-banner-link {
-  @apply uppercase underline font-text font-semibold underline-offset-[8px];
+  @apply uppercase underline font-text font-semibold underline-offset-[8px] text-white cursor-pointer;
 }
 
 .megamenu-banner-default {
@@ -171,4 +179,47 @@
 
 .megamenu-banner-img-text {
   @apply font-text text-sm font-normal;
+}
+
+.megamenu-menu {
+  @apply flex gap-12;
+}
+
+.megamenu-tier {
+  @apply max-w-[250px];
+}
+
+.megamenu-title {
+  @apply capitalize mb-4 text-[12px] font-semibold;
+}
+
+.megamenu-banners {
+  @apply flex flex-1 gap-2 justify-end;
+}
+
+.megamenu-banner-1 {
+  @apply bg-steel-blue max-w-[322px] p-6 rounded-sm;
+}
+
+.megamenu-banner-text-1 {
+  @apply mb-12;
+}
+
+.megamenu-banner-image {
+  background-image: var(--bg-origin-week);
+  @apply relative p-6 bg-cover flex flex-col justify-end items-center max-w-[322px] text-center;
+}
+
+.megamenu-banner-image::after {
+  content: "";
+  background-image: linear-gradient(1deg, #000c 1%, #0000 97%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.megamenu-banner-badge {
+  @apply absolute top-2 left-2 bg-black rounded-sm text-white py-1 px-2 text-[10px];
 }
