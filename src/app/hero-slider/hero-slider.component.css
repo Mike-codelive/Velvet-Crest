@@ -1,5 +1,9 @@
 @reference "../../styles.css";
 
+.hero-slider {
+  @apply w-full h-[528px] sm:h-[486px] md:h-[105vh] 4k:h-[750px] relative overflow-hidden select-none;
+}
+
 .hero-slider__content {
   @apply 4k:absolute left-[17%] md-wrapper:left-10 md:max-w-[550px] w-full;
 }
