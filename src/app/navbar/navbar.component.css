@@ -69,6 +69,10 @@
   @apply relative flex gap-9;
 }
 
+.megamenu-inner-type-1 {
+  @apply relative grid grid-cols-[410px_1fr];
+}
+
 .megamenu-type-3 {
   @apply py-6 group-hover:flex gap-6 justify-between;
 }
@@ -185,6 +189,10 @@
   @apply flex gap-12;
 }
 
+.megamenu-menu-type-1 {
+  @apply border-r border-r-[rgba(0,0,0,0.1)] pr-10 pb-10;
+}
+
 .megamenu-tier {
   @apply max-w-[250px];
 }
@@ -222,4 +230,20 @@
 
 .megamenu-banner-badge {
   @apply absolute top-2 left-2 bg-black rounded-sm text-white py-1 px-2 text-[10px];
+}
+
+.megamenu-subcategory-title {
+  @apply flex justify-between items-center border-b border-b-[rgba(0,0,0,0.1)] py-6 text-2xl text-black cursor-pointer;
+}
+
+.megamenu-menu-secondary {
+  @apply mt-6;
+}
+
+.megamenu-menu-secondary-item:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.megamenu-menu-secondary-item {
+  @apply capitalize cursor-pointer max-w-fit;
 }
