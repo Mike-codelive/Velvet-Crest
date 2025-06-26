@@ -245,7 +245,7 @@
 }
 
 .megamenu-menu-secondary-item {
-  @apply capitalize cursor-pointer max-w-fit;
+  @apply capitalize text-[12px] cursor-pointer max-w-fit;
 }
 
 .megamenu-subcategory-title.is-active {

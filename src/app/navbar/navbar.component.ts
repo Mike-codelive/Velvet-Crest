@@ -8,13 +8,20 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
-  activeIndex: number = 0;
+  private menuStates: { [key: string]: number } = {};
 
-  onMouseEnter(index: number) {
-    this.activeIndex = index;
+  menuState(menuId: string): number {
+    return this.menuStates[menuId] || 0;
   }
 
-  onMouseLeave() {
-    this.activeIndex = 0;
+  setupMenuState(menuId: string, index: number): void {
+    if (!this.menuStates[menuId]) {
+      this.menuStates[menuId] = 0;
+    }
+    this.menuStates[menuId] = index;
+  }
+
+  onMouseEnter(menuId: string, index: number) {
+    this.setupMenuState(menuId, index);
   }
 }
