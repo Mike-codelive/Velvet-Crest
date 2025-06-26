@@ -11,17 +11,29 @@
           <li class="group">
             <p class="navbar-header-link">Polish gems</p>
             <div class="megamenu">
-              <div class="wrapper">
+              <div class="megamenu-inner-type-1 wrapper">
                 <div class="megamenu-menu-type-1">
-                  <p class="megamenu-subcategory-title">
+                  <p
+                    class="megamenu-subcategory-title"
+                    (mouseenter)="onMouseEnter(0)"
+                    [ngClass]="{ 'is-active': activeIndex === 0 }"
+                  >
                     <span> Shop by Origin </span>
-                    <span class="material-symbols-outlined">
+                    <span
+                      class="material-symbols-outlined megamenu-subcategory-icon"
+                    >
                       keyboard_arrow_right
                     </span>
                   </p>
-                  <p class="megamenu-subcategory-title">
+                  <p
+                    class="megamenu-subcategory-title"
+                    (mouseenter)="onMouseEnter(1)"
+                    [ngClass]="{ 'is-active': activeIndex === 1 }"
+                  >
                     <span> Shop by Type </span>
-                    <span class="material-symbols-outlined">
+                    <span
+                      class="material-symbols-outlined megamenu-subcategory-icon"
+                    >
                       keyboard_arrow_right
                     </span>
                   </p>
@@ -40,6 +52,111 @@
                       Origin of the Week
                     </p>
                     <p class="megamenu-menu-secondary-item">Shop All</p>
+                  </div>
+                </div>
+                <div class="megamenu-subcategory-wrapper">
+                  <div
+                    class="megamenu-subcategory"
+                    [ngClass]="{ 'is-active': activeIndex === 0 }"
+                  >
+                    <div class="megamenu-subcategory-item">
+                      <p class="megamenu-children-title">africa</p>
+                      <p class="megamenu-child-link-item">canary islands</p>
+                      <p class="megamenu-child-link-item">ethiopia</p>
+                      <p class="megamenu-child-link-item">kenya</p>
+                      <p class="megamenu-child-link-item">madagascar</p>
+                      <p class="megamenu-child-link-item">rwanda</p>
+                      <p class="megamenu-child-link-item">sao tome</p>
+                      <p class="megamenu-child-link-item">south africa</p>
+                      <p class="megamenu-child-link-item">st helena</p>
+                    </div>
+                    <div class="megamenu-subcategory-item">
+                      <p class="megamenu-children-title">asia</p>
+                      <p class="megamenu-child-link-item">india</p>
+                      <p class="megamenu-child-link-item">indonesia</p>
+                      <p class="megamenu-child-link-item">japan</p>
+                      <p class="megamenu-child-link-item">nepal</p>
+                      <p class="megamenu-child-link-item">taiwan</p>
+                      <p class="megamenu-child-link-item">yemen</p>
+                    </div>
+                    <div class="megamenu-subcategory-item">
+                      <p class="megamenu-children-title">caribbean</p>
+                      <p class="megamenu-child-link-item">Guadeloupe</p>
+                      <p class="megamenu-child-link-item">haiti</p>
+                      <p class="megamenu-child-link-item">
+                        jamaican blue mountain
+                      </p>
+                      <p class="megamenu-child-link-item">puerto rico</p>
+                      <p class="megamenu-child-link-item">saint vincent</p>
+                    </div>
+                    <div class="megamenu-subcategory-item">
+                      <p class="megamenu-children-title">central america</p>
+                      <p class="megamenu-child-link-item">costa rica</p>
+                      <p class="megamenu-child-link-item">dominican republic</p>
+                      <p class="megamenu-child-link-item">panama</p>
+                    </div>
+                    <div class="megamenu-subcategory-item">
+                      <p class="megamenu-children-title">north america</p>
+                      <p class="megamenu-child-link-item">california</p>
+                      <p class="megamenu-child-link-item">hawaii</p>
+                      <p class="megamenu-child-link-item">mexico</p>
+                    </div>
+                    <div class="megamenu-subcategory-item">
+                      <p class="megamenu-children-title">oceania</p>
+                      <p class="megamenu-child-link-item">fiji</p>
+                      <p class="megamenu-child-link-item">new caledonia</p>
+                      <p class="megamenu-child-link-item">pitcairn</p>
+                    </div>
+                    <div class="megamenu-subcategory-item">
+                      <p class="megamenu-children-title">South America</p>
+                      <p class="megamenu-child-link-item">brazil</p>
+                      <p class="megamenu-child-link-item">galapagos</p>
+                      <p class="megamenu-child-link-item">peru</p>
+                    </div>
+                  </div>
+                  <div
+                    class="megamenu-subcategory"
+                    [ngClass]="{ 'is-active': activeIndex === 1 }"
+                  >
+                    <div class="megamenu-subcategory-item">
+                      <p class="megamenu-children-title">by type</p>
+                      <p class="megamenu-child-link-item">dark roast</p>
+                      <p class="megamenu-child-link-item">organic</p>
+                      <p class="megamenu-child-link-item">wild animal</p>
+                      <p class="megamenu-child-link-item">naturally low</p>
+                      <p class="megamenu-child-link-item">decaffeinated</p>
+                      <p class="megamenu-child-link-item">low acidity</p>
+                    </div>
+                    <div class="megamenu-subcategory-item">
+                      <p class="megamenu-children-title">by taste profile</p>
+                      <p class="megamenu-child-link-item">cocoa</p>
+                      <p class="megamenu-child-link-item">flora</p>
+                      <p class="megamenu-child-link-item">fruity</p>
+                      <p class="megamenu-child-link-item">nutty</p>
+                      <p class="megamenu-child-link-item">spicy</p>
+                      <p class="megamenu-child-link-item">sweet</p>
+                    </div>
+                    <div class="megamenu-subcategory-item">
+                      <p class="megamenu-children-title">by varietal</p>
+                      <p class="megamenu-child-link-item">typical</p>
+                      <p class="megamenu-child-link-item">geisha</p>
+                      <p class="megamenu-child-link-item">bourbon</p>
+                      <p class="megamenu-child-link-item">caturra</p>
+                      <p class="megamenu-child-link-item">peaberry</p>
+                    </div>
+                    <div class="megamenu-subcategory-item">
+                      <p class="megamenu-children-title">by process</p>
+                      <p class="megamenu-child-link-item">washed</p>
+                      <p class="megamenu-child-link-item">natural</p>
+                      <p class="megamenu-child-link-item">honey</p>
+                    </div>
+                    <div class="megamenu-subcategory-item">
+                      <p class="megamenu-children-title">wild animal</p>
+                      <p class="megamenu-child-link-item">Wild Kopi Luwak</p>
+                      <p class="megamenu-child-link-item">Wild Jacu Bird</p>
+                      <p class="megamenu-child-link-item">Wild Toucan</p>
+                      <p class="megamenu-child-link-item">Uchuñari</p>
+                    </div>
                   </div>
                 </div>
               </div>
