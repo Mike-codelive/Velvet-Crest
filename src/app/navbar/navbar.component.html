@@ -2,7 +2,7 @@
   <div class="navbar-header">
     <div class="navbar-wrapper wrapper">
       <div class="navbar-header-left">
-        <button class="block md-navbar:hidden">
+        <button (click)="toggleMenu()" class="block md-navbar:hidden">
           <span class="material-symbols-outlined navbar-header-menu-icon">
             menu
           </span>
@@ -177,7 +177,8 @@
                         <span class="megamenu-badge-text">Medium-Dark</span>
                       </p>
                       <p class="megamenu-link">
-                        Hawaii Kona <span class="megamenu-badge md-dark"></span>
+                        Hawaii Kona
+                        <span class="megamenu-badge md-dark"></span>
                         <span class="megamenu-badge-text">Medium-Dark</span>
                       </p>
                       <p class="megamenu-link">
@@ -300,7 +301,7 @@
             </div>
           </li>
           <li class="group">
-            <p class="navbar-header-link">green coffe</p>
+            <p class="navbar-header-link">opal shine</p>
             <div class="megamenu">
               <div class="megamenu-inner-type-1 wrapper">
                 <div class="megamenu-menu-type-1">
@@ -498,7 +499,9 @@
               </div>
             </div>
           </li>
-          <li class="group"><p class="navbar-header-link">Subscriptions</p></li>
+          <li class="group">
+            <p class="navbar-header-link">Subscriptions</p>
+          </li>
         </ul>
         <div class="navbar-header-icons">
           <div class="navbar-header-search">
@@ -524,6 +527,24 @@
               shopping_bag
             </span>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="menu-drawer" [class.active]="isMenuOpen">
+    <div class="menu-drawer-level">
+      <div class="menu-drawer-search">
+        <div class="inner">
+          <input
+            class="focus:outline-none"
+            type="search"
+            name="search"
+            placeholder="SEARCH"
+            required
+          />
+          <button>
+            <span class="material-symbols-outlined"> search </span>
+          </button>
         </div>
       </div>
     </div>
