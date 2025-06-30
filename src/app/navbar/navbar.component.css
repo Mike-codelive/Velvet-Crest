@@ -323,3 +323,57 @@
 .menu-drawer-search span {
   @apply text-[16px];
 }
+
+.menu-drawer-primary {
+  @apply mb-6;
+}
+
+.menu-drawer-root-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.menu-drawer-root-link {
+  @apply w-full text-[18px] font-text flex justify-between items-center py-4 cursor-pointer;
+}
+
+/* .menu-drawer-root-link.active {
+  @apply absolute flex-row-reverse justify-end pl-6 left-0 top-0 bg-[#f9f9f9];
+  } */
+
+.menu-drawer-root-link .material-symbols-outlined {
+  @apply rounded-full bg-[#f9f9f9] p-2 font-extralight;
+}
+
+/* test functionality */
+.menu-drawer-root-lvl-2.active {
+  @apply block absolute flex-row-reverse justify-end left-0 top-0;
+}
+
+.menu-drawer-root-lvl-2 {
+  @apply w-full hidden;
+}
+
+.menu-drawer-root-lvl-2 > :first-child {
+  @apply pl-6 bg-[#f9f9f9] flex-row-reverse justify-end font-title text-[20px];
+}
+
+.menu-drawer-primary .menu-drawer-root-link.hidden {
+  @apply hidden;
+}
+
+.menu-drawer-submenu-lvl-2 {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  @apply mx-6;
+}
+
+.menu-drawer-submenu-lvl-2 .menu-drawer-root-link {
+  @apply px-0;
+}
+
+.menu-drawer-secondary {
+  @apply py-6;
+}
+
+.menu-drawer-secondary-link {
+  @apply mb-4 text-[12px] font-text mx-6 cursor-pointer w-fit;
+}

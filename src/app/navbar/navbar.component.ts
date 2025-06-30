@@ -10,6 +10,7 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
   private menuStates: { [key: string]: number } = {};
   isMenuOpen: boolean = false;
+  isSearchVisible: boolean = true;
 
   menuState(menuId: string): number {
     return this.menuStates[menuId] || 0;
@@ -34,5 +35,9 @@ export class NavbarComponent {
   private updateBodyScroll() {
     document.body.style.overflowY = this.isMenuOpen ? 'hidden' : 'auto';
     document.body.style.paddingRight = this.isMenuOpen ? '15px' : '0';
+  }
+
+  toggleSearch() {
+    this.isSearchVisible = !this.isSearchVisible;
   }
 }
