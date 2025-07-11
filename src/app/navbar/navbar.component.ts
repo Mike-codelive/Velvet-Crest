@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +11,16 @@ export class NavbarComponent {
   private menuStates: { [key: string]: number } = {};
   isMenuOpen: boolean = false;
   isSearchVisible: boolean = true;
+
+  resizeTimeout: any;
+
+  @HostListener('window:resize')
+  onResize(): void {
+    clearTimeout(this.resizeTimeout);
+    this.resizeTimeout = setTimeout(() => {
+      this.checkResolution();
+    }, 200);
+  }
 
   menuState(menuId: string): number {
     return this.menuStates[menuId] || 0;
@@ -32,12 +42,19 @@ export class NavbarComponent {
     this.updateBodyScroll();
   }
 
+  toggleSearch() {
+    this.isSearchVisible = !this.isSearchVisible;
+  }
+
   private updateBodyScroll() {
     document.body.style.overflowY = this.isMenuOpen ? 'hidden' : 'auto';
     document.body.style.paddingRight = this.isMenuOpen ? '15px' : '0';
   }
 
-  toggleSearch() {
-    this.isSearchVisible = !this.isSearchVisible;
+  private checkResolution() {
+    if (window.innerWidth >= 1240 && this.isMenuOpen) {
+      this.isMenuOpen = false;
+      this.updateBodyScroll();
+    }
   }
 }

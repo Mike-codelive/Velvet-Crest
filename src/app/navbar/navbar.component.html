@@ -598,6 +598,184 @@
             </div>
           </div>
         </div>
+        <div class="menu-drawer-root-item">
+          <button
+            class="menu-drawer-root-link"
+            (click)="toggleSearch()"
+            [class.hidden]="!isSearchVisible"
+          >
+            <span>Opal Gems</span>
+            <span class="material-symbols-outlined"> arrow_forward_ios </span>
+          </button>
+          <div
+            class="menu-drawer-root-lvl-2"
+            [class.active]="isSearchVisible === false"
+          >
+            <button class="menu-drawer-root-link" (click)="toggleSearch()">
+              <span>Opal Gems</span>
+              <span class="material-symbols-outlined"> arrow_forward_ios </span>
+            </button>
+            <div class="menu-drawer-submenu-lvl-2">
+              <button class="menu-drawer-root-link">
+                <span>Shop By Origin</span>
+                <span class="material-symbols-outlined">
+                  arrow_forward_ios
+                </span>
+              </button>
+            </div>
+            <div class="menu-drawer-submenu-lvl-2">
+              <button class="menu-drawer-root-link">
+                <span>Shop By Type</span>
+                <span class="material-symbols-outlined">
+                  arrow_forward_ios
+                </span>
+              </button>
+            </div>
+            <div class="menu-drawer-submenu-lvl-2">
+              <button class="menu-drawer-root-link">
+                <span>Opal Shine Sets</span>
+                <span class="material-symbols-outlined">
+                  arrow_forward_ios
+                </span>
+              </button>
+            </div>
+            <div class="menu-drawer-secondary">
+              <p class="menu-drawer-secondary-link">Bestsellers</p>
+              <p class="menu-drawer-secondary-link">Rare Opal Jewelry</p>
+              <p class="menu-drawer-secondary-link">New & Back in Stock</p>
+              <p class="menu-drawer-secondary-link">Origin of the Week</p>
+              <p class="menu-drawer-secondary-link">Shop All</p>
+            </div>
+          </div>
+        </div>
+        <div class="menu-drawer-root-item">
+          <button
+            class="menu-drawer-root-link"
+            (click)="toggleSearch()"
+            [class.hidden]="!isSearchVisible"
+          >
+            <span>Gifts</span>
+            <span class="material-symbols-outlined"> arrow_forward_ios </span>
+          </button>
+          <div
+            class="menu-drawer-root-lvl-2"
+            [class.active]="isSearchVisible === false"
+          >
+            <button class="menu-drawer-root-link" (click)="toggleSearch()">
+              <span>Gifts</span>
+              <span class="material-symbols-outlined"> arrow_forward_ios </span>
+            </button>
+            <div class="menu-drawer-submenu-lvl-2">
+              <button class="menu-drawer-root-link">
+                <span>Shop By Origin</span>
+                <span class="material-symbols-outlined">
+                  arrow_forward_ios
+                </span>
+              </button>
+            </div>
+            <div class="menu-drawer-submenu-lvl-2">
+              <button class="menu-drawer-root-link">
+                <span>Shop By Type</span>
+                <span class="material-symbols-outlined">
+                  arrow_forward_ios
+                </span>
+              </button>
+            </div>
+            <div class="menu-drawer-submenu-lvl-2">
+              <button class="menu-drawer-root-link">
+                <span>Opal Shine Sets</span>
+                <span class="material-symbols-outlined">
+                  arrow_forward_ios
+                </span>
+              </button>
+            </div>
+            <div class="menu-drawer-secondary">
+              <p class="menu-drawer-secondary-link">Bestsellers</p>
+              <p class="menu-drawer-secondary-link">Rare Opal Jewelry</p>
+              <p class="menu-drawer-secondary-link">New & Back in Stock</p>
+              <p class="menu-drawer-secondary-link">Origin of the Week</p>
+              <p class="menu-drawer-secondary-link">Shop All</p>
+            </div>
+          </div>
+        </div>
+        <div class="menu-drawer-root-item">
+          <button
+            class="menu-drawer-root-link"
+            (click)="toggleSearch()"
+            [class.hidden]="!isSearchVisible"
+          >
+            <span>Rare Opal</span>
+            <span class="material-symbols-outlined"> arrow_forward_ios </span>
+          </button>
+          <div
+            class="menu-drawer-root-lvl-2"
+            [class.active]="isSearchVisible === false"
+          >
+            <button class="menu-drawer-root-link" (click)="toggleSearch()">
+              <span>Rare Opal</span>
+              <span class="material-symbols-outlined"> arrow_forward_ios </span>
+            </button>
+            <div class="menu-drawer-submenu-lvl-2">
+              <button class="menu-drawer-root-link">
+                <span>Shop By Origin</span>
+                <span class="material-symbols-outlined">
+                  arrow_forward_ios
+                </span>
+              </button>
+            </div>
+            <div class="menu-drawer-submenu-lvl-2">
+              <button class="menu-drawer-root-link">
+                <span>Shop By Type</span>
+                <span class="material-symbols-outlined">
+                  arrow_forward_ios
+                </span>
+              </button>
+            </div>
+            <div class="menu-drawer-submenu-lvl-2">
+              <button class="menu-drawer-root-link">
+                <span>Opal Shine Sets</span>
+                <span class="material-symbols-outlined">
+                  arrow_forward_ios
+                </span>
+              </button>
+            </div>
+            <div class="menu-drawer-secondary">
+              <p class="menu-drawer-secondary-link">Bestsellers</p>
+              <p class="menu-drawer-secondary-link">Rare Opal Jewelry</p>
+              <p class="menu-drawer-secondary-link">New & Back in Stock</p>
+              <p class="menu-drawer-secondary-link">Origin of the Week</p>
+              <p class="menu-drawer-secondary-link">Shop All</p>
+            </div>
+          </div>
+        </div>
+        <div class="menu-drawer-root-item">
+          <button
+            class="menu-drawer-root-link"
+            [class.hidden]="!isSearchVisible"
+          >
+            <span>Origin of the Week</span>
+          </button>
+        </div>
+        <div class="menu-drawer-root-item">
+          <button
+            class="menu-drawer-root-link"
+            [class.hidden]="!isSearchVisible"
+          >
+            <span>Bestsellers</span>
+          </button>
+        </div>
+        <div class="menu-drawer-root-item">
+          <button
+            class="menu-drawer-root-link"
+            [class.hidden]="!isSearchVisible"
+          >
+            <span>Shop All</span>
+          </button>
+        </div>
+      </div>
+      <div class="menu-drawer-bottom">
+        <span class="menu-drawer-bottom-link">contact</span>
+        <span class="menu-drawer-bottom-link">account</span>
       </div>
     </div>
   </div>

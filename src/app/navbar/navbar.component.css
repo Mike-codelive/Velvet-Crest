@@ -328,7 +328,7 @@
   @apply mb-6;
 }
 
-.menu-drawer-root-item {
+.menu-drawer-root-item:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -376,4 +376,12 @@
 
 .menu-drawer-secondary-link {
   @apply mb-4 text-[12px] font-text mx-6 cursor-pointer w-fit;
+}
+
+.menu-drawer-bottom {
+  @apply flex justify-between;
+}
+
+.menu-drawer-bottom-link {
+  @apply cursor-pointer uppercase font-semibold text-[12px] font-text;
 }
