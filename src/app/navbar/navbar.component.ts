@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,6 +9,11 @@ import { Component, HostListener } from '@angular/core';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
+  constructor(public productService: ProductService) {
+    // Expose service for console testing
+    (window as any).productService = productService;
+  }
+
   private menuStates: { [key: string]: number } = {};
   isMenuOpen: boolean = false;
   isSearchVisible: boolean = true;
