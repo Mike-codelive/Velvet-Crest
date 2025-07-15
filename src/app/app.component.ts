@@ -6,6 +6,7 @@ import { CollectionSliderComponent } from './collection-slider/collection-slider
 import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FeaturedProductsComponent } from './featured-products/featured-products.component';
 // import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -21,6 +22,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     TestimonialsComponent,
     FooterComponent,
     NavbarComponent,
+    FeaturedProductsComponent,
   ],
 })
 export class AppComponent implements AfterViewInit {
