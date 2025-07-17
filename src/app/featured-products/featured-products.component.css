@@ -1,0 +1,9 @@
+@reference "../../styles.css";
+
+.keen-arrow {
+  transition: opacity 0.35s ease, visibility 0.35s ease, background 0.35s ease;
+}
+
+#featured-product-swiper .featured-product-swiper-pagination {
+  @apply block md-wrapper:hidden;
+}

@@ -68,6 +68,10 @@ body {
   @apply hover:bg-white hover:text-black;
 }
 
+.thin-icon {
+  font-variation-settings: "wght" 100;
+}
+
 #hero-swiper-pagination {
   position: inherit;
   @apply bottom-10 left-10 z-50 w-fit hidden md-wrapper:block;

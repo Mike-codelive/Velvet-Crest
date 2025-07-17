@@ -12,10 +12,6 @@
   @apply font-title text-2xl font-[500];
 }
 
-.thin-icon {
-  font-variation-settings: "wght" 100;
-}
-
 #collection-swiper .collection-swiper-img {
   @apply w-full h-[329px] md-wrapper:max-h-[318px] rounded-sm object-cover transition-[filter] ease-in group-hover:blur-[2px];
 }

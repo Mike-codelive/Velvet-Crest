@@ -12,6 +12,8 @@ export class ButtonComponent {
   @Input() disabled = false;
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
   @Input() wFull: boolean = false;
+  @Input() paddingX: string = 'px-10';
+  @Input() paddingY: string = 'py-3.5';
   @Output() buttonClick = new EventEmitter<void>();
 
   onClick(): void {
