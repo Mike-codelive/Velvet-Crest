@@ -93,12 +93,8 @@ export class FeaturedProductsComponent
     this.loadedImages++;
     if (this.loadedImages === this.totalImages) {
       this.allImagesLoaded = true;
-      setTimeout(() => {
-        if (!this.hasRenderedSwiper) {
-          this.hasRenderedSwiper = true;
-          this.initializeSwiper();
-        }
-      }, 0);
+      this.hasRenderedSwiper = true;
+      this.initializeSwiper();
     }
   }
 

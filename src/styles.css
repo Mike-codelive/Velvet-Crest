@@ -61,7 +61,7 @@ body {
 }
 
 .btn-secondary {
-  @apply hover:bg-dark-slate-green border-0 bg-black text-white;
+  @apply hover:bg-dark-slate-green hover:border-dark-slate-green border-black bg-black text-white;
 }
 
 .btn-outline {

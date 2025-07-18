@@ -5,7 +5,7 @@
 }
 
 .collection-slider-cta {
-  @apply flex items-center gap-1 text-[10px] font-text cursor-pointer;
+  @apply hidden md-wrapper:flex items-center gap-1 text-[10px] font-text cursor-pointer;
 }
 
 .collection-slider-title {
