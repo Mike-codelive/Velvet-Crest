@@ -4,66 +4,6 @@
   class="transition-opacity duration-1000 min-h-screen"
 >
   <app-navbar></app-navbar>
-  <app-hero-slider></app-hero-slider>
-  <app-featured></app-featured>
-  <app-cta
-    headline="BACK IN STOCK: Discover our rarest opal"
-    subheadline="Herzegovinian Opal - A singular gemstone marvel"
-    description="If you missed out last year, now’s your chance to experience something truly unique - these rare Herzegovinian opals, small as a pearl, shimmer with hues of azure, violet, and gold. A must-have for those seeking timeless luxury and distinction."
-    buttonText="Shop Now"
-    buttonStyle="secondary"
-    bgColor="null"
-    [showSeparator]="true"
-  ></app-cta>
-  <app-featured-products></app-featured-products>
-  <app-cta
-    [paddingY]="true"
-    [textPaddingLefth]="false"
-    headline="NEW ARRIVAL: Unveil our opal collection"
-    subheadline="Mexico City Opals - Vibrant gemstone treasures"
-    description="At VelvetCrest we craft the finest and rarest opals and timepieces in the world. Beyond renowned origins like Herzegovinian and Mexican opals, we specialize in gems from remote regions like Bhutan and Madagascar, to unique sources not often linked with luxury like Tibet and Fiji. All our creations are ethically crafted with artisans at origin."
-    buttonText="Shop Collection"
-    buttonStyle="secondary"
-    [images]="[
-      { src: '/cta_1.jpg', alt: 'Mexico City Opal 1' },
-      { src: '/cta_2.jpg', alt: 'Mexico City Opal 2' },
-      { src: '/cta_3.jpg', alt: 'Mexico City Opal 3' }
-    ]"
-    [reverseLayout]="true"
-    bgColor="bg-seashell"
-  ></app-cta>
-  <app-cta
-    [paddingY]="true"
-    [textPaddingLefth]="true"
-    [roundedImage]="true"
-    headline="ORIGIN OF THE WEEK"
-    [headlineTag]="true"
-    subheadline="Mexico City - Diversa Estate"
-    description="Nestled in the vibrant heart of Mexico City’s gem district, VelvetCrest curates the world’s finest collection of rare opals and gems, including the radiant Aztec Fire opal and or Luna Glow gems, exclusive to VelvetCrest."
-    buttonText="Discover Now"
-    [showBanner]="true"
-    buttonStyle="secondary"
-    [images]="[{ src: '/cta_4.jpg', alt: 'Mexico City Opal 1' }]"
-    [reverseLayout]="false"
-    [showSeparator]="true"
-    bgColor="null"
-    innerBg="null"
-  ></app-cta>
-  <app-collection-slider></app-collection-slider>
-  <app-cta
-    [paddingY]="true"
-    [textPaddingLefth]="true"
-    headline="Exquisite opals crafted, always."
-    subheadline="We expertly craft and polish the rarest single-origin opals in the world."
-    description="Discover Mexico City’s finest and rarest single-origin opals, crafted to order and delivered directly to your door."
-    buttonText="Shop All rarest"
-    buttonStyle="secondary"
-    [images]="[{ src: '/cta_5.jpg', alt: 'Mexico City Opal 1' }]"
-    [reverseLayout]="false"
-    [showSeparator]="true"
-    bgColor="null"
-    innerBg="bg-seashell"
-  ></app-cta>
-  <app-testimonials></app-testimonials>
+  <router-outlet></router-outlet>
   <app-footer></app-footer>
 </section>
