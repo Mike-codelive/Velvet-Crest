@@ -14,11 +14,9 @@ export class ButtonComponent {
   @Input() wFull: boolean = false;
   @Input() paddingX: string = 'px-10';
   @Input() paddingY: string = 'py-3.5';
-  @Output() buttonClick = new EventEmitter<void>();
+  @Output() click = new EventEmitter<Event>();
 
-  onClick(): void {
-    if (!this.disabled) {
-      this.buttonClick.emit();
-    }
+  handleClick(event: Event) {
+    this.click.emit(event);
   }
 }

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, catchError, of } from 'rxjs';
 import { API_CONFIG } from '../../utils/api-config';
-import { Product } from '../models/product.model';
+import { ProductSummary } from '../models/product-summary.model';
+import { ProductDetails } from '../models/product-details.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { Product } from '../models/product.model';
 export class ProductService {
   private productsUrl = API_CONFIG.productsUrl;
   private singleProductUrl = API_CONFIG.singleProductUrl;
-  private featuredProductsSubject = new BehaviorSubject<Product[]>([]);
+  private featuredProductsSubject = new BehaviorSubject<ProductSummary[]>([]);
   public featuredProducts$ = this.featuredProductsSubject.asObservable();
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading$ = this.loadingSubject.asObservable();
@@ -20,7 +21,7 @@ export class ProductService {
   fetchFeaturedProducts(): void {
     this.loadingSubject.next(true);
     this.http
-      .get<Product[]>(this.productsUrl)
+      .get<ProductSummary[]>(this.productsUrl)
       .pipe(
         catchError((error) => {
           console.error('Error fetching products:', error);
@@ -37,11 +38,11 @@ export class ProductService {
       });
   }
 
-  fetchSingleProduct(id: string): Observable<Product> {
-    return this.http.get<Product>(`${this.singleProductUrl}${id}`).pipe(
+  fetchSingleProduct(id: string): Observable<ProductDetails> {
+    return this.http.get<ProductDetails>(`${this.singleProductUrl}${id}`).pipe(
       catchError((error) => {
         console.error('Error fetching single product:', error);
-        return of({ id: '0', name: 'Error', price: 0 } as Product);
+        return of({ id: '0', name: 'Error', price: 0 } as ProductDetails);
       })
     );
   }

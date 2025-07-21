@@ -1,7 +1,7 @@
 <button
   [type]="type"
   [disabled]="disabled"
-  (click)="onClick()"
+  (click)="handleClick($event)"
   [ngClass]="[
     paddingX,
     paddingY,

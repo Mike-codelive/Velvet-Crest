@@ -1,0 +1,22 @@
+<div *ngIf="product" class="container mx-auto p-4">
+  <img
+    [src]="product.images[0].url"
+    [alt]="product.name"
+    class="w-full h-96 object-cover rounded mb-4"
+  />
+  <h1 class="text-3xl font-semibold mb-2">{{ product.name }}</h1>
+  <p class="text-xl text-gray-600 mb-2">
+    ${{ product.price / 100 | number : "1.0-2" }}
+  </p>
+  <p class="text-gray-500 mb-4" *ngIf="product.description">
+    {{ product.description }}
+  </p>
+  <app-button
+    class="flex-1"
+    [paddingX]="'px-2.5'"
+    [paddingY]="'py-2.5'"
+    [style]="'primary'"
+    [wFull]="true"
+    >Add to Cart</app-button
+  >
+</div>

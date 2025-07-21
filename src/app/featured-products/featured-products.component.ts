@@ -8,12 +8,13 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../services/product.service';
-import { Product } from '../models/product.model';
+import { ProductSummary } from '../models/product-summary.model';
 import { AsyncPipe, NgIf, NgFor } from '@angular/common';
 import { Observable, take } from 'rxjs';
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
 import { ButtonComponent } from '../button/button.component';
+import { Router } from '@angular/router';
 
 Swiper.use([Pagination, Navigation]);
 
@@ -27,7 +28,7 @@ Swiper.use([Pagination, Navigation]);
 export class FeaturedProductsComponent
   implements OnInit, AfterViewInit, AfterViewChecked
 {
-  featuredProducts$!: Observable<Product[]>;
+  featuredProducts$!: Observable<ProductSummary[]>;
   loading$!: Observable<boolean>;
   swiper: Swiper | null = null;
 
@@ -40,7 +41,7 @@ export class FeaturedProductsComponent
   loadedImages = 0;
   allImagesLoaded = false;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
     this.featuredProducts$ = this.productService.featuredProducts$;
@@ -121,5 +122,23 @@ export class FeaturedProductsComponent
         prevEl: '.swiper-button-prev',
       },
     });
+  }
+
+  onViewProduct(product: ProductSummary) {
+    console.log('View Product clicked, product:', product);
+    if (product && product.id) {
+      this.router
+        .navigate(['/product', product.id])
+        .then((success) => {
+          console.log('Navigation success:', success);
+        })
+        .catch((error) => {
+          console.error('Navigation error:', error);
+        });
+    } else {
+      console.error('Product or product.id is undefined:', product);
+    }
+
+    this.router.navigate(['/product', product.id]);
   }
 }

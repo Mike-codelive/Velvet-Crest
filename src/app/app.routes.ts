@@ -7,5 +7,13 @@ export const routes: Routes = [
     component: HomeComponent,
     title: 'VelvetCrest - Home',
   },
+  {
+    path: 'product/:id',
+    loadComponent: () =>
+      import('./product-details/product-details.component').then(
+        (m) => m.ProductDetailsComponent
+      ),
+    title: 'VelvetCrest - Product Details',
+  },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

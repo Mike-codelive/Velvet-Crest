@@ -1,12 +1,12 @@
-export interface Product {
+export interface ProductSummary {
   id: string;
   name: string;
   price: number;
-  featured: boolean;
-  category: string;
+  image: string;
   colors: string[];
   company: string;
   description: string;
-  image: string;
+  category: string;
+  featured: boolean;
   shipping: boolean;
 }
