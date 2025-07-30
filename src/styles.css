@@ -109,6 +109,18 @@ body {
   width: 80%;
 }
 
+#product-details .swiper-pagination-bullet {
+  @apply border-black border-2 bg-transparent;
+}
+
+#product-details .swiper-pagination-bullet-active {
+  @apply bg-black;
+}
+
+.no-drag {
+  -webkit-user-drag: none;
+}
+
 @keyframes bounce-down-up {
   0%,
   100% {
