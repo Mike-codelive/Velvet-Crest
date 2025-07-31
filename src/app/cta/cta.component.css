@@ -75,3 +75,7 @@
 .cta-banner-icon {
   @apply w-10 p-[5px] bg-white rounded-full;
 }
+
+#cta .cta-padding-single-product {
+  @apply px-[66px] py-[50px];
+}

@@ -26,6 +26,8 @@ export class CtaComponent {
   @Input() textPaddingLefth: boolean = true;
   @Input() showSeparator: boolean = false;
   @Input() showBanner: boolean = false;
+  @Input() showBtn: boolean = true;
+  @Input() customPaddingCtaText: string = '';
   @Input() images: { src: string; alt: string }[] = [
     { src: '/cta.jpg', alt: 'CTA image' },
   ];

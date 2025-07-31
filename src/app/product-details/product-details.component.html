@@ -121,4 +121,37 @@
       </div>
     </div>
   </div>
+  <app-cta
+    [paddingY]="true"
+    [textPaddingLefth]="true"
+    headline="Discover the Champagne of Furniture"
+    subheadline="VelvetCrest Signature Collection"
+    description="Renowned across the design world for its unmatched craftsmanship and elegant, timeless aesthetics, the VelvetCrest Signature Collection has earned its place as 'The Champagne of Furniture'. Considered one of the finest examples of contemporary design, each piece in the collection is crafted under rigorous standards using sustainably sourced materials and meticulous detailing.
+
+The VelvetCrest studio, nestled in a serene, heritage-rich region, benefits from a setting that inspires creativity and precision. Shaped by skilled artisans where natural light, calm surroundings, and a passion for excellence come together, every item in the collection reflects a tradition of quality that has stood the test of time."
+    [images]="[{ src: '/single-product-cta.jpg', alt: 'Mexico City Opal 1' }]"
+    [reverseLayout]="false"
+    [showSeparator]="true"
+    bgColor="null"
+    innerBg="bg-seashell"
+    [showBtn]="false"
+    customPaddingCtaText="cta-padding-single-product"
+  ></app-cta>
+  <app-cta
+    *ngIf="product?.featured"
+    [paddingY]="true"
+    [textPaddingLefth]="true"
+    headline="Discover the Champagne of Furniture"
+    subheadline="VelvetCrest Signature Collection"
+    description="Renowned across the design world for its unmatched craftsmanship and elegant, timeless aesthetics, the VelvetCrest Signature Collection has earned its place as 'The Champagne of Furniture'. Considered one of the finest examples of contemporary design, each piece in the collection is crafted under rigorous standards using sustainably sourced materials and meticulous detailing.
+
+The VelvetCrest studio, nestled in a serene, heritage-rich region, benefits from a setting that inspires creativity and precision. Shaped by skilled artisans where natural light, calm surroundings, and a passion for excellence come together, every item in the collection reflects a tradition of quality that has stood the test of time."
+    [images]="[{ src: '/single-product-cta_1.jpg', alt: 'Mexico City Opal 1' }]"
+    [reverseLayout]="true"
+    [showSeparator]="true"
+    bgColor="null"
+    innerBg="bg-seashell"
+    [showBtn]="false"
+    customPaddingCtaText="cta-padding-single-product"
+  ></app-cta>
 </section>

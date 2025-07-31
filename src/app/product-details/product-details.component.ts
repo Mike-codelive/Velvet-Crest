@@ -14,13 +14,14 @@ import { ButtonComponent } from '../button/button.component';
 import { capitalizeWords } from '../../utils/string.utils';
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
+import { CtaComponent } from '../cta/cta.component';
 
 Swiper.use([Pagination, Navigation]);
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule, ButtonComponent],
+  imports: [CommonModule, ButtonComponent, CtaComponent],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })

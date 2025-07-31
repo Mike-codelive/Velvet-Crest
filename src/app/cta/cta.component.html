@@ -37,6 +37,7 @@
         [ngClass]="[
           textPaddingLefth ? 'cta-text-p-lefth' : '',
           reverseLayout ? 'cta-text-content-pl-zero' : '',
+          customPaddingCtaText,
           'cta-text-content'
         ]"
       >
@@ -66,7 +67,9 @@
               </p>
             </div>
           </div>
-          <app-button [style]="buttonStyle">{{ buttonText }}</app-button>
+          <app-button *ngIf="showBtn" [style]="buttonStyle">{{
+            buttonText
+          }}</app-button>
         </div>
       </div>
     </div>
