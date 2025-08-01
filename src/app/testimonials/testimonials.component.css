@@ -8,8 +8,6 @@
   @apply font-title max-w-[80%] md-wrapper:max-w-full text-[22px] md-wrapper:text-[30px] mb-6 text-center;
 }
 
-@media (min-width: 834px) {
-  .testimonials-wrapper {
-    @apply grid grid-cols-4 max-[1240px]:grid-cols-3 gap-2;
-  }
+.testimonials-wrapper {
+  @apply md-wrapper:grid md-wrapper:grid-cols-4 max-[1240px]:grid-cols-3 gap-2;
 }

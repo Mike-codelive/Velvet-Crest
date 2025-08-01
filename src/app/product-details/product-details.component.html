@@ -154,4 +154,51 @@ The VelvetCrest studio, nestled in a serene, heritage-rich region, benefits from
     [showBtn]="false"
     customPaddingCtaText="cta-padding-single-product"
   ></app-cta>
+
+  <div class="wrapper">
+    <div class="my-12">
+      <div class="w-full flex justify-center">
+        <h3
+          class="font-title max-w-[80%] md-wrapper:max-w-full text-[22px] md-wrapper:text-[30px] mb-6 text-center"
+        >
+          See what people are saying about {{ product?.name }}!
+        </h3>
+      </div>
+      <div
+        class="md-wrapper:grid gap-2 md-wrapper:grid-cols-4 max-[1240px]:grid-cols-3"
+      >
+        <div
+          id="testimonials-swiper"
+          *ngIf="isMobile; else desktopTestimonials"
+          class="swiper testimonials-product-reviews-swiper"
+        >
+          <div class="swiper-wrapper">
+            @for (testimonial of testimonials; track testimonial.id) {
+            <app-card
+              class="swiper-slide"
+              [id]="testimonial.id"
+              [testimonial]="testimonial.testimonial"
+              [author]="testimonial.author"
+            ></app-card>
+            }
+          </div>
+          <div class="flex justify-center w-full">
+            <div
+              class="swiper-pagination testimonials-product-reviews-pagination progress-pagination"
+            ></div>
+          </div>
+        </div>
+
+        <ng-template #desktopTestimonials>
+          @for (testimonial of testimonials; track testimonial.id) {
+          <app-card
+            [id]="testimonial.id"
+            [testimonial]="testimonial.testimonial"
+            [author]="testimonial.author"
+          ></app-card>
+          }
+        </ng-template>
+      </div>
+    </div>
+  </div>
 </section>
