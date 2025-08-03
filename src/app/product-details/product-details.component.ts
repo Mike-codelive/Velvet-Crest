@@ -64,6 +64,25 @@ export class ProductDetailsComponent
     },
   ];
 
+  menuSections = [
+    {
+      title: 'About',
+      items: [],
+    },
+    {
+      title: 'Craftsmanship',
+      items: [
+        'We build all our furniture pieces in small artisanal batches, focusing on quality, precision, and lasting craftsmanship. Each item is assembled and inspected just before delivery to ensure it arrives in pristine condition, ready to elevate your space. Most of our designs follow a modern-classic style with neutral tones, unless stated otherwise on the product page. Please contact us if you have any questions about our materials, finishes, or build process.',
+      ],
+    },
+    {
+      title: 'Shipping',
+      items: [
+        'All orders are carefully packed and dispatched from our design studio in Mexico. We aim to process and ship all furniture within 1–2 business days. Larger items or custom orders may require slightly more time for preparation and packaging. Free shipping is available across Mexico on orders over $2,000 MXN. For international orders, shipping rates, duties, and taxes are calculated and prepaid at checkout — we handle all customs procedures so your piece arrives without delays. US shipping is free on orders over $500 USD.',
+      ],
+    },
+  ];
+
   @ViewChild('swiperContainerSingleProduct')
   swiperContainerSingleProduct!: ElementRef;
 
@@ -82,6 +101,8 @@ export class ProductDetailsComponent
         this.titleService.setTitle(
           `VelvetCrest - ${capitalizeWords(product.name)}`
         );
+        this.menuSections[0].title = `About ${capitalizeWords(product.name)}`;
+        this.menuSections[0].items[0] = `${product.description}`;
       });
     }
   }
@@ -149,6 +170,17 @@ export class ProductDetailsComponent
     }
     if (nextEl) {
       nextEl.classList.toggle('hidden', swiper.isEnd);
+    }
+  }
+
+  expandedSections: boolean[] = new Array(this.menuSections.length).fill(false);
+
+  toggleSection(index: number) {
+    const isCurrentlyOpen = this.expandedSections[index];
+
+    this.expandedSections.fill(false);
+    if (!isCurrentlyOpen) {
+      this.expandedSections[index] = true;
     }
   }
 
