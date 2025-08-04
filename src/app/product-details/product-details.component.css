@@ -1,0 +1,23 @@
+@reference "../../styles.css";
+
+.radio-circle::before {
+  content: "";
+  @apply w-full h-full bg-black rounded-full opacity-0 transition-all duration-[350ms] ease-in block;
+}
+
+.choice-block input:checked + label {
+  @apply bg-[#f7f7f7];
+}
+
+.choice-block input:checked + label .radio-circle:before {
+  @apply opacity-100;
+}
+
+.gift-wrap .radio-square::before {
+  content: "\2713";
+  @apply w-full h-[24px] opacity-0 transition-all duration-[350ms] ease-in block;
+}
+
+.gift-checkbox:checked + label .radio-square::before {
+  @apply opacity-100;
+}

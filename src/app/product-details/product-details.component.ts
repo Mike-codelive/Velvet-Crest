@@ -18,13 +18,20 @@ import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
 import { CtaComponent } from '../cta/cta.component';
 import { CardComponent } from '../UI/card/card.component';
+import { FormsModule } from '@angular/forms';
 
 Swiper.use([Pagination, Navigation]);
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule, ButtonComponent, CtaComponent, CardComponent],
+  imports: [
+    CommonModule,
+    ButtonComponent,
+    CtaComponent,
+    CardComponent,
+    FormsModule,
+  ],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })
@@ -36,6 +43,7 @@ export class ProductDetailsComponent
   totalImages = 0;
   loadedImages = 0;
   isMobile: boolean = window.innerWidth <= 832;
+  selectedBuyType = 'one_time';
 
   testimonials = [
     {

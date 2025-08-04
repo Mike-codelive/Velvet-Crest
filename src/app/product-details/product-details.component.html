@@ -68,12 +68,87 @@
         </h1>
         <p class="text-center text-[20px] font-title">Signature Collection</p>
         <h2 class="capitalize text-center">company • {{ product.company }}</h2>
-        <p class="text-xl text-gray-600 mb-2">
-          ${{ product.price / 100 | number : "1.0-2" }}
-        </p>
-        <p class="text-gray-500 mb-4" *ngIf="product.description">
-          {{ product.description }}
-        </p>
+
+        <div class="choice-block">
+          <div class="my-2">
+            <input
+              type="radio"
+              name="buy_type"
+              value="one_time"
+              id="buy-type"
+              class="hidden"
+              [(ngModel)]="selectedBuyType"
+              checked
+            />
+            <label
+              for="buy-type"
+              class="border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border"
+            >
+              <span
+                class="radio-circle w-6 h-6 border border-black rounded-full mr-2 p-0.5 transition-all duration-[350ms] ease-in"
+              ></span>
+              One Time Purchase
+              <span class="ml-auto">
+                <span>${{ product.price / 100 | number : "1.0-2" }}</span>
+              </span>
+            </label>
+          </div>
+          <div class="my-2">
+            <input
+              type="radio"
+              name="buy_type"
+              value="Subscribe"
+              id="buy-type_0"
+              class="hidden"
+              [(ngModel)]="selectedBuyType"
+            />
+            <label
+              for="buy-type_0"
+              class="border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border"
+            >
+              <span
+                class="radio-circle w-6 h-6 border border-black rounded-full mr-2 p-0.5 transition-all duration-[350ms] ease-in"
+              ></span>
+              Subscribe & Save 10%
+              <span class="ml-auto">
+                <span>
+                  ${{ (product.price * 0.9) / 100 | number : "1.0-2" }}</span
+                >
+                <span class="line-through text-[#6A6A6A] ml-2">
+                  ${{ product.price / 100 | number : "1.0-2" }}
+                </span>
+              </span>
+            </label>
+          </div>
+
+          <div>
+            <div
+              class="supscription"
+              [class.hidden]="selectedBuyType !== 'Subscribe'"
+            ></div>
+            <div
+              class="gift-wrap"
+              [class.hidden]="selectedBuyType === 'Subscribe'"
+            >
+              <input
+                type="checkbox"
+                name="gift_wrap"
+                value="gift"
+                id="gift_wrap"
+                class="gift-checkbox hidden"
+              />
+              <label
+                for="gift_wrap"
+                class="gift-wrap border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border"
+              >
+                <span
+                  class="radio-square text-base flex items-center w-6 h-6 rounded-xs border border-black mr-2 p-0.5 transition-all duration-[350ms] ease-in"
+                ></span>
+                Add gift wrapping for $9.00
+              </label>
+            </div>
+          </div>
+        </div>
         <app-button
           class="flex-1"
           [paddingX]="'px-2.5'"
@@ -92,7 +167,7 @@
             >
               {{ section.title }}
               <span
-                class="ml-2 rounded-full flex items-center bg-[#f7f7f7] transition-transform duration-300"
+                class="ml-2 rounded-full flex items-center bg-[#f7f7f7] transition-transform duration-300 select-none"
                 [class.rotate-180]="expandedSections[i]"
                 ><span class="material-symbols-outlined">
                   keyboard_arrow_down
