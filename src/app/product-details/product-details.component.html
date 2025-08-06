@@ -123,11 +123,119 @@
 
           <div>
             <div
-              class="supscription"
+              class="supscription mb-4"
               [class.hidden]="selectedBuyType !== 'Subscribe'"
-            ></div>
+            >
+              <div
+                class="relative z-10 cursor-pointer font-text text-sm capitalize rounded-[4px] border border-[#6A6A6A] transition-all text-left"
+                (click)="isDropdownOpen = !isDropdownOpen"
+              >
+                <div class="flex flex-row justify-between py-4 px-6 text-black">
+                  <span>{{ displayedPlan }}</span>
+                  <span
+                    class="ml-2 rounded-full flex items-center bg-[#f7f7f7] transition-transform duration-300 select-none"
+                    [class.rotate-180]="isDropdownOpen"
+                    ><span class="material-symbols-outlined">
+                      keyboard_arrow_down
+                    </span></span
+                  >
+                </div>
+                <div
+                  class="custom-select-options opacity-0 max-h-0 invisible text-left left-0 top-full-plus-2 w-full flex transition-all flex-col"
+                  [ngClass]="{ open: isDropdownOpen }"
+                >
+                  <!-- 1 Week -->
+                  <div class="custom-select-option">
+                    <input
+                      type="radio"
+                      name="selling_plan"
+                      class="hidden"
+                      value="1_week"
+                      id="selling_plan_1_week"
+                      [(ngModel)]="selectedPlan"
+                    />
+                    <label
+                      for="selling_plan_1_week"
+                      (click)="selectPlan('1_week')"
+                      class="border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border"
+                    >
+                      <span
+                        class="radio-circle w-6 h-6 border border-black rounded-full mr-2 p-0.5 transition-all duration-[350ms] ease-in"
+                      ></span>
+                      Every 1 Week
+                    </label>
+                  </div>
+
+                  <!-- 2 Weeks -->
+                  <div class="custom-select-option">
+                    <input
+                      type="radio"
+                      name="selling_plan"
+                      class="hidden"
+                      value="2_weeks"
+                      id="selling_plan_2_weeks"
+                      [(ngModel)]="selectedPlan"
+                    />
+                    <label
+                      for="selling_plan_2_weeks"
+                      (click)="selectPlan('2_weeks')"
+                      class="border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border"
+                    >
+                      <span
+                        class="radio-circle w-6 h-6 border border-black rounded-full mr-2 p-0.5 transition-all duration-[350ms] ease-in"
+                      ></span>
+                      Every 2 Weeks
+                    </label>
+                  </div>
+
+                  <!-- 4 Weeks -->
+                  <div class="custom-select-option">
+                    <input
+                      type="radio"
+                      name="selling_plan"
+                      class="hidden"
+                      value="4_weeks"
+                      id="selling_plan_4_weeks"
+                      [(ngModel)]="selectedPlan"
+                    />
+                    <label
+                      for="selling_plan_4_weeks"
+                      (click)="selectPlan('4_weeks')"
+                      class="border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border"
+                    >
+                      <span
+                        class="radio-circle w-6 h-6 border border-black rounded-full mr-2 p-0.5 transition-all duration-[350ms] ease-in"
+                      ></span>
+                      Every 4 Weeks
+                    </label>
+                  </div>
+
+                  <!-- 8 Weeks -->
+                  <div class="custom-select-option">
+                    <input
+                      type="radio"
+                      name="selling_plan"
+                      class="hidden"
+                      value="8_weeks"
+                      id="selling_plan_8_weeks"
+                      [(ngModel)]="selectedPlan"
+                    />
+                    <label
+                      for="selling_plan_8_weeks"
+                      (click)="selectPlan('8_weeks')"
+                      class="border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border"
+                    >
+                      <span
+                        class="radio-circle w-6 h-6 border border-black rounded-full mr-2 p-0.5 transition-all duration-[350ms] ease-in"
+                      ></span>
+                      Every 8 Weeks
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div
-              class="gift-wrap"
+              class="gift-wrap mb-4"
               [class.hidden]="selectedBuyType === 'Subscribe'"
             >
               <input

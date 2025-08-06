@@ -121,6 +121,22 @@ body {
   -webkit-user-drag: none;
 }
 
+.top-full-plus-2 {
+  top: calc(100% + 8px);
+}
+
+.custom-select-options.open {
+  max-height: 230px;
+  height: -moz-fit-content;
+  height: fit-content;
+  opacity: 1;
+  visibility: visible;
+  margin-top: 10px;
+  margin-bottom: 2px;
+  -webkit-overflow-scrolling: auto;
+  will-change: scroll-position;
+}
+
 @keyframes bounce-down-up {
   0%,
   100% {

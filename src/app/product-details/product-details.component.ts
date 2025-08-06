@@ -44,6 +44,30 @@ export class ProductDetailsComponent
   loadedImages = 0;
   isMobile: boolean = window.innerWidth <= 832;
   selectedBuyType = 'one_time';
+  isDropdownOpen: boolean = false;
+  selectedPlan = '';
+
+  // Updated selectPlan method to handle selection and close dropdown
+  selectPlan(value: string) {
+    this.selectedPlan = value; // Update selected plan
+    this.isDropdownOpen = false; // Close the dropdown
+  }
+
+  // Getter to display the selected plan text
+  get displayedPlan(): string {
+    switch (this.selectedPlan) {
+      case '1_week':
+        return 'Every 1 Week';
+      case '2_weeks':
+        return 'Every 2 Weeks';
+      case '4_weeks':
+        return 'Every 4 Weeks';
+      case '8_weeks':
+        return 'Every 8 Weeks';
+      default:
+        return 'Select Frequency';
+    }
+  }
 
   testimonials = [
     {
