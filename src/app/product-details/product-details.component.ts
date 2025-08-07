@@ -46,14 +46,13 @@ export class ProductDetailsComponent
   selectedBuyType = 'one_time';
   isDropdownOpen: boolean = false;
   selectedPlan = '';
+  quantity: number = 1;
 
-  // Updated selectPlan method to handle selection and close dropdown
   selectPlan(value: string) {
-    this.selectedPlan = value; // Update selected plan
-    this.isDropdownOpen = false; // Close the dropdown
+    this.selectedPlan = value;
+    this.isDropdownOpen = false;
   }
 
-  // Getter to display the selected plan text
   get displayedPlan(): string {
     switch (this.selectedPlan) {
       case '1_week':
@@ -123,6 +122,52 @@ export class ProductDetailsComponent
     private productService: ProductService,
     private titleService: Title
   ) {}
+
+  onQuantityInput(event: Event): void {
+    const input = (event.target as HTMLInputElement).value;
+
+    if (!input.trim()) {
+      this.quantity = 1;
+      return;
+    }
+
+    const sanitized = input.replace(/\D/g, '');
+
+    let num = parseInt(sanitized, 10);
+
+    if (isNaN(num)) {
+      this.quantity = 1;
+    } else if (num > 999) {
+      this.quantity = 999;
+    } else if (num < 1) {
+      this.quantity = 1;
+    } else {
+      this.quantity = num;
+    }
+  }
+
+  preventInvalidKeys(event: KeyboardEvent): void {
+    const allowedKeys = [
+      'Backspace',
+      'ArrowLeft',
+      'ArrowRight',
+      'Tab',
+      'Delete',
+    ];
+    const isNumberKey = /^[0-9]$/.test(event.key);
+
+    if (!isNumberKey && !allowedKeys.includes(event.key)) {
+      event.preventDefault();
+    }
+  }
+
+  increaseQuantity() {
+    if (this.quantity < 999) this.quantity++;
+  }
+
+  decreaseQuantity() {
+    if (this.quantity > 1) this.quantity--;
+  }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');

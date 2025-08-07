@@ -257,14 +257,50 @@
             </div>
           </div>
         </div>
-        <app-button
-          class="flex-1"
-          [paddingX]="'px-2.5'"
-          [paddingY]="'py-2.5'"
-          [style]="'primary'"
-          [wFull]="true"
-          >Add to Cart</app-button
-        >
+
+        <div class="product-actions">
+          <div class="flex gap-4 h-[64px]">
+            <div class="flex h-[64px]">
+              <button
+                class="w-[52px] flex justify-center items-center border border-black transition-colors duration-150 border-r-transparent rounded-tl-sm rounded-bl-sm cursor-pointer hover:bg-black group"
+                (click)="decreaseQuantity()"
+              >
+                <span class="material-symbols-outlined group-hover:text-white">
+                  remove
+                </span>
+              </button>
+              <input
+                class="w-[52px] text-center border-black border-t border-b focus-visible:outline-none"
+                type="text"
+                min="1"
+                max="999"
+                value="1"
+                name="quantity"
+                [(ngModel)]="quantity"
+                (input)="onQuantityInput($event)"
+                (keydown)="preventInvalidKeys($event)"
+              />
+              <button
+                class="w-[52px] flex justify-center items-center border border-black transition-colors duration-150 border-l-transparent rounded-tr-sm rounded-br-sm cursor-pointer hover:bg-black group"
+                (click)="increaseQuantity()"
+              >
+                <span class="material-symbols-outlined group-hover:text-white">
+                  Add
+                </span>
+              </button>
+            </div>
+            <app-button
+              class="flex-1"
+              [paddingX]="'px-2.5'"
+              [paddingY]="'py-2.5'"
+              [style]="'secondary'"
+              [wFull]="true"
+              [hFull]="true"
+              [className]="'h-[64px] !text-base font-semibold'"
+              >Add to Cart</app-button
+            >
+          </div>
+        </div>
 
         <div class="single-product-menu">
           @for (section of menuSections; track section.title; let i = $index) {

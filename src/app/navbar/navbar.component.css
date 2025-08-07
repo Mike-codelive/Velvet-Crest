@@ -336,15 +336,10 @@
   @apply w-full text-[18px] font-text flex justify-between items-center py-4 cursor-pointer;
 }
 
-/* .menu-drawer-root-link.active {
-  @apply absolute flex-row-reverse justify-end pl-6 left-0 top-0 bg-[#f9f9f9];
-  } */
-
 .menu-drawer-root-link .material-symbols-outlined {
   @apply rounded-full bg-[#f9f9f9] p-2 font-extralight;
 }
 
-/* test functionality */
 .menu-drawer-root-lvl-2.active {
   @apply block absolute flex-row-reverse justify-end left-0 top-0;
 }

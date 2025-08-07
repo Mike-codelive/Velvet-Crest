@@ -3,6 +3,7 @@
   [disabled]="disabled"
   (click)="handleClick($event)"
   [ngClass]="[
+    className,
     paddingX,
     paddingY,
     'font-text',
@@ -20,7 +21,8 @@
     style === 'primary' ? 'btn-primary' : '',
     style === 'secondary' ? 'btn-secondary' : '',
     style === 'outline' ? 'btn-outline' : '',
-    wFull ? 'w-full' : ''
+    wFull ? 'w-full' : '',
+    hFull ? 'h-full' : ''
   ]"
 >
   <ng-content></ng-content>
