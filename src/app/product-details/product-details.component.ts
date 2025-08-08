@@ -22,6 +22,11 @@ import { FormsModule } from '@angular/forms';
 
 Swiper.use([Pagination, Navigation]);
 
+interface ProductColor {
+  name: string;
+  hex: string;
+}
+
 @Component({
   selector: 'app-product-details',
   standalone: true,
@@ -47,6 +52,52 @@ export class ProductDetailsComponent
   isDropdownOpen: boolean = false;
   selectedPlan = '';
   quantity: number = 1;
+  isColorSelectorOpen: boolean = false;
+  selectedColor: ProductColor | null = null;
+  colors: ProductColor[] = [];
+
+  private hexColorNames: Record<string, string> = {
+    '#ff0000': 'Red',
+    '#00ff00': 'Green',
+    '#0000ff': 'Blue',
+    '#ffffff': 'White',
+    '#000': 'Black',
+    '#ff69b4': 'Hot Pink',
+    '#ffa500': 'Orange',
+    '#ffff00': 'Yellow',
+    '#800080': 'Purple',
+    '#008000': 'Dark Green',
+    '#c0c0c0': 'Silver',
+    '#808080': 'Gray',
+  };
+
+  private inferColorName(hex: string): string {
+    const normalizedHex = hex.toLowerCase().replace('#', '');
+    if (this.hexColorNames[hex.toLowerCase()]) {
+      return this.hexColorNames[hex.toLowerCase()];
+    }
+    switch (normalizedHex) {
+      case 'ff0000':
+        return 'Red';
+      case 'ffb900':
+        return 'Yellow';
+      case '00ff00':
+        return 'Green';
+      case '0000ff':
+        return 'Blue';
+      case 'ffffff':
+        return 'White';
+      case '000':
+        return 'Black';
+      default:
+        return 'Custom Color';
+    }
+  }
+
+  selectColor(color: ProductColor) {
+    this.selectedColor = color;
+    this.isColorSelectorOpen = false;
+  }
 
   selectPlan(value: string) {
     this.selectedPlan = value;
@@ -71,35 +122,24 @@ export class ProductDetailsComponent
   testimonials = [
     {
       id: 1,
-      testimonial:
-        'Absolutely stunning craftsmanship. I’ve never owned furniture that felt this luxurious — every detail is so thoughtful.',
+      testimonial: 'Absolutely stunning craftsmanship...',
       author: 'Isabel M.',
     },
-    {
-      id: 2,
-      testimonial:
-        'I was genuinely surprised by the quality. It instantly became the centerpiece of my living room. Timeless and elegant.',
-      author: 'Julian R.',
-    },
+    { id: 2, testimonial: 'I was genuinely surprised...', author: 'Julian R.' },
     {
       id: 3,
-      testimonial:
-        'VelvetCrest exceeded my expectations. The materials, the finish — everything feels premium. Worth every cent.',
+      testimonial: 'VelvetCrest exceeded my expectations...',
       author: 'Lena D.',
     },
     {
       id: 4,
-      testimonial:
-        'It’s rare to find something that feels both refined and personal. This is furniture that tells a story.',
+      testimonial: 'It’s rare to find something...',
       author: 'Marcus T.',
     },
   ];
 
   menuSections = [
-    {
-      title: 'About',
-      items: [],
-    },
+    { title: 'About', items: [] },
     {
       title: 'Craftsmanship',
       items: [
@@ -125,25 +165,15 @@ export class ProductDetailsComponent
 
   onQuantityInput(event: Event): void {
     const input = (event.target as HTMLInputElement).value;
-
     if (!input.trim()) {
       this.quantity = 1;
       return;
     }
-
     const sanitized = input.replace(/\D/g, '');
-
-    let num = parseInt(sanitized, 10);
-
-    if (isNaN(num)) {
-      this.quantity = 1;
-    } else if (num > 999) {
-      this.quantity = 999;
-    } else if (num < 1) {
-      this.quantity = 1;
-    } else {
-      this.quantity = num;
-    }
+    let num = parseInt(sanitized, 10) || 1;
+    if (num > 999) num = 999;
+    else if (num < 1) num = 1;
+    this.quantity = num;
   }
 
   preventInvalidKeys(event: KeyboardEvent): void {
@@ -153,10 +183,18 @@ export class ProductDetailsComponent
       'ArrowRight',
       'Tab',
       'Delete',
+      '0',
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
     ];
-    const isNumberKey = /^[0-9]$/.test(event.key);
-
-    if (!isNumberKey && !allowedKeys.includes(event.key)) {
+    if (!allowedKeys.includes(event.key)) {
       event.preventDefault();
     }
   }
@@ -175,11 +213,20 @@ export class ProductDetailsComponent
       this.productService.fetchSingleProduct(id).subscribe((product) => {
         this.product = product;
         this.totalImages = product.images.length;
+        if (product.colors && Array.isArray(product.colors)) {
+          this.colors = product.colors.map((hex: string) => ({
+            hex: hex.toLowerCase(),
+            name: this.inferColorName(hex),
+          }));
+          if (this.colors.length > 0) {
+            this.selectedColor = this.colors[0];
+          }
+        }
         this.titleService.setTitle(
           `VelvetCrest - ${capitalizeWords(product.name)}`
         );
         this.menuSections[0].title = `About ${capitalizeWords(product.name)}`;
-        this.menuSections[0].items[0] = `${product.description}`;
+        this.menuSections[0].items[0] = product.description || '';
       });
     }
   }
@@ -213,7 +260,6 @@ export class ProductDetailsComponent
 
   initializeSwiper(): void {
     if (!this.swiperContainerSingleProduct) return;
-
     this.swiper = new Swiper(this.swiperContainerSingleProduct.nativeElement, {
       slidesPerView: 1,
       slidesPerGroup: 1,
@@ -228,12 +274,8 @@ export class ProductDetailsComponent
         prevEl: '.product-details-navigation-prev',
       },
       on: {
-        init: (swiper) => {
-          this.updateNavButtons(swiper);
-        },
-        slideChange: (swiper) => {
-          this.updateNavButtons(swiper);
-        },
+        init: (swiper) => this.updateNavButtons(swiper),
+        slideChange: (swiper) => this.updateNavButtons(swiper),
       },
     });
   }
@@ -241,34 +283,24 @@ export class ProductDetailsComponent
   updateNavButtons(swiper: Swiper) {
     const prevEl = document.querySelector('.product-details-navigation-prev');
     const nextEl = document.querySelector('.product-details-navigation-next');
-
-    if (prevEl) {
-      prevEl.classList.toggle('hidden', swiper.isBeginning);
-    }
-    if (nextEl) {
-      nextEl.classList.toggle('hidden', swiper.isEnd);
-    }
+    if (prevEl) prevEl.classList.toggle('hidden', swiper.isBeginning);
+    if (nextEl) nextEl.classList.toggle('hidden', swiper.isEnd);
   }
 
   expandedSections: boolean[] = new Array(this.menuSections.length).fill(false);
 
   toggleSection(index: number) {
     const isCurrentlyOpen = this.expandedSections[index];
-
     this.expandedSections.fill(false);
-    if (!isCurrentlyOpen) {
-      this.expandedSections[index] = true;
-    }
+    if (!isCurrentlyOpen) this.expandedSections[index] = true;
   }
 
   @HostListener('window:resize')
   onResize() {
     const wasMobile = this.isMobile;
     this.isMobile = window.innerWidth <= 832;
-
-    if (this.isMobile && !wasMobile) {
+    if (this.isMobile && !wasMobile)
       setTimeout(() => this.initProductReviewsSwiper(), 0);
-    }
   }
 
   ngOnDestroy(): void {
