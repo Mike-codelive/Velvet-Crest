@@ -56,10 +56,6 @@
   @apply font-text text-[16px] leading-6 mb-4;
 }
 
-.cta-text-content-pl-zero {
-  @apply pl-0;
-}
-
 .cta-headline-tag {
   @apply bg-desert-gold w-fit text-white text-[10px] rounded-sm py-1 px-2 tracking-[.8px];
 }
@@ -77,5 +73,5 @@
 }
 
 #cta .cta-padding-single-product {
-  @apply px-[66px] py-[50px];
+  @apply md-wrapper:px-[66px] md-wrapper:py-[50px];
 }
