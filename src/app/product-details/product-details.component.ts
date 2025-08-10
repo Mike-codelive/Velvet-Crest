@@ -45,8 +45,6 @@ export class ProductDetailsComponent
 {
   product: ProductDetails | null = null;
   swiper: Swiper | null = null;
-  totalImages = 0;
-  loadedImages = 0;
   isMobile: boolean = window.innerWidth <= 832;
   selectedBuyType = 'one_time';
   isDropdownOpen: boolean = false;
@@ -55,6 +53,10 @@ export class ProductDetailsComponent
   isColorSelectorOpen: boolean = false;
   selectedColor: ProductColor | null = null;
   colors: ProductColor[] = [];
+
+  totalImages = 0;
+  loadedImages = 0;
+  allImagesLoaded = false;
 
   private hexColorNames: Record<string, string> = {
     '#ff0000': 'Red',
@@ -240,7 +242,8 @@ export class ProductDetailsComponent
   onImageLoaded(): void {
     this.loadedImages++;
     if (this.loadedImages === this.totalImages) {
-      setTimeout(() => this.initializeSwiper(), 50);
+      this.allImagesLoaded = true;
+      setTimeout(() => this.initializeSwiper(), 0);
     }
   }
 

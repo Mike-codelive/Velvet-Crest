@@ -1,389 +1,471 @@
 <section id="product-details">
   <div *ngIf="product">
-    <div class="md-wrapper:hidden">
-      <div #swiperContainerSingleProduct class="swiper h-[540px]">
-        <div class="swiper-wrapper">
-          <div *ngFor="let image of product.images" class="swiper-slide">
-            <img
-              (load)="onImageLoaded()"
-              [src]="image.url"
-              [alt]="product.name"
-              class="object-cover w-full h-full no-drag"
-            />
+    <div class="relative h-[540px] md-wrapper:hidden">
+      <div class="absolute h-full w-full">
+        <div
+          class="animate-pulse rounded bg-gray-200 no-drag select-none transition-opacity duration-500 inset-0 w-full h-full"
+          [class.opacity-100]="!allImagesLoaded"
+          [class.opacity-0]="allImagesLoaded"
+        ></div>
+      </div>
+
+      <div class="absolute w-full h-full">
+        <div
+          #swiperContainerSingleProduct
+          class="swiper mobile-swiper-single-product h-[540px]"
+          [class.opacity-100]="allImagesLoaded"
+          [class.opacity-0]="!allImagesLoaded"
+        >
+          <div class="swiper-wrapper">
+            <div *ngFor="let image of product.images" class="swiper-slide">
+              <img
+                [src]="image.url"
+                [alt]="product.name"
+                (load)="onImageLoaded()"
+                class="object-cover w-full h-full no-drag"
+              />
+            </div>
+          </div>
+          <div
+            class="swiper-button-prev ml-4 keen-arrow product-details-navigation-prev text-black absolute left-0 top-1/2 -translate-y-1/2 z-30 rounded-full w-8 h-8 flex justify-center items-center hover:bg-[#515b5d] hover:text-white bg-[#f9f9f9] select-none"
+          >
+            <span class="material-symbols-outlined thin-icon"
+              >chevron_left</span
+            >
+          </div>
+          <div
+            class="swiper-button-next mr-4 keen-arrow product-details-navigation-next text-black absolute right-0 top-1/2 -translate-y-1/2 z-30 rounded-full w-8 h-8 flex justify-center items-center hover:bg-[#515b5d] hover:text-white bg-[#f9f9f9] select-none"
+          >
+            <span class="material-symbols-outlined thin-icon"
+              >chevron_right</span
+            >
           </div>
         </div>
-        <div
-          class="swiper-button-prev ml-4 keen-arrow product-details-navigation-prev text-black absolute left-0 top-1/2 -translate-y-1/2 z-30 rounded-full w-8 h-8 flex justify-center items-center hover:bg-[#515b5d] hover:text-white bg-[#f9f9f9] select-none"
-        >
-          <span class="material-symbols-outlined thin-icon">chevron_left</span>
+        <div class="flex justify-center w-full">
+          <div
+            class="swiper-pagination product-details-swiper-pagination h-9 flex justify-center items-center !bottom-auto"
+          ></div>
         </div>
-        <div
-          class="swiper-button-next mr-4 keen-arrow product-details-navigation-next text-black absolute right-0 top-1/2 -translate-y-1/2 z-30 rounded-full w-8 h-8 flex justify-center items-center hover:bg-[#515b5d] hover:text-white bg-[#f9f9f9] select-none"
-        >
-          <span class="material-symbols-outlined thin-icon">chevron_right</span>
-        </div>
-      </div>
-      <div class="flex justify-center w-full">
-        <div
-          class="swiper-pagination product-details-swiper-pagination h-9 flex justify-center items-center !bottom-auto"
-        ></div>
       </div>
     </div>
   </div>
   <div class="wrapper my-8">
-    <div
-      *ngIf="product"
-      class="grid grid-cols-1 md-wrapper:grid-cols-2 max-w-[1132px] mx-auto gap-[84px]"
-    >
-      <div class="select-none hidden md-wrapper:block">
-        <div class="relative">
-          <img
-            [src]="product.images[0].url"
-            [alt]="product.name"
-            (load)="onImageLoaded()"
-            class="w-[524px] h-[524px] object-cover rounded select-none no-drag"
-          />
+    <div class="relative min-h-[683px] md-wrapper:min-h-[1056px]">
+      <div
+        class="grid grid-cols-1 md-wrapper:grid-cols-2 max-w-[1132px] mx-auto gap-[84px] absolute transition-opacity duration-500 inset-0 w-full h-full"
+        [class.opacity-100]="!allImagesLoaded"
+        [class.opacity-0]="allImagesLoaded"
+      >
+        <div class="select-none hidden md-wrapper:block">
           <div
-            *ngIf="product.featured"
-            class="absolute capitalize z-30 top-4 left-4 bg-[#edf3f6] rounded-3xl py-1.5 px-4 text-[12px] font-text select-none"
-          >
-            bestseller
+            class="max-w-[524px] max-h-[524px] w-full h-full rounded select-none no-drag bg-gray-200 animate-pulse"
+          ></div>
+          <div class="grid grid-cols-2 gap-2 mt-2">
+            <div
+              class="max-w-[258px] h-[258px] w-full bg-gray-200 rounded no-drag animate-pulse"
+              *ngFor="let image of product?.images | slice : 1"
+            ></div>
           </div>
         </div>
-        <div class="grid grid-cols-2 gap-2 mt-2">
-          <div *ngFor="let image of product.images | slice : 1">
-            <img
-              (load)="onImageLoaded()"
-              [src]="image.url"
-              [alt]="product.name"
-              class="w-[258px] h-[258px] object-cover rounded no-drag"
-            />
+        <div>
+          <div
+            class="animate-pulse rounded bg-gray-200 no-drag select-none h-[44px] w-[350px] mx-auto mb-2.5"
+          ></div>
+          <div
+            class="animate-pulse rounded bg-gray-200 no-drag select-none h-[23px] w-[200px] mx-auto mb-2"
+          ></div>
+          <div
+            class="animate-pulse rounded bg-gray-200 no-drag select-none h-[20px] w-[150px] mx-auto"
+          ></div>
+          <div class="choice-skeleton mb-3">
+            <div
+              class="animate-pulse rounded bg-gray-200 no-drag select-none h-[58px] w-full mx-auto my-2"
+            ></div>
+            <div
+              class="animate-pulse rounded bg-gray-200 no-drag select-none h-[58px] w-full mx-auto my-2"
+            ></div>
+            <div
+              class="animate-pulse rounded bg-gray-200 no-drag select-none h-[58px] w-full mx-auto my-2"
+            ></div>
+          </div>
+          <div
+            class="animate-pulse rounded bg-gray-200 no-drag select-none h-[58px] w-full mx-auto my-2 mb-2"
+          ></div>
+          <div class="button-skeleton flex gap-4">
+            <div
+              class="animate-pulse rounded bg-gray-200 no-drag select-none h-[64px] w-[156px] mx-auto my-2"
+            ></div>
+            <div
+              class="animate-pulse rounded bg-gray-200 no-drag select-none h-[64px] flex-1 mx-auto my-2"
+            ></div>
+          </div>
+          <div class="product-menu-skeleton">
+            <div
+              class="animate-pulse rounded bg-gray-200 no-drag select-none h-[22px] mt-2 mb-15"
+            ></div>
+            <div
+              class="animate-pulse rounded bg-gray-200 no-drag select-none h-[22px] mt-2 mb-14"
+            ></div>
+            <div
+              class="animate-pulse rounded bg-gray-200 no-drag select-none h-[22px] mt-2"
+            ></div>
           </div>
         </div>
       </div>
-
-      <div>
-        <h1 class="text-[32px] font-normal capitalize text-center font-title">
-          {{ product.name }}
-        </h1>
-        <p class="text-center text-[20px] font-title">Signature Collection</p>
-        <h2 class="capitalize text-center">company • {{ product.company }}</h2>
-
-        <div class="choice-block">
-          <div class="my-2">
-            <input
-              type="radio"
-              name="buy_type"
-              value="one_time"
-              id="buy-type"
-              class="hidden"
-              [(ngModel)]="selectedBuyType"
-              checked
+      <div
+        *ngIf="product"
+        class="grid grid-cols-1 md-wrapper:grid-cols-2 max-w-[1132px] mx-auto gap-[84px] absolute transition-opacity duration-500 inset-0 w-full h-full z-10"
+        [class.opacity-100]="allImagesLoaded"
+        [class.opacity-0]="!allImagesLoaded"
+      >
+        <div class="select-none hidden md-wrapper:block">
+          <div class="relative">
+            <img
+              [src]="product.images[0].url"
+              [alt]="product.name"
+              (load)="onImageLoaded()"
+              class="w-[524px] h-[524px] object-cover rounded select-none no-drag"
             />
-            <label
-              for="buy-type"
-              class="border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border select-none"
-            >
-              <span
-                class="radio-circle w-6 h-6 border border-black rounded-full mr-2 p-0.5 transition-all duration-[350ms] ease-in"
-              ></span>
-              One Time Purchase
-              <span class="ml-auto">
-                <span>${{ product.price / 100 | number : "1.0-2" }}</span>
-              </span>
-            </label>
-          </div>
-          <div class="my-2">
-            <input
-              type="radio"
-              name="buy_type"
-              value="Subscribe"
-              id="buy-type_0"
-              class="hidden"
-              [(ngModel)]="selectedBuyType"
-            />
-            <label
-              for="buy-type_0"
-              class="border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border select-none"
-            >
-              <span
-                class="radio-circle w-6 h-6 border border-black rounded-full mr-2 p-0.5 transition-all duration-[350ms] ease-in"
-              ></span>
-              Subscribe & Save 10%
-              <span class="ml-auto">
-                <span>
-                  ${{ (product.price * 0.9) / 100 | number : "1.0-2" }}</span
-                >
-                <span class="line-through text-[#6A6A6A] ml-2">
-                  ${{ product.price / 100 | number : "1.0-2" }}
-                </span>
-              </span>
-            </label>
-          </div>
-
-          <div>
             <div
-              class="supscription mb-4"
-              [class.hidden]="selectedBuyType !== 'Subscribe'"
+              *ngIf="product.featured"
+              class="absolute capitalize z-30 top-4 left-4 bg-[#edf3f6] rounded-3xl py-1.5 px-4 text-[12px] font-text select-none"
             >
-              <div
-                class="relative z-10 cursor-pointer font-text text-sm capitalize rounded-[4px] border border-[#6A6A6A] transition-all text-left"
-                (click)="isDropdownOpen = !isDropdownOpen"
-              >
-                <div
-                  class="flex flex-row justify-between py-4 px-6 text-black select-none"
-                >
-                  <span>{{ displayedPlan }}</span>
-                  <span
-                    class="ml-2 rounded-full flex items-center bg-[#f7f7f7] transition-transform duration-300 select-none"
-                    [class.rotate-180]="isDropdownOpen"
-                    ><span class="material-symbols-outlined">
-                      keyboard_arrow_down
-                    </span></span
-                  >
-                </div>
-                <div
-                  class="custom-select-options opacity-0 max-h-0 invisible text-left left-0 top-full-plus-2 w-full flex transition-all flex-col"
-                  [ngClass]="{ open: isDropdownOpen }"
-                >
-                  <div class="custom-select-option">
-                    <input
-                      type="radio"
-                      name="selling_plan"
-                      class="hidden"
-                      value="1_week"
-                      id="selling_plan_1_week"
-                      [(ngModel)]="selectedPlan"
-                    />
-                    <label
-                      for="selling_plan_1_week"
-                      (click)="selectPlan('1_week')"
-                      class="border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border select-none"
-                    >
-                      <span
-                        class="radio-circle w-6 h-6 border border-black rounded-full mr-2 p-0.5 transition-all duration-[350ms] ease-in"
-                      ></span>
-                      Every 1 Week
-                    </label>
-                  </div>
-
-                  <div class="custom-select-option">
-                    <input
-                      type="radio"
-                      name="selling_plan"
-                      class="hidden"
-                      value="2_weeks"
-                      id="selling_plan_2_weeks"
-                      [(ngModel)]="selectedPlan"
-                    />
-                    <label
-                      for="selling_plan_2_weeks"
-                      (click)="selectPlan('2_weeks')"
-                      class="border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border select-none"
-                    >
-                      <span
-                        class="radio-circle w-6 h-6 border border-black rounded-full mr-2 p-0.5 transition-all duration-[350ms] ease-in"
-                      ></span>
-                      Every 2 Weeks
-                    </label>
-                  </div>
-
-                  <div class="custom-select-option">
-                    <input
-                      type="radio"
-                      name="selling_plan"
-                      class="hidden"
-                      value="4_weeks"
-                      id="selling_plan_4_weeks"
-                      [(ngModel)]="selectedPlan"
-                    />
-                    <label
-                      for="selling_plan_4_weeks"
-                      (click)="selectPlan('4_weeks')"
-                      class="border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border select-none"
-                    >
-                      <span
-                        class="radio-circle w-6 h-6 border border-black rounded-full mr-2 p-0.5 transition-all duration-[350ms] ease-in"
-                      ></span>
-                      Every 4 Weeks
-                    </label>
-                  </div>
-
-                  <div class="custom-select-option">
-                    <input
-                      type="radio"
-                      name="selling_plan"
-                      class="hidden"
-                      value="8_weeks"
-                      id="selling_plan_8_weeks"
-                      [(ngModel)]="selectedPlan"
-                    />
-                    <label
-                      for="selling_plan_8_weeks"
-                      (click)="selectPlan('8_weeks')"
-                      class="border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border select-none"
-                    >
-                      <span
-                        class="radio-circle w-6 h-6 border border-black rounded-full mr-2 p-0.5 transition-all duration-[350ms] ease-in"
-                      ></span>
-                      Every 8 Weeks
-                    </label>
-                  </div>
-                </div>
-              </div>
+              bestseller
             </div>
-            <div
-              class="gift-wrap mb-4"
-              [class.hidden]="selectedBuyType === 'Subscribe'"
-            >
+          </div>
+          <div class="grid grid-cols-2 gap-2 mt-2">
+            <div *ngFor="let image of product.images | slice : 1">
+              <img
+                (load)="onImageLoaded()"
+                [src]="image.url"
+                [alt]="product.name"
+                class="w-[258px] h-[258px] object-cover rounded no-drag"
+              />
+            </div>
+          </div>
+        </div>
+        <div>
+          <h1 class="text-[32px] font-normal capitalize text-center font-title">
+            {{ product.name }}
+          </h1>
+          <p class="text-center text-[20px] font-title">Signature Collection</p>
+          <h2 class="capitalize text-center">
+            company • {{ product.company }}
+          </h2>
+          <div class="choice-block">
+            <div class="my-2">
               <input
-                type="checkbox"
-                name="gift_wrap"
-                value="gift"
-                id="gift_wrap"
-                class="gift-checkbox hidden"
+                type="radio"
+                name="buy_type"
+                value="one_time"
+                id="buy-type"
+                class="hidden"
+                [(ngModel)]="selectedBuyType"
+                checked
               />
               <label
-                for="gift_wrap"
-                class="gift-wrap border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border select-none"
+                for="buy-type"
+                class="border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border select-none"
               >
                 <span
-                  class="radio-square text-base flex items-center w-6 h-6 rounded-xs border border-black mr-2 p-0.5 transition-all duration-[350ms] ease-in"
+                  class="radio-circle w-6 h-6 border border-black rounded-full mr-2 p-0.5 transition-all duration-[350ms] ease-in"
                 ></span>
-                Add gift wrapping for $9.00
+                One Time Purchase
+                <span class="ml-auto">
+                  <span>${{ product.price / 100 | number : "1.0-2" }}</span>
+                </span>
               </label>
             </div>
-            <div class="color-selection mb-4">
+            <div class="my-2">
+              <input
+                type="radio"
+                name="buy_type"
+                value="Subscribe"
+                id="buy-type_0"
+                class="hidden"
+                [(ngModel)]="selectedBuyType"
+              />
+              <label
+                for="buy-type_0"
+                class="border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border select-none"
+              >
+                <span
+                  class="radio-circle w-6 h-6 border border-black rounded-full mr-2 p-0.5 transition-all duration-[350ms] ease-in"
+                ></span>
+                Subscribe & Save 10%
+                <span class="ml-auto">
+                  <span>
+                    ${{ (product.price * 0.9) / 100 | number : "1.0-2" }}</span
+                  >
+                  <span class="line-through text-[#6A6A6A] ml-2">
+                    ${{ product.price / 100 | number : "1.0-2" }}
+                  </span>
+                </span>
+              </label>
+            </div>
+            <div>
               <div
-                class="relative z-10 cursor-pointer font-text text-sm capitalize rounded-[4px] border border-[#6A6A6A] transition-all text-left"
-                (click)="isColorSelectorOpen = !isColorSelectorOpen"
+                class="supscription mb-4"
+                [class.hidden]="selectedBuyType !== 'Subscribe'"
               >
                 <div
-                  class="flex justify-between items-center py-4 px-6 text-black"
-                >
-                  <div class="flex items-center gap-3 select-none">
-                    <span
-                      class="w-5 h-5 rounded-full border border-gray-300 flex-shrink-0"
-                      [style.background-color]="selectedColor?.hex"
-                    ></span>
-                    <span class="truncate">
-                      {{ selectedColor?.name || "Select a color" }}
-                    </span>
-                  </div>
-                  <span
-                    class="material-symbols-outlined transition-transform duration-300"
-                    [class.rotate-180]="isColorSelectorOpen"
-                  >
-                    keyboard_arrow_down
-                  </span>
-                </div>
-
-                <div
-                  class="custom-select-options opacity-0 max-h-0 invisible transition-all flex flex-col"
-                  [ngClass]="{ open: isColorSelectorOpen }"
+                  class="relative z-10 cursor-pointer font-text text-sm capitalize rounded-[4px] border border-[#6A6A6A] transition-all text-left"
+                  (click)="isDropdownOpen = !isDropdownOpen"
                 >
                   <div
-                    *ngFor="let color of colors"
-                    class="custom-select-option border-t border-[#e2e1e1] hover:bg-gray-100"
+                    class="flex flex-row justify-between py-4 px-6 text-black select-none"
                   >
-                    <input
-                      type="radio"
-                      name="color_selected"
-                      class="hidden"
-                      [value]="color.hex"
-                      [id]="color.name"
-                      [(ngModel)]="selectColor"
-                    />
-                    <label
-                      class="flex items-center gap-3 cursor-pointer py-3 px-6 text-sm select-none"
-                      [for]="color.name"
-                      (click)="selectColor(color)"
+                    <span>{{ displayedPlan }}</span>
+                    <span
+                      class="ml-2 rounded-full flex items-center bg-[#f7f7f7] transition-transform duration-300 select-none"
+                      [class.rotate-180]="isDropdownOpen"
+                      ><span class="material-symbols-outlined">
+                        keyboard_arrow_down
+                      </span></span
                     >
+                  </div>
+                  <div
+                    class="custom-select-options opacity-0 max-h-0 invisible text-left left-0 top-full-plus-2 w-full flex transition-all flex-col"
+                    [ngClass]="{ open: isDropdownOpen }"
+                  >
+                    <div class="custom-select-option">
+                      <input
+                        type="radio"
+                        name="selling_plan"
+                        class="hidden"
+                        value="1_week"
+                        id="selling_plan_1_week"
+                        [(ngModel)]="selectedPlan"
+                      />
+                      <label
+                        for="selling_plan_1_week"
+                        (click)="selectPlan('1_week')"
+                        class="border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border select-none"
+                      >
+                        <span
+                          class="radio-circle w-6 h-6 border border-black rounded-full mr-2 p-0.5 transition-all duration-[350ms] ease-in"
+                        ></span>
+                        Every 1 Week
+                      </label>
+                    </div>
+                    <div class="custom-select-option">
+                      <input
+                        type="radio"
+                        name="selling_plan"
+                        class="hidden"
+                        value="2_weeks"
+                        id="selling_plan_2_weeks"
+                        [(ngModel)]="selectedPlan"
+                      />
+                      <label
+                        for="selling_plan_2_weeks"
+                        (click)="selectPlan('2_weeks')"
+                        class="border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border select-none"
+                      >
+                        <span
+                          class="radio-circle w-6 h-6 border border-black rounded-full mr-2 p-0.5 transition-all duration-[350ms] ease-in"
+                        ></span>
+                        Every 2 Weeks
+                      </label>
+                    </div>
+                    <div class="custom-select-option">
+                      <input
+                        type="radio"
+                        name="selling_plan"
+                        class="hidden"
+                        value="4_weeks"
+                        id="selling_plan_4_weeks"
+                        [(ngModel)]="selectedPlan"
+                      />
+                      <label
+                        for="selling_plan_4_weeks"
+                        (click)="selectPlan('4_weeks')"
+                        class="border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border select-none"
+                      >
+                        <span
+                          class="radio-circle w-6 h-6 border border-black rounded-full mr-2 p-0.5 transition-all duration-[350ms] ease-in"
+                        ></span>
+                        Every 4 Weeks
+                      </label>
+                    </div>
+                    <div class="custom-select-option">
+                      <input
+                        type="radio"
+                        name="selling_plan"
+                        class="hidden"
+                        value="8_weeks"
+                        id="selling_plan_8_weeks"
+                        [(ngModel)]="selectedPlan"
+                      />
+                      <label
+                        for="selling_plan_8_weeks"
+                        (click)="selectPlan('8_weeks')"
+                        class="border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border select-none"
+                      >
+                        <span
+                          class="radio-circle w-6 h-6 border border-black rounded-full mr-2 p-0.5 transition-all duration-[350ms] ease-in"
+                        ></span>
+                        Every 8 Weeks
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="gift-wrap mb-4"
+                [class.hidden]="selectedBuyType === 'Subscribe'"
+              >
+                <input
+                  type="checkbox"
+                  name="gift_wrap"
+                  value="gift"
+                  id="gift_wrap"
+                  class="gift-checkbox hidden"
+                />
+                <label
+                  for="gift_wrap"
+                  class="gift-wrap border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border select-none"
+                >
+                  <span
+                    class="radio-square text-base flex items-center w-6 h-6 rounded-xs border border-black mr-2 p-0.5 transition-all duration-[350ms] ease-in"
+                  ></span>
+                  Add gift wrapping for $9.00
+                </label>
+              </div>
+              <div class="color-selection mb-4">
+                <div
+                  class="relative z-10 cursor-pointer font-text text-sm capitalize rounded-[4px] border border-[#6A6A6A] transition-all text-left"
+                  (click)="isColorSelectorOpen = !isColorSelectorOpen"
+                >
+                  <div
+                    class="flex justify-between items-center py-4 px-6 text-black"
+                  >
+                    <div class="flex items-center gap-3 select-none">
                       <span
                         class="w-5 h-5 rounded-full border border-gray-300 flex-shrink-0"
-                        [style.background-color]="color.hex"
+                        [style.background-color]="selectedColor?.hex"
                       ></span>
-                      <span class="truncate">{{ color.name }}</span>
-                    </label>
+                      <span class="truncate">
+                        {{ selectedColor?.name || "Select a color" }}
+                      </span>
+                    </div>
+                    <span
+                      class="material-symbols-outlined transition-transform duration-300"
+                      [class.rotate-180]="isColorSelectorOpen"
+                    >
+                      keyboard_arrow_down
+                    </span>
+                  </div>
+                  <div
+                    class="custom-select-options opacity-0 max-h-0 invisible transition-all flex flex-col"
+                    [ngClass]="{ open: isColorSelectorOpen }"
+                  >
+                    <div
+                      *ngFor="let color of colors"
+                      class="custom-select-option border-t border-[#e2e1e1] hover:bg-gray-100"
+                    >
+                      <input
+                        type="radio"
+                        name="color_selected"
+                        class="hidden"
+                        [value]="color.hex"
+                        [id]="color.name"
+                        [(ngModel)]="selectColor"
+                      />
+                      <label
+                        class="flex items-center gap-3 cursor-pointer py-3 px-6 text-sm select-none"
+                        [for]="color.name"
+                        (click)="selectColor(color)"
+                      >
+                        <span
+                          class="w-5 h-5 rounded-full border border-gray-300 flex-shrink-0"
+                          [style.background-color]="color.hex"
+                        ></span>
+                        <span class="truncate">{{ color.name }}</span>
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="product-actions">
-          <div class="flex gap-4 h-[64px]">
-            <div class="flex h-[64px]">
-              <button
-                class="w-[52px] flex justify-center items-center border border-black transition-colors duration-150 border-r-transparent rounded-tl-sm rounded-bl-sm cursor-pointer hover:bg-black group"
-                (click)="decreaseQuantity()"
+          <div class="product-actions">
+            <div class="flex gap-4 h-[64px]">
+              <div class="flex h-[64px]">
+                <button
+                  class="w-[52px] flex justify-center items-center border border-black transition-colors duration-150 border-r-transparent rounded-tl-sm rounded-bl-sm cursor-pointer hover:bg-black group"
+                  (click)="decreaseQuantity()"
+                >
+                  <span
+                    class="material-symbols-outlined group-hover:text-white"
+                  >
+                    remove
+                  </span>
+                </button>
+                <input
+                  class="w-[52px] text-center border-black border-t border-b focus-visible:outline-none"
+                  type="text"
+                  min="1"
+                  max="999"
+                  value="1"
+                  name="quantity"
+                  [(ngModel)]="quantity"
+                  (input)="onQuantityInput($event)"
+                  (keydown)="preventInvalidKeys($event)"
+                />
+                <button
+                  class="w-[52px] flex justify-center items-center border border-black transition-colors duration-150 border-l-transparent rounded-tr-sm rounded-br-sm cursor-pointer hover:bg-black group"
+                  (click)="increaseQuantity()"
+                >
+                  <span
+                    class="material-symbols-outlined group-hover:text-white"
+                  >
+                    Add
+                  </span>
+                </button>
+              </div>
+              <app-button
+                class="flex-1"
+                [paddingX]="'px-2.5'"
+                [paddingY]="'py-2.5'"
+                [style]="'secondary'"
+                [wFull]="true"
+                [hFull]="true"
+                [className]="'h-[64px] !text-base font-semibold'"
+                >Add to Cart</app-button
               >
-                <span class="material-symbols-outlined group-hover:text-white">
-                  remove
-                </span>
-              </button>
-              <input
-                class="w-[52px] text-center border-black border-t border-b focus-visible:outline-none"
-                type="text"
-                min="1"
-                max="999"
-                value="1"
-                name="quantity"
-                [(ngModel)]="quantity"
-                (input)="onQuantityInput($event)"
-                (keydown)="preventInvalidKeys($event)"
-              />
-              <button
-                class="w-[52px] flex justify-center items-center border border-black transition-colors duration-150 border-l-transparent rounded-tr-sm rounded-br-sm cursor-pointer hover:bg-black group"
-                (click)="increaseQuantity()"
-              >
-                <span class="material-symbols-outlined group-hover:text-white">
-                  Add
-                </span>
-              </button>
-            </div>
-            <app-button
-              class="flex-1"
-              [paddingX]="'px-2.5'"
-              [paddingY]="'py-2.5'"
-              [style]="'secondary'"
-              [wFull]="true"
-              [hFull]="true"
-              [className]="'h-[64px] !text-base font-semibold'"
-              >Add to Cart</app-button
-            >
-          </div>
-        </div>
-
-        <div class="single-product-menu">
-          @for (section of menuSections; track section.title; let i = $index) {
-          <div class="w-full border-b border-gray-footer-line">
-            <div
-              class="uppercase mb-4 text-sm py-[18px] cursor-pointer flex items-center justify-between"
-              (click)="toggleSection(i)"
-            >
-              {{ section.title }}
-              <span
-                class="ml-2 rounded-full flex items-center bg-[#f7f7f7] transition-transform duration-300 select-none"
-                [class.rotate-180]="expandedSections[i]"
-                ><span class="material-symbols-outlined">
-                  keyboard_arrow_down
-                </span></span
-              >
-            </div>
-            <div
-              class="overflow-hidden transition-max-height duration-[.4s] ease-in-out"
-              [style.maxHeight]="expandedSections[i] ? '500px' : '0px'"
-            >
-              <ul class="mt-2">
-                @for (item of section.items; track item) {
-                <li class="capitalize mb-4 text-[12px]">{{ item }}</li>
-                }
-              </ul>
             </div>
           </div>
-          }
+          <div class="single-product-menu">
+            @for (section of menuSections; track section.title; let i = $index)
+            {
+            <div class="w-full border-b border-gray-footer-line">
+              <div
+                class="uppercase mb-4 text-sm py-[18px] cursor-pointer flex items-center justify-between"
+                (click)="toggleSection(i)"
+              >
+                {{ section.title }}
+                <span
+                  class="ml-2 rounded-full flex items-center bg-[#f7f7f7] transition-transform duration-300 select-none"
+                  [class.rotate-180]="expandedSections[i]"
+                  ><span class="material-symbols-outlined">
+                    keyboard_arrow_down
+                  </span></span
+                >
+              </div>
+              <div
+                class="overflow-hidden transition-max-height duration-[.4s] ease-in-out"
+                [style.maxHeight]="expandedSections[i] ? '500px' : '0px'"
+              >
+                <ul class="mt-2">
+                  @for (item of section.items; track item) {
+                  <li class="capitalize mb-4 text-[12px]">{{ item }}</li>
+                  }
+                </ul>
+              </div>
+            </div>
+            }
+          </div>
         </div>
       </div>
     </div>

@@ -125,20 +125,12 @@ export class FeaturedProductsComponent
   }
 
   onViewProduct(product: ProductSummary) {
-    console.log('View Product clicked, product:', product);
     if (product && product.id) {
-      this.router
-        .navigate(['/product', product.id])
-        .then((success) => {
-          console.log('Navigation success:', success);
-        })
-        .catch((error) => {
-          console.error('Navigation error:', error);
-        });
+      this.router.navigate(['/product', product.id]).then(() => {
+        window.scrollTo({ top: 0 });
+      });
     } else {
       console.error('Product or product.id is undefined:', product);
     }
-
-    this.router.navigate(['/product', product.id]);
   }
 }
