@@ -52,6 +52,14 @@ export class NavbarComponent {
     this.isSearchVisible = !this.isSearchVisible;
   }
 
+  activeMenu: number | null = null;
+
+  // Toggle the specific menu dropdown
+  toggleDropMenu(index: number) {
+    this.activeMenu = this.activeMenu === index ? null : index;
+    this.toggleSearch();
+  }
+
   private updateBodyScroll() {
     document.body.style.overflowY = this.isMenuOpen ? 'hidden' : 'auto';
     document.body.style.paddingRight = this.isMenuOpen ? '15px' : '0';

@@ -548,45 +548,38 @@
         </div>
       </div>
       <div class="menu-drawer-primary">
+        <!-- Polish Gems #1 -->
         <div class="menu-drawer-root-item">
           <button
             class="menu-drawer-root-link"
-            (click)="toggleSearch()"
-            [class.hidden]="!isSearchVisible"
+            (click)="toggleDropMenu(0)"
+            [class.hidden]="activeMenu !== null && activeMenu !== 0"
+            [class.hidden]="activeMenu !== null"
           >
             <span>Polish Gems</span>
-            <span class="material-symbols-outlined"> arrow_forward_ios </span>
+            <span class="material-symbols-outlined">arrow_forward_ios</span>
           </button>
-          <div
-            class="menu-drawer-root-lvl-2"
-            [class.active]="isSearchVisible === false"
-          >
-            <button class="menu-drawer-root-link" (click)="toggleSearch()">
+          <div class="menu-drawer-root-lvl-2" [class.active]="activeMenu === 0">
+            <button class="menu-drawer-root-link" (click)="toggleDropMenu(0)">
               <span>Polish Gems</span>
-              <span class="material-symbols-outlined"> arrow_forward_ios </span>
+              <span class="material-symbols-outlined">arrow_forward_ios</span>
             </button>
             <div class="menu-drawer-submenu-lvl-2">
               <button class="menu-drawer-root-link">
                 <span>Shop By Origin</span>
-                <span class="material-symbols-outlined">
-                  arrow_forward_ios
-                </span>
+                <span class="material-symbols-outlined">arrow_forward_ios</span>
               </button>
             </div>
             <div class="menu-drawer-submenu-lvl-2">
               <button class="menu-drawer-root-link">
                 <span>Shop By Type</span>
-                <span class="material-symbols-outlined">
-                  arrow_forward_ios
-                </span>
+                <span class="material-symbols-outlined">arrow_forward_ios</span>
               </button>
             </div>
             <div class="menu-drawer-submenu-lvl-2">
               <button class="menu-drawer-root-link">
                 <span>Opal Shine Sets</span>
-                <span class="material-symbols-outlined">
-                  arrow_forward_ios
-                </span>
+                <span class="material-symbols-outlined">arrow_forward_ios</span>
               </button>
             </div>
             <div class="menu-drawer-secondary">
@@ -598,45 +591,39 @@
             </div>
           </div>
         </div>
+
+        <!-- Opal Gems -->
         <div class="menu-drawer-root-item">
           <button
             class="menu-drawer-root-link"
-            (click)="toggleSearch()"
-            [class.hidden]="!isSearchVisible"
+            (click)="toggleDropMenu(1)"
+            [class.hidden]="activeMenu !== null && activeMenu !== 1"
+            [class.hidden]="activeMenu !== null"
           >
             <span>Opal Gems</span>
-            <span class="material-symbols-outlined"> arrow_forward_ios </span>
+            <span class="material-symbols-outlined">arrow_forward_ios</span>
           </button>
-          <div
-            class="menu-drawer-root-lvl-2"
-            [class.active]="isSearchVisible === false"
-          >
-            <button class="menu-drawer-root-link" (click)="toggleSearch()">
+          <div class="menu-drawer-root-lvl-2" [class.active]="activeMenu === 1">
+            <button class="menu-drawer-root-link" (click)="toggleDropMenu(1)">
               <span>Opal Gems</span>
-              <span class="material-symbols-outlined"> arrow_forward_ios </span>
+              <span class="material-symbols-outlined">arrow_forward_ios</span>
             </button>
             <div class="menu-drawer-submenu-lvl-2">
               <button class="menu-drawer-root-link">
                 <span>Shop By Origin</span>
-                <span class="material-symbols-outlined">
-                  arrow_forward_ios
-                </span>
+                <span class="material-symbols-outlined">arrow_forward_ios</span>
               </button>
             </div>
             <div class="menu-drawer-submenu-lvl-2">
               <button class="menu-drawer-root-link">
                 <span>Shop By Type</span>
-                <span class="material-symbols-outlined">
-                  arrow_forward_ios
-                </span>
+                <span class="material-symbols-outlined">arrow_forward_ios</span>
               </button>
             </div>
             <div class="menu-drawer-submenu-lvl-2">
               <button class="menu-drawer-root-link">
                 <span>Opal Shine Sets</span>
-                <span class="material-symbols-outlined">
-                  arrow_forward_ios
-                </span>
+                <span class="material-symbols-outlined">arrow_forward_ios</span>
               </button>
             </div>
             <div class="menu-drawer-secondary">
@@ -648,45 +635,39 @@
             </div>
           </div>
         </div>
+
+        <!-- Gifts -->
         <div class="menu-drawer-root-item">
           <button
             class="menu-drawer-root-link"
-            (click)="toggleSearch()"
-            [class.hidden]="!isSearchVisible"
+            (click)="toggleDropMenu(2)"
+            [class.hidden]="activeMenu !== null && activeMenu !== 2"
+            [class.hidden]="activeMenu !== null"
           >
             <span>Gifts</span>
-            <span class="material-symbols-outlined"> arrow_forward_ios </span>
+            <span class="material-symbols-outlined">arrow_forward_ios</span>
           </button>
-          <div
-            class="menu-drawer-root-lvl-2"
-            [class.active]="isSearchVisible === false"
-          >
-            <button class="menu-drawer-root-link" (click)="toggleSearch()">
+          <div class="menu-drawer-root-lvl-2" [class.active]="activeMenu === 2">
+            <button class="menu-drawer-root-link" (click)="toggleDropMenu(2)">
               <span>Gifts</span>
-              <span class="material-symbols-outlined"> arrow_forward_ios </span>
+              <span class="material-symbols-outlined">arrow_forward_ios</span>
             </button>
             <div class="menu-drawer-submenu-lvl-2">
               <button class="menu-drawer-root-link">
                 <span>Shop By Origin</span>
-                <span class="material-symbols-outlined">
-                  arrow_forward_ios
-                </span>
+                <span class="material-symbols-outlined">arrow_forward_ios</span>
               </button>
             </div>
             <div class="menu-drawer-submenu-lvl-2">
               <button class="menu-drawer-root-link">
                 <span>Shop By Type</span>
-                <span class="material-symbols-outlined">
-                  arrow_forward_ios
-                </span>
+                <span class="material-symbols-outlined">arrow_forward_ios</span>
               </button>
             </div>
             <div class="menu-drawer-submenu-lvl-2">
               <button class="menu-drawer-root-link">
                 <span>Opal Shine Sets</span>
-                <span class="material-symbols-outlined">
-                  arrow_forward_ios
-                </span>
+                <span class="material-symbols-outlined">arrow_forward_ios</span>
               </button>
             </div>
             <div class="menu-drawer-secondary">
@@ -698,45 +679,39 @@
             </div>
           </div>
         </div>
+
+        <!-- Rare Opal -->
         <div class="menu-drawer-root-item">
           <button
             class="menu-drawer-root-link"
-            (click)="toggleSearch()"
-            [class.hidden]="!isSearchVisible"
+            (click)="toggleDropMenu(3)"
+            [class.hidden]="activeMenu !== null && activeMenu !== 3"
+            [class.hidden]="activeMenu !== null"
           >
             <span>Rare Opal</span>
-            <span class="material-symbols-outlined"> arrow_forward_ios </span>
+            <span class="material-symbols-outlined">arrow_forward_ios</span>
           </button>
-          <div
-            class="menu-drawer-root-lvl-2"
-            [class.active]="isSearchVisible === false"
-          >
-            <button class="menu-drawer-root-link" (click)="toggleSearch()">
+          <div class="menu-drawer-root-lvl-2" [class.active]="activeMenu === 3">
+            <button class="menu-drawer-root-link" (click)="toggleDropMenu(3)">
               <span>Rare Opal</span>
-              <span class="material-symbols-outlined"> arrow_forward_ios </span>
+              <span class="material-symbols-outlined">arrow_forward_ios</span>
             </button>
             <div class="menu-drawer-submenu-lvl-2">
               <button class="menu-drawer-root-link">
                 <span>Shop By Origin</span>
-                <span class="material-symbols-outlined">
-                  arrow_forward_ios
-                </span>
+                <span class="material-symbols-outlined">arrow_forward_ios</span>
               </button>
             </div>
             <div class="menu-drawer-submenu-lvl-2">
               <button class="menu-drawer-root-link">
                 <span>Shop By Type</span>
-                <span class="material-symbols-outlined">
-                  arrow_forward_ios
-                </span>
+                <span class="material-symbols-outlined">arrow_forward_ios</span>
               </button>
             </div>
             <div class="menu-drawer-submenu-lvl-2">
               <button class="menu-drawer-root-link">
                 <span>Opal Shine Sets</span>
-                <span class="material-symbols-outlined">
-                  arrow_forward_ios
-                </span>
+                <span class="material-symbols-outlined">arrow_forward_ios</span>
               </button>
             </div>
             <div class="menu-drawer-secondary">
@@ -748,10 +723,12 @@
             </div>
           </div>
         </div>
+
+        <!-- Static Links -->
         <div class="menu-drawer-root-item">
           <button
             class="menu-drawer-root-link"
-            [class.hidden]="!isSearchVisible"
+            [class.hidden]="activeMenu !== null"
           >
             <span>Origin of the Week</span>
           </button>
@@ -759,7 +736,7 @@
         <div class="menu-drawer-root-item">
           <button
             class="menu-drawer-root-link"
-            [class.hidden]="!isSearchVisible"
+            [class.hidden]="activeMenu !== null"
           >
             <span>Bestsellers</span>
           </button>
@@ -767,15 +744,23 @@
         <div class="menu-drawer-root-item">
           <button
             class="menu-drawer-root-link"
-            [class.hidden]="!isSearchVisible"
+            [class.hidden]="activeMenu !== null"
           >
             <span>Shop All</span>
           </button>
         </div>
       </div>
       <div class="menu-drawer-bottom">
-        <span class="menu-drawer-bottom-link">contact</span>
-        <span class="menu-drawer-bottom-link">account</span>
+        <span
+          class="menu-drawer-bottom-link"
+          [class.hidden]="activeMenu !== null"
+          >contact</span
+        >
+        <span
+          class="menu-drawer-bottom-link"
+          [class.hidden]="activeMenu !== null"
+          >account</span
+        >
       </div>
     </div>
   </div>
