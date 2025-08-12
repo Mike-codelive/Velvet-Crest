@@ -8,6 +8,12 @@ export const routes: Routes = [
     title: 'VelvetCrest - Home',
   },
   {
+    path: 'search',
+    loadComponent: () =>
+      import('./search/search.component').then((m) => m.SearchComponent),
+    title: 'VelvetCrest - Search',
+  },
+  {
     path: 'product/:id',
     loadComponent: () =>
       import('./product-details/product-details.component').then(

@@ -15,6 +15,8 @@ export class ProductService {
   public featuredProducts$ = this.featuredProductsSubject.asObservable();
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading$ = this.loadingSubject.asObservable();
+  private allProductsSubject = new BehaviorSubject<ProductSummary[]>([]);
+  public allProducts$ = this.allProductsSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -34,6 +36,23 @@ export class ProductService {
           (product) => product.featured === true
         );
         this.featuredProductsSubject.next(featured);
+        this.loadingSubject.next(false);
+      });
+  }
+
+  fetchAllProducts(): void {
+    this.loadingSubject.next(true);
+    this.http
+      .get<ProductSummary[]>(this.productsUrl)
+      .pipe(
+        catchError((error) => {
+          console.error('Error fetching all products:', error);
+          this.loadingSubject.next(false);
+          return of([]);
+        })
+      )
+      .subscribe((products) => {
+        this.allProductsSubject.next(products);
         this.loadingSubject.next(false);
       });
   }

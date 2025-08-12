@@ -509,6 +509,8 @@
               class="navbar-header-search-input focus:outline-none"
               type="text"
               placeholder="SEARCH"
+              [(ngModel)]="searchTerm"
+              (ngModelChange)="onSearch(searchTerm)"
               name="search"
             />
             <button class="navbar-header-search-btn">
@@ -516,6 +518,35 @@
                 search
               </span>
             </button>
+
+            <div
+              *ngIf="searchResults.length > 0"
+              class="search-results absolute bg-white border rounded shadow-md mt-1 w-full max-h-64 overflow-y-auto z-50"
+            >
+              <ul>
+                <li
+                  *ngFor="let product of searchResults"
+                  (click)="onSelectProduct(product)"
+                  class="p-2 hover:bg-seashell cursor-pointer flex items-center gap-2"
+                >
+                  <img
+                    [src]="product.image"
+                    alt="product.name"
+                    class="w-8 h-8 object-cover rounded"
+                  />
+                  <span class="font-lora">{{ product.name }}</span>
+                  <span class="text-yellow-600 ml-auto text-sm"
+                    >${{ product.price / 100 | number : "1.0-2" }}</span
+                  >
+                </li>
+              </ul>
+            </div>
+            <p
+              *ngIf="searchTerm && searchResults.length === 0"
+              class="text-gray-500 text-sm mt-2 absolute"
+            >
+              No results found.
+            </p>
           </div>
           <div class="navbar-header-icon-wrapper hidden md-navbar:block">
             <span class="material-symbols-outlined navbar-header-icon">
@@ -548,7 +579,6 @@
         </div>
       </div>
       <div class="menu-drawer-primary">
-        <!-- Polish Gems #1 -->
         <div class="menu-drawer-root-item">
           <button
             class="menu-drawer-root-link"
@@ -592,7 +622,6 @@
           </div>
         </div>
 
-        <!-- Opal Gems -->
         <div class="menu-drawer-root-item">
           <button
             class="menu-drawer-root-link"
@@ -636,7 +665,6 @@
           </div>
         </div>
 
-        <!-- Gifts -->
         <div class="menu-drawer-root-item">
           <button
             class="menu-drawer-root-link"
@@ -680,7 +708,6 @@
           </div>
         </div>
 
-        <!-- Rare Opal -->
         <div class="menu-drawer-root-item">
           <button
             class="menu-drawer-root-link"
@@ -724,7 +751,6 @@
           </div>
         </div>
 
-        <!-- Static Links -->
         <div class="menu-drawer-root-item">
           <button
             class="menu-drawer-root-link"

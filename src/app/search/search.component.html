@@ -1,0 +1,37 @@
+<div class="search-container">
+  <input
+    type="text"
+    [(ngModel)]="searchTerm"
+    (ngModelChange)="onSearch(searchTerm)"
+    placeholder="Search products..."
+    class="w-full p-2 border rounded font-poppins text-sm"
+  />
+  <div
+    *ngIf="searchResults.length > 0"
+    class="search-results mt-2 bg-white border rounded shadow-md"
+  >
+    <ul>
+      <li
+        *ngFor="let product of searchResults"
+        (click)="onSelectProduct(product)"
+        class="p-2 hover:bg-seashell cursor-pointer flex items-center gap-2"
+      >
+        <img
+          [src]="product.image"
+          alt="product.name"
+          class="w-8 h-8 object-cover rounded"
+        />
+        <span class="font-lora">{{ product.name }}</span>
+        <span class="text-yellow-600 ml-auto text-sm"
+          >${{ product.price / 100 | number : "1.0-2" }}</span
+        >
+      </li>
+    </ul>
+  </div>
+  <p
+    *ngIf="searchTerm && searchResults.length === 0"
+    class="text-gray-500 text-sm mt-2"
+  >
+    No results found.
+  </p>
+</div>
