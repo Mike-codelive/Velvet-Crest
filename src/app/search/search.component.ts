@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from '../services/product.service';
 import { ProductSummary } from '../models/product-summary.model';
-import { Router } from '@angular/router';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -15,30 +13,55 @@ import { Subject } from 'rxjs';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
-  searchTerm = '';
   searchResults: ProductSummary[] = [];
-  private searchSubject = new Subject<string>();
+  searchTerm = '';
+  sortBy = 'price-ascending';
+  sortOptions = [
+    { value: 'price-ascending', label: 'Price: Low to High' },
+    { value: 'price-descending', label: 'Price: High to Low' },
+    { value: 'name-ascending', label: 'Name: A to Z' },
+  ];
 
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(
+    public productService: ProductService,
+    private route: ActivatedRoute,
+    public router: Router
+  ) {}
 
   ngOnInit() {
     this.productService.fetchAllProducts();
-    this.searchSubject
-      .pipe(debounceTime(300), distinctUntilChanged())
-      .subscribe((term) => {
-        this.productService.allProducts$.subscribe((products) => {
-          this.searchResults = products.filter((product) =>
-            product.name.toLowerCase().includes(term.toLowerCase())
-          );
+
+    this.route.queryParams.subscribe((params) => {
+      this.searchTerm = params['q'] || '';
+      this.filterAndSortResults();
+    });
+  }
+
+  filterAndSortResults() {
+    this.productService.allProducts$.subscribe((products) => {
+      this.searchResults = products
+        .filter((product) =>
+          product.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+        )
+        .sort((a, b) => {
+          if (this.sortBy === 'price-ascending') return a.price - b.price;
+          if (this.sortBy === 'price-descending') return b.price - a.price;
+          if (this.sortBy === 'name-ascending')
+            return a.name.localeCompare(b.name);
+          return 0;
         });
+    });
+  }
+
+  onSearch() {
+    if (this.searchTerm.trim()) {
+      this.router.navigate(['/search'], {
+        queryParams: { q: this.searchTerm.trim() },
       });
+    }
   }
 
-  onSearch(term: string) {
-    this.searchSubject.next(term);
-  }
-
-  onSelectProduct(product: ProductSummary) {
-    this.router.navigate(['/product', product.id]);
+  onSortChange() {
+    this.filterAndSortResults();
   }
 }

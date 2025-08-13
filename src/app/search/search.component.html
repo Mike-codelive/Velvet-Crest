@@ -1,36 +1,63 @@
-<div class="search-container">
-  <input
-    type="text"
-    [(ngModel)]="searchTerm"
-    (ngModelChange)="onSearch(searchTerm)"
-    placeholder="Search products..."
-    class="w-full p-2 border rounded font-poppins text-sm"
-  />
-  <div
-    *ngIf="searchResults.length > 0"
-    class="search-results mt-2 bg-white border rounded shadow-md"
-  >
-    <ul>
-      <li
-        *ngFor="let product of searchResults"
-        (click)="onSelectProduct(product)"
-        class="p-2 hover:bg-seashell cursor-pointer flex items-center gap-2"
+<div class="search-container max-w-[1132px] mx-auto p-4 bg-gray-900 text-white">
+  <div class="flex flex-col md:flex-row gap-4 mb-6">
+    <div class="flex-1">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (keyup.enter)="onSearch()"
+        placeholder="Search products..."
+        class="p-2 border rounded-l font-poppins text-sm w-full bg-white text-black"
+      />
+      <button
+        (click)="onSearch()"
+        class="p-2 bg-yellow-600 text-white rounded-r hover:bg-yellow-700 transition-colors"
       >
-        <img
-          [src]="product.image"
-          alt="product.name"
-          class="w-8 h-8 object-cover rounded"
-        />
-        <span class="font-lora">{{ product.name }}</span>
-        <span class="text-yellow-600 ml-auto text-sm"
-          >${{ product.price / 100 | number : "1.0-2" }}</span
-        >
-      </li>
-    </ul>
+        <span class="material-symbols-outlined">search</span>
+      </button>
+    </div>
+    <div class="flex items-center gap-2">
+      <label for="sort" class="font-poppins text-sm">Sort By:</label>
+      <select
+        id="sort"
+        [(ngModel)]="sortBy"
+        (ngModelChange)="onSortChange()"
+        class="p-2 border rounded font-poppins text-sm bg-white text-black"
+      >
+        <option *ngFor="let option of sortOptions" [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+    </div>
   </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div
+      *ngFor="let product of searchResults"
+      class="product-card bg-white text-black p-4 rounded shadow-md hover:bg-seashell transition-colors"
+    >
+      <img
+        [src]="product.image"
+        alt="product.name"
+        class="w-full h-48 object-cover rounded-t"
+      />
+      <div class="p-2">
+        <h3 class="font-lora text-lg">{{ product.name }}</h3>
+        <p class="text-yellow-600 text-sm">
+          ${{ product.price / 100 | number : "1.0-2" }}
+        </p>
+        <button
+          (click)="router.navigate(['/product', product.id])"
+          class="mt-2 p-2 bg-dark-slate-green text-white rounded hover:bg-opacity-90 transition-colors w-full"
+        >
+          View Details
+        </button>
+      </div>
+    </div>
+  </div>
+
   <p
     *ngIf="searchTerm && searchResults.length === 0"
-    class="text-gray-500 text-sm mt-2"
+    class="text-gray-500 text-sm mt-4"
   >
     No results found.
   </p>

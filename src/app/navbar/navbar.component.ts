@@ -4,8 +4,6 @@ import { ProductService } from '../services/product.service';
 import { FormsModule } from '@angular/forms';
 import { ProductSummary } from '../models/product-summary.model';
 import { Router } from '@angular/router';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -20,20 +18,16 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.productService.fetchAllProducts();
-
-    this.searchSubject
-      .pipe(debounceTime(300), distinctUntilChanged())
-      .subscribe((term) => {
-        this.productService.allProducts$.subscribe((products) => {
-          this.searchResults = products.filter((product) =>
-            product.name.toLowerCase().includes(term.toLowerCase())
-          );
-        });
-      });
   }
 
-  onSearch(term: string) {
-    this.searchSubject.next(term);
+  onSearch() {
+    if (this.searchTerm.trim()) {
+      this.router.navigate(['/search'], {
+        queryParams: { q: this.searchTerm.trim() },
+      });
+      this.searchTerm = '';
+      this.toggleMenu();
+    }
   }
 
   onSelectProduct(product: ProductSummary) {
@@ -46,7 +40,6 @@ export class NavbarComponent implements OnInit {
 
   searchTerm = '';
   searchResults: ProductSummary[] = [];
-  private searchSubject = new Subject<string>();
   private menuStates: { [key: string]: number } = {};
   isMenuOpen: boolean = false;
   isSearchVisible: boolean = true;
