@@ -46,7 +46,7 @@
           ${{ product.price / 100 | number : "1.0-2" }}
         </p>
         <button
-          (click)="router.navigate(['/product', product.id])"
+          (click)="onViewDetails(product)"
           class="mt-2 p-2 bg-dark-slate-green text-white rounded hover:bg-opacity-90 transition-colors w-full"
         >
           View Details

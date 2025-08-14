@@ -40,9 +40,7 @@ export class SearchComponent implements OnInit {
   filterAndSortResults() {
     this.productService.allProducts$.subscribe((products) => {
       this.searchResults = products
-        .filter((product) =>
-          product.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-        )
+        .filter((product) => this.matchProduct(product, this.searchTerm))
         .sort((a, b) => {
           if (this.sortBy === 'price-ascending') return a.price - b.price;
           if (this.sortBy === 'price-descending') return b.price - a.price;
@@ -63,5 +61,22 @@ export class SearchComponent implements OnInit {
 
   onSortChange() {
     this.filterAndSortResults();
+  }
+
+  onViewDetails(product: ProductSummary) {
+    this.router.navigate(['/product', product.id]).then(() => {
+      window.scrollTo({ top: 0 });
+    });
+  }
+
+  private matchProduct(product: ProductSummary, term: string): boolean {
+    const searchTerm = term.toLowerCase().trim();
+    return (
+      product.name.toLowerCase().includes(searchTerm) ||
+      product.company.toLowerCase().includes(searchTerm) ||
+      product.category.toLowerCase().includes(searchTerm) ||
+      product.description.toLowerCase().includes(searchTerm) ||
+      product.price.toString().includes(searchTerm)
+    );
   }
 }

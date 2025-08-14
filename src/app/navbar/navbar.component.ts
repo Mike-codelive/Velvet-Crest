@@ -15,6 +15,13 @@ export class NavbarComponent implements OnInit {
   constructor(public productService: ProductService, private router: Router) {
     (window as any).productService = productService;
   }
+  searchTerm = '';
+  searchResults: ProductSummary[] = [];
+  private menuStates: { [key: string]: number } = {};
+  isMenuOpen: boolean = false;
+  isSearchVisible: boolean = true;
+  activeMenu: number | null = null;
+  resizeTimeout: any;
 
   ngOnInit() {
     this.productService.fetchAllProducts();
@@ -26,7 +33,7 @@ export class NavbarComponent implements OnInit {
         queryParams: { q: this.searchTerm.trim() },
       });
       this.searchTerm = '';
-      this.toggleMenu();
+      this.isMenuOpen = false;
     }
   }
 
@@ -37,14 +44,6 @@ export class NavbarComponent implements OnInit {
     this.searchTerm = '';
     this.searchResults = [];
   }
-
-  searchTerm = '';
-  searchResults: ProductSummary[] = [];
-  private menuStates: { [key: string]: number } = {};
-  isMenuOpen: boolean = false;
-  isSearchVisible: boolean = true;
-  activeMenu: number | null = null;
-  resizeTimeout: any;
 
   @HostListener('window:resize')
   onResize(): void {
