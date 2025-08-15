@@ -51,14 +51,6 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  onSearch() {
-    if (this.searchTerm.trim()) {
-      this.router.navigate(['/search'], {
-        queryParams: { q: this.searchTerm.trim() },
-      });
-    }
-  }
-
   onSortChange() {
     this.filterAndSortResults();
   }

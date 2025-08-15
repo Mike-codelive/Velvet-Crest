@@ -512,6 +512,7 @@
               [(ngModel)]="searchTerm"
               (keyup.enter)="onSearch()"
               name="search"
+              maxlength="50"
             />
             <button (click)="onSearch()" class="navbar-header-search-btn">
               <span class="material-symbols-outlined navbar-header-icon">
@@ -544,6 +545,7 @@
             placeholder="SEARCH"
             [(ngModel)]="searchTerm"
             (keyup.enter)="onSearch()"
+            maxlength="50"
             required
           />
           <button (click)="onSearch()">

@@ -28,12 +28,13 @@ export class NavbarComponent implements OnInit {
   }
 
   onSearch() {
-    if (this.searchTerm.trim()) {
-      this.router.navigate(['/search'], {
-        queryParams: { q: this.searchTerm.trim() },
-      });
+    const sanitizedTerm = this.sanitizeInput(this.searchTerm);
+    if (sanitizedTerm.trim()) {
+      const limitedTerm = sanitizedTerm.substring(0, 50);
+      this.router.navigate(['/search'], { queryParams: { q: limitedTerm } });
       this.searchTerm = '';
       this.isMenuOpen = false;
+      this.updateBodyScroll();
     }
   }
 
@@ -80,6 +81,10 @@ export class NavbarComponent implements OnInit {
   toggleDropMenu(index: number) {
     this.activeMenu = this.activeMenu === index ? null : index;
     this.toggleSearch();
+  }
+
+  private sanitizeInput(input: string): string {
+    return input.replace(/[<>&"'\/]/g, '');
   }
 
   private updateBodyScroll() {

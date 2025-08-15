@@ -166,16 +166,18 @@ export class ProductDetailsComponent
   ) {}
 
   onQuantityInput(event: Event): void {
-    const input = (event.target as HTMLInputElement).value;
-    if (!input.trim()) {
-      this.quantity = 1;
-      return;
-    }
-    const sanitized = input.replace(/\D/g, '');
-    let num = parseInt(sanitized, 10) || 1;
+    const inputEl = event.target as HTMLInputElement;
+    let input = inputEl.value.trim();
+
+    input = input.replace(/\D/g, '').slice(0, 3);
+
+    let num = parseInt(input, 10) || 1;
+
     if (num > 999) num = 999;
     else if (num < 1) num = 1;
+
     this.quantity = num;
+    inputEl.value = String(num);
   }
 
   preventInvalidKeys(event: KeyboardEvent): void {
