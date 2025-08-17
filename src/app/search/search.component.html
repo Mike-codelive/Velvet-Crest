@@ -1,4 +1,21 @@
 <div class="search-container max-w-[1132px] mx-auto p-4 bg-gray-900 text-white">
+  <!-- Search Results Header -->
+  <div class="mb-6">
+    <h2 class="font-lora text-xl">
+      Search results for "{{ searchTerm || "all products" }}"
+      <span *ngIf="searchResults.length > 0">
+        {{ searchResults.length }} result{{
+          searchResults.length === 1 ? "" : "s"
+        }}
+        found
+      </span>
+      <span *ngIf="searchResults.length === 0 && searchTerm">
+        0 results found
+      </span>
+    </h2>
+  </div>
+
+  <!-- Sort and Grid Section -->
   <div class="flex flex-col md:flex-row gap-4 mb-6">
     <div class="flex items-center gap-2">
       <label for="sort" class="font-poppins text-sm">Sort By:</label>
