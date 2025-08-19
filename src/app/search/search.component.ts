@@ -16,14 +16,10 @@ export class SearchComponent implements OnInit {
   searchResults: ProductSummary[] = [];
   searchTerm = '';
   sortBy = 'price-ascending';
-
-  // ✅ filter state
   selectedCompany = '';
   selectedCategory = '';
   selectedColor = '';
   freeShippingOnly = false;
-
-  // ✅ options fetched dynamically
   companies: string[] = [];
   categories: string[] = [];
   colors: string[] = [];
@@ -33,6 +29,36 @@ export class SearchComponent implements OnInit {
     { value: 'price-descending', label: 'Price: High to Low' },
     { value: 'name-ascending', label: 'Name: A to Z' },
   ];
+
+  showColorDropdown = false;
+
+  toggleColorDropdown(): void {
+    this.showColorDropdown = !this.showColorDropdown;
+  }
+
+  selectColor(color: string): void {
+    this.selectedColor = color;
+    this.showColorDropdown = false;
+    this.onFilterChange();
+  }
+
+  private colorNameMap: { [key: string]: string } = {
+    '#000': 'Black',
+    '#FFFFFF': 'White',
+    '#FF0000': 'Red',
+    '#00FF00': 'Lime',
+    '#0000FF': 'Blue',
+    '#FFB900': 'Yellow',
+    '#FFA500': 'Orange',
+    '#800080': 'Purple',
+    '#808080': 'Gray',
+    '#A52A2A': 'Brown',
+    '#FFC0CB': 'Pink',
+    '#00FFFF': 'Cyan',
+    '#008000': 'Green',
+    '#FFD700': 'Gold',
+    '#F5F5DC': 'Beige',
+  };
 
   constructor(
     public productService: ProductService,
@@ -127,5 +153,14 @@ export class SearchComponent implements OnInit {
     this.router.navigate(['/product', product.id]).then(() => {
       window.scrollTo({ top: 0 });
     });
+  }
+
+  getColorLabel(color: string): string {
+    if (!color || color === 'all') return 'All';
+
+    // normalize hex (uppercase)
+    const normalized = color.toUpperCase();
+
+    return this.colorNameMap[normalized] || normalized;
   }
 }

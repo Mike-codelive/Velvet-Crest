@@ -43,13 +43,40 @@
 
       <!-- Color -->
       <label class="text-sm font-poppins">Color:</label>
-      <select
-        [(ngModel)]="selectedColor"
-        (change)="onFilterChange()"
-        class="p-2 border rounded text-black"
-      >
-        <option *ngFor="let c of colors" [value]="c">{{ c }}</option>
-      </select>
+      <div class="relative w-28">
+        <div
+          class="border rounded p-2 flex items-center justify-between cursor-pointer"
+          (click)="toggleColorDropdown()"
+        >
+          <div class="flex items-center gap-2">
+            <div
+              *ngIf="selectedColor !== 'all'"
+              class="w-4 h-4 rounded-full border"
+              [ngStyle]="{ 'background-color': selectedColor }"
+            ></div>
+            <span>{{ getColorLabel(selectedColor) }}</span>
+          </div>
+          <span class="material-symbols-outlined">expand_more</span>
+        </div>
+
+        <!-- Dropdown -->
+        <div
+          *ngIf="showColorDropdown"
+          class="absolute left-0 w-full border text-black bg-white mt-1 rounded shadow z-50"
+        >
+          <div
+            *ngFor="let c of colors"
+            (click)="selectColor(c)"
+            class="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
+          >
+            <div
+              class="w-4 h-4 rounded-full border"
+              [ngStyle]="{ 'background-color': c }"
+            ></div>
+            <span>{{ getColorLabel(c) }}</span>
+          </div>
+        </div>
+      </div>
 
       <!-- Shipping -->
       <label class="text-sm font-poppins flex items-center gap-1">
