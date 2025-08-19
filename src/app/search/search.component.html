@@ -1,5 +1,4 @@
 <div class="search-container max-w-[1132px] mx-auto p-4 bg-gray-900 text-white">
-  <!-- Search Results Header -->
   <div class="mb-6">
     <h2 class="font-lora text-xl">
       Search results for "{{ searchTerm || "all products" }}"
@@ -15,33 +14,30 @@
     </h2>
   </div>
 
-  <!-- Filters + Sort -->
   <div class="flex flex-col md:flex-row gap-4 mb-6">
-    <!-- Filters -->
     <div class="flex flex-wrap gap-4 items-center">
-      <!-- Category -->
       <label class="text-sm font-poppins">Category:</label>
       <select
         [(ngModel)]="selectedCategory"
         (change)="onFilterChange()"
-        class="p-2 border rounded text-black"
+        class="p-2 border rounded text-black capitalize"
       >
-        <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+        <option class="capitalize" *ngFor="let cat of categories" [value]="cat">
+          {{ cat }}
+        </option>
       </select>
 
-      <!-- Company -->
       <label class="text-sm font-poppins">Company:</label>
       <select
         [(ngModel)]="selectedCompany"
         (change)="onFilterChange()"
-        class="p-2 border rounded text-black"
+        class="p-2 border rounded text-black capitalize"
       >
         <option *ngFor="let comp of companies" [value]="comp">
           {{ comp }}
         </option>
       </select>
 
-      <!-- Color -->
       <label class="text-sm font-poppins">Color:</label>
       <div class="relative w-28">
         <div
@@ -50,7 +46,7 @@
         >
           <div class="flex items-center gap-2">
             <div
-              *ngIf="selectedColor !== 'all'"
+              *ngIf="selectedColor !== 'All'"
               class="w-4 h-4 rounded-full border"
               [ngStyle]="{ 'background-color': selectedColor }"
             ></div>
@@ -59,7 +55,6 @@
           <span class="material-symbols-outlined">expand_more</span>
         </div>
 
-        <!-- Dropdown -->
         <div
           *ngIf="showColorDropdown"
           class="absolute left-0 w-full border text-black bg-white mt-1 rounded shadow z-50"
@@ -70,7 +65,8 @@
             class="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
           >
             <div
-              class="w-4 h-4 rounded-full border"
+              *ngIf="c !== 'all'"
+              class="w-4 h-4 rounded-full"
               [ngStyle]="{ 'background-color': c }"
             ></div>
             <span>{{ getColorLabel(c) }}</span>
@@ -78,7 +74,6 @@
         </div>
       </div>
 
-      <!-- Shipping -->
       <label class="text-sm font-poppins flex items-center gap-1">
         <input
           type="checkbox"
@@ -89,7 +84,6 @@
       </label>
     </div>
 
-    <!-- Sort -->
     <div class="flex items-center gap-2 ml-auto">
       <label for="sort" class="font-poppins text-sm">Sort By:</label>
       <select
@@ -105,7 +99,6 @@
     </div>
   </div>
 
-  <!-- Product Grid -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     <div
       *ngFor="let product of searchResults"

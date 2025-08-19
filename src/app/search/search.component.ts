@@ -13,13 +13,16 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
+  allProducts: ProductSummary[] = [];
   searchResults: ProductSummary[] = [];
-  searchTerm = '';
-  sortBy = 'price-ascending';
-  selectedCompany = '';
-  selectedCategory = '';
-  selectedColor = '';
-  freeShippingOnly = false;
+
+  searchTerm: string = '';
+  sortBy: string = 'price-ascending';
+  selectedCompany: string = 'All';
+  selectedCategory: string = 'All';
+  selectedColor: string = 'All';
+  freeShippingOnly: boolean = false;
+
   companies: string[] = [];
   categories: string[] = [];
   colors: string[] = [];
@@ -30,7 +33,7 @@ export class SearchComponent implements OnInit {
     { value: 'name-ascending', label: 'Name: A to Z' },
   ];
 
-  showColorDropdown = false;
+  showColorDropdown: boolean = false;
 
   toggleColorDropdown(): void {
     this.showColorDropdown = !this.showColorDropdown;
@@ -69,36 +72,43 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.productService.fetchAllProducts();
 
+    this.productService.allProducts$.subscribe((products) => {
+      this.allProducts = products;
+      this.buildDropdownOptions();
+      this.filterAndSortResults();
+    });
+
     this.route.queryParams.subscribe((params) => {
       this.searchTerm = params['q'] || '';
-      this.buildDropdownOptions();
       this.filterAndSortResults();
     });
   }
 
   private buildDropdownOptions() {
-    this.productService.allProducts$.subscribe((products) => {
-      this.companies = ['all', ...new Set(products.map((p) => p.company))];
-      this.categories = ['all', ...new Set(products.map((p) => p.category))];
-      this.colors = [
-        'all',
-        ...new Set(products.flatMap((p) => p.colors ?? [])),
-      ];
-    });
+    this.companies = [
+      'All',
+      ...new Set(this.allProducts.map((p) => p.company)),
+    ];
+    this.categories = [
+      'All',
+      ...new Set(this.allProducts.map((p) => p.category)),
+    ];
+    this.colors = [
+      'All',
+      ...new Set(this.allProducts.flatMap((p) => p.colors ?? [])),
+    ];
   }
 
   filterAndSortResults() {
-    this.productService.allProducts$.subscribe((products) => {
-      this.searchResults = products
-        .filter((product) => this.applyFilters(product))
-        .sort((a, b) => {
-          if (this.sortBy === 'price-ascending') return a.price - b.price;
-          if (this.sortBy === 'price-descending') return b.price - a.price;
-          if (this.sortBy === 'name-ascending')
-            return a.name.localeCompare(b.name);
-          return 0;
-        });
-    });
+    this.searchResults = this.allProducts
+      .filter((product) => this.applyFilters(product))
+      .sort((a, b) => {
+        if (this.sortBy === 'price-ascending') return a.price - b.price;
+        if (this.sortBy === 'price-descending') return b.price - a.price;
+        if (this.sortBy === 'name-ascending')
+          return a.name.localeCompare(b.name);
+        return 0;
+      });
   }
 
   private applyFilters(product: ProductSummary): boolean {
@@ -114,17 +124,17 @@ export class SearchComponent implements OnInit {
 
     const matchesCompany =
       this.selectedCompany === '' ||
-      this.selectedCompany === 'all' ||
+      this.selectedCompany === 'All' ||
       product.company.toLowerCase() === this.selectedCompany.toLowerCase();
 
     const matchesCategory =
       this.selectedCategory === '' ||
-      this.selectedCategory === 'all' ||
+      this.selectedCategory === 'All' ||
       product.category.toLowerCase() === this.selectedCategory.toLowerCase();
 
     const matchesColor =
       this.selectedColor === '' ||
-      this.selectedColor === 'all' ||
+      this.selectedColor === 'All' ||
       (product.colors &&
         product.colors
           .map((c) => c.toLowerCase())
@@ -156,11 +166,8 @@ export class SearchComponent implements OnInit {
   }
 
   getColorLabel(color: string): string {
-    if (!color || color === 'all') return 'All';
-
-    // normalize hex (uppercase)
+    if (!color || color === 'All') return 'All';
     const normalized = color.toUpperCase();
-
     return this.colorNameMap[normalized] || normalized;
   }
 }
