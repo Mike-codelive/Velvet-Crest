@@ -15,9 +15,55 @@
     </h2>
   </div>
 
-  <!-- Sort and Grid Section -->
+  <!-- Filters + Sort -->
   <div class="flex flex-col md:flex-row gap-4 mb-6">
-    <div class="flex items-center gap-2">
+    <!-- Filters -->
+    <div class="flex flex-wrap gap-4 items-center">
+      <!-- Category -->
+      <label class="text-sm font-poppins">Category:</label>
+      <select
+        [(ngModel)]="selectedCategory"
+        (change)="onFilterChange()"
+        class="p-2 border rounded text-black"
+      >
+        <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+      </select>
+
+      <!-- Company -->
+      <label class="text-sm font-poppins">Company:</label>
+      <select
+        [(ngModel)]="selectedCompany"
+        (change)="onFilterChange()"
+        class="p-2 border rounded text-black"
+      >
+        <option *ngFor="let comp of companies" [value]="comp">
+          {{ comp }}
+        </option>
+      </select>
+
+      <!-- Color -->
+      <label class="text-sm font-poppins">Color:</label>
+      <select
+        [(ngModel)]="selectedColor"
+        (change)="onFilterChange()"
+        class="p-2 border rounded text-black"
+      >
+        <option *ngFor="let c of colors" [value]="c">{{ c }}</option>
+      </select>
+
+      <!-- Shipping -->
+      <label class="text-sm font-poppins flex items-center gap-1">
+        <input
+          type="checkbox"
+          [(ngModel)]="freeShippingOnly"
+          (change)="onFilterChange()"
+        />
+        Free Shipping
+      </label>
+    </div>
+
+    <!-- Sort -->
+    <div class="flex items-center gap-2 ml-auto">
       <label for="sort" class="font-poppins text-sm">Sort By:</label>
       <select
         id="sort"
@@ -32,6 +78,7 @@
     </div>
   </div>
 
+  <!-- Product Grid -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     <div
       *ngFor="let product of searchResults"
@@ -39,7 +86,7 @@
     >
       <img
         [src]="product.image"
-        alt="product.name"
+        [alt]="product.name"
         class="w-full h-48 object-cover rounded-t"
       />
       <div class="p-2">

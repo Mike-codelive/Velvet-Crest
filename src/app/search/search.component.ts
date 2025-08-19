@@ -16,6 +16,18 @@ export class SearchComponent implements OnInit {
   searchResults: ProductSummary[] = [];
   searchTerm = '';
   sortBy = 'price-ascending';
+
+  // ✅ filter state
+  selectedCompany = '';
+  selectedCategory = '';
+  selectedColor = '';
+  freeShippingOnly = false;
+
+  // ✅ options fetched dynamically
+  companies: string[] = [];
+  categories: string[] = [];
+  colors: string[] = [];
+
   sortOptions = [
     { value: 'price-ascending', label: 'Price: Low to High' },
     { value: 'price-descending', label: 'Price: High to Low' },
@@ -33,14 +45,26 @@ export class SearchComponent implements OnInit {
 
     this.route.queryParams.subscribe((params) => {
       this.searchTerm = params['q'] || '';
+      this.buildDropdownOptions();
       this.filterAndSortResults();
+    });
+  }
+
+  private buildDropdownOptions() {
+    this.productService.allProducts$.subscribe((products) => {
+      this.companies = ['all', ...new Set(products.map((p) => p.company))];
+      this.categories = ['all', ...new Set(products.map((p) => p.category))];
+      this.colors = [
+        'all',
+        ...new Set(products.flatMap((p) => p.colors ?? [])),
+      ];
     });
   }
 
   filterAndSortResults() {
     this.productService.allProducts$.subscribe((products) => {
       this.searchResults = products
-        .filter((product) => this.matchProduct(product, this.searchTerm))
+        .filter((product) => this.applyFilters(product))
         .sort((a, b) => {
           if (this.sortBy === 'price-ascending') return a.price - b.price;
           if (this.sortBy === 'price-descending') return b.price - a.price;
@@ -51,7 +75,51 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  private applyFilters(product: ProductSummary): boolean {
+    const term = this.searchTerm.toLowerCase().trim();
+
+    const matchesSearch =
+      !term ||
+      product.name.toLowerCase().includes(term) ||
+      product.company.toLowerCase().includes(term) ||
+      product.category.toLowerCase().includes(term) ||
+      product.description.toLowerCase().includes(term) ||
+      product.price.toString().includes(term);
+
+    const matchesCompany =
+      this.selectedCompany === '' ||
+      this.selectedCompany === 'all' ||
+      product.company.toLowerCase() === this.selectedCompany.toLowerCase();
+
+    const matchesCategory =
+      this.selectedCategory === '' ||
+      this.selectedCategory === 'all' ||
+      product.category.toLowerCase() === this.selectedCategory.toLowerCase();
+
+    const matchesColor =
+      this.selectedColor === '' ||
+      this.selectedColor === 'all' ||
+      (product.colors &&
+        product.colors
+          .map((c) => c.toLowerCase())
+          .includes(this.selectedColor.toLowerCase()));
+
+    const matchesShipping = !this.freeShippingOnly || product.shipping === true;
+
+    return (
+      matchesSearch &&
+      matchesCompany &&
+      matchesCategory &&
+      matchesColor &&
+      matchesShipping
+    );
+  }
+
   onSortChange() {
+    this.filterAndSortResults();
+  }
+
+  onFilterChange() {
     this.filterAndSortResults();
   }
 
@@ -59,16 +127,5 @@ export class SearchComponent implements OnInit {
     this.router.navigate(['/product', product.id]).then(() => {
       window.scrollTo({ top: 0 });
     });
-  }
-
-  private matchProduct(product: ProductSummary, term: string): boolean {
-    const searchTerm = term.toLowerCase().trim();
-    return (
-      product.name.toLowerCase().includes(searchTerm) ||
-      product.company.toLowerCase().includes(searchTerm) ||
-      product.category.toLowerCase().includes(searchTerm) ||
-      product.description.toLowerCase().includes(searchTerm) ||
-      product.price.toString().includes(searchTerm)
-    );
   }
 }
