@@ -19,13 +19,9 @@ import { Navigation, Pagination } from 'swiper/modules';
 import { CtaComponent } from '../cta/cta.component';
 import { CardComponent } from '../UI/card/card.component';
 import { FormsModule } from '@angular/forms';
+import { ProductColor } from '../models/product-color.model';
 
 Swiper.use([Pagination, Navigation]);
-
-interface ProductColor {
-  name: string;
-  hex: string;
-}
 
 @Component({
   selector: 'app-product-details',
@@ -46,17 +42,16 @@ export class ProductDetailsComponent
   product: ProductDetails | null = null;
   swiper: Swiper | null = null;
   isMobile: boolean = window.innerWidth <= 832;
-  selectedBuyType = 'one_time';
+  selectedBuyType: string = 'one_time';
   isDropdownOpen: boolean = false;
-  selectedPlan = '';
+  selectedPlan: string = '';
   quantity: number = 1;
   isColorSelectorOpen: boolean = false;
   selectedColor: ProductColor | null = null;
   colors: ProductColor[] = [];
-
-  totalImages = 0;
-  loadedImages = 0;
-  allImagesLoaded = false;
+  totalImages: number = 0;
+  loadedImages: number = 0;
+  allImagesLoaded: boolean = false;
 
   private hexColorNames: Record<string, string> = {
     '#ff0000': 'Red',
