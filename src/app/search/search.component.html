@@ -1,4 +1,5 @@
 <div class="search-container max-w-[1132px] mx-auto p-4 bg-gray-900 text-white">
+  <!-- Search Results Header -->
   <div class="mb-6">
     <h2 class="font-lora text-xl">
       Search results for "{{ searchTerm || "all products" }}"
@@ -14,6 +15,7 @@
     </h2>
   </div>
 
+  <!-- Filter and Sort Section -->
   <div class="flex flex-col md:flex-row gap-4 mb-6">
     <div class="flex flex-wrap gap-4 items-center">
       <label class="text-sm font-poppins">Category:</label>
@@ -99,30 +101,17 @@
     </div>
   </div>
 
+  <!-- Product Grid with ProductCardComponent -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     <div
       *ngFor="let product of searchResults"
-      class="product-card bg-white text-black p-4 rounded shadow-md hover:bg-seashell transition-colors"
+      class="swiper-slide rounded shadow-sm hover:shadow-md transition group"
     >
-      <img
-        [src]="product.image"
-        [alt]="product.name"
-        class="object-cover rounded-t w-full h-48"
-        loading="lazy"
-      />
-
-      <div class="p-2">
-        <h3 class="font-lora text-lg">{{ product.name }}</h3>
-        <p class="text-yellow-600 text-sm">
-          ${{ product.price / 100 | number : "1.0-2" }}
-        </p>
-        <button
-          (click)="onViewDetails(product)"
-          class="mt-2 p-2 bg-dark-slate-green text-white rounded hover:bg-opacity-90 transition-colors w-full"
-        >
-          View Details
-        </button>
-      </div>
+      <app-product-card
+        [product]="product"
+        (imageLoad)="onImageLoad()"
+        (imageError)="onImageLoad()"
+      ></app-product-card>
     </div>
   </div>
 

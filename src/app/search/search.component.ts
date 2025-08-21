@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from '../services/product.service';
 import { ProductSummary } from '../models/product-summary.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProductCardComponent } from '../UI/product-card/product-card.component';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgOptimizedImage],
+  imports: [CommonModule, FormsModule, ProductCardComponent],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
 })
@@ -163,6 +164,10 @@ export class SearchComponent implements OnInit {
     this.router.navigate(['/product', product.id]).then(() => {
       window.scrollTo({ top: 0 });
     });
+  }
+
+  onImageLoad() {
+    console.log('Image loaded or error occurred');
   }
 
   getColorLabel(color: string): string {

@@ -13,15 +13,15 @@ import { AsyncPipe, NgIf, NgFor } from '@angular/common';
 import { Observable, take } from 'rxjs';
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
-import { ButtonComponent } from '../button/button.component';
 import { Router } from '@angular/router';
+import { ProductCardComponent } from '../UI/product-card/product-card.component';
 
 Swiper.use([Pagination, Navigation]);
 
 @Component({
   selector: 'app-featured-products',
   standalone: true,
-  imports: [CommonModule, NgIf, NgFor, AsyncPipe, ButtonComponent],
+  imports: [CommonModule, NgIf, NgFor, AsyncPipe, ProductCardComponent],
   templateUrl: './featured-products.component.html',
   styleUrl: './featured-products.component.css',
 })
@@ -122,15 +122,5 @@ export class FeaturedProductsComponent
         prevEl: '.swiper-button-prev',
       },
     });
-  }
-
-  onViewProduct(product: ProductSummary) {
-    if (product && product.id) {
-      this.router.navigate(['/product', product.id]).then(() => {
-        window.scrollTo({ top: 0 });
-      });
-    } else {
-      console.error('Product or product.id is undefined:', product);
-    }
   }
 }

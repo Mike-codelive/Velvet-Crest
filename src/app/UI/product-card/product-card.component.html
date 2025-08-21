@@ -1,0 +1,47 @@
+<div class="rounded shadow-sm hover:shadow-md transition group">
+  <img
+    [src]="product.image"
+    [alt]="product.name"
+    (load)="onImageLoad()"
+    (error)="onImageError()"
+    class="w-full h-48 object-cover rounded-t mb-4"
+  />
+  <div class="p-4 group-hover:bg-[#f7f7f7]">
+    <div class="border-b border-[#e2e1e1] mb-2 pb-2">
+      <h3 class="text-lg font-semibold mb-1 capitalize text-center">
+        {{ product.name }}
+      </h3>
+      <p class="text-center">{{ product.company }}</p>
+    </div>
+    <p
+      class="text-center text-[13px] mb-4 font-text text-gray-600"
+      *ngIf="product.description"
+    >
+      {{ product.description.slice(0, 70)
+      }}{{ product.description.length > 70 ? "…" : "" }}
+    </p>
+    <p class="text-center text-gray-600 text-sm mb-4">
+      <span class="capitalize">from </span>
+      ${{ product.price / 100 | number : "1.0-2" }}
+    </p>
+    <div class="flex justify-between gap-2">
+      <app-button
+        class="flex-1"
+        [paddingX]="'px-2.5'"
+        [paddingY]="'py-2.5'"
+        [style]="'secondary'"
+        [wFull]="true"
+        >quick add</app-button
+      >
+      <app-button
+        class="flex-1"
+        [paddingX]="'px-2.5'"
+        [paddingY]="'py-2.5'"
+        [style]="'primary'"
+        [wFull]="true"
+        (click)="onViewProduct()"
+        >view product</app-button
+      >
+    </div>
+  </div>
+</div>
