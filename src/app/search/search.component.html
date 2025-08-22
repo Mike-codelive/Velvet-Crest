@@ -1,8 +1,9 @@
-<div class="search-container max-w-[1132px] mx-auto p-4 bg-gray-900 text-white">
-  <!-- Search Results Header -->
+<div class="search-container max-w-[1132px] mx-auto p-4">
   <div class="mb-6">
-    <h2 class="font-lora text-xl">
-      Search results for "{{ searchTerm || "all products" }}"
+    <div class="flex flex-col gap-4 font-title font-normal">
+      <h1 class="text-[32px]">
+        Search results for "{{ searchTerm || "all products" }}"
+      </h1>
       <span *ngIf="searchResults.length > 0">
         {{ searchResults.length }} result{{
           searchResults.length === 1 ? "" : "s"
@@ -12,10 +13,9 @@
       <span *ngIf="searchResults.length === 0 && searchTerm">
         0 results found
       </span>
-    </h2>
+    </div>
   </div>
 
-  <!-- Filter and Sort Section -->
   <div class="flex flex-col md:flex-row gap-4 mb-6">
     <div class="flex flex-wrap gap-4 items-center">
       <label class="text-sm font-poppins">Category:</label>
@@ -101,7 +101,6 @@
     </div>
   </div>
 
-  <!-- Product Grid with ProductCardComponent -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     <div
       *ngFor="let product of searchResults"
