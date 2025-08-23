@@ -17,62 +17,77 @@
   </div>
 
   <div class="flex flex-col md:flex-row gap-4 mb-6">
-    <div class="flex flex-wrap gap-4 items-center">
-      <label class="text-sm font-poppins">Category:</label>
-      <select
-        [(ngModel)]="selectedCategory"
-        (change)="onFilterChange()"
-        class="p-2 border rounded text-black capitalize"
-      >
-        <option class="capitalize" *ngFor="let cat of categories" [value]="cat">
-          {{ cat }}
-        </option>
-      </select>
-
-      <label class="text-sm font-poppins">Company:</label>
-      <select
-        [(ngModel)]="selectedCompany"
-        (change)="onFilterChange()"
-        class="p-2 border rounded text-black capitalize"
-      >
-        <option *ngFor="let comp of companies" [value]="comp">
-          {{ comp }}
-        </option>
-      </select>
-
-      <label class="text-sm font-poppins">Color:</label>
-      <div class="relative w-28">
-        <div
-          class="border rounded p-2 flex items-center justify-between cursor-pointer"
-          (click)="toggleColorDropdown()"
-        >
-          <div class="flex items-center gap-2">
-            <div
-              *ngIf="selectedColor !== 'All'"
-              class="w-4 h-4 rounded-full border"
-              [ngStyle]="{ 'background-color': selectedColor }"
-            ></div>
-            <span>{{ getColorLabel(selectedColor) }}</span>
-          </div>
-          <span class="material-symbols-outlined">expand_more</span>
-        </div>
-
-        <div
-          *ngIf="showColorDropdown"
-          class="absolute left-0 w-full border text-black bg-white mt-1 rounded shadow z-50"
-        >
-          <div
-            *ngFor="let c of colors"
-            (click)="selectColor(c)"
-            class="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
+    <div class="flex flex-wrap gap-4 items-center font-text">
+      <div class="flex flex-col mb-2 min-w-[180px] md-wrapper:min-w-[210px]">
+        <label class="text-sm">Category</label>
+        <div class="flex items-center relative">
+          <select
+            [(ngModel)]="selectedCategory"
+            (change)="onFilterChange()"
+            (click)="toggleDropdown('category')"
+            class="appearance-none p-2 capitalize focus-visible:outline-none w-full"
+            data-dropdown="category"
           >
-            <div
-              *ngIf="c !== 'all'"
-              class="w-4 h-4 rounded-full"
-              [ngStyle]="{ 'background-color': c }"
-            ></div>
-            <span>{{ getColorLabel(c) }}</span>
-          </div>
+            <option
+              class="capitalize"
+              *ngFor="let cat of categories"
+              [value]="cat"
+            >
+              {{ cat }}
+            </option>
+          </select>
+          <span
+            class="material-symbols-outlined absolute right-2 pointer-events-none transition-transform duration-300"
+            [class.rotate-180]="dropdownStates['category']"
+          >
+            keyboard_arrow_up
+          </span>
+        </div>
+      </div>
+
+      <div class="flex flex-col mb-2 min-w-[180px] md-wrapper:min-w-[210px]">
+        <label class="text-sm">Company</label>
+        <div class="flex items-center relative">
+          <select
+            [(ngModel)]="selectedCompany"
+            (change)="onFilterChange()"
+            (click)="toggleDropdown('company')"
+            class="appearance-none p-2 capitalize focus-visible:outline-none w-full"
+            data-dropdown="company"
+          >
+            <option *ngFor="let comp of companies" [value]="comp">
+              {{ comp }}
+            </option>
+          </select>
+          <span
+            class="material-symbols-outlined absolute right-2 pointer-events-none transition-transform duration-300"
+            [class.rotate-180]="dropdownStates['company']"
+          >
+            keyboard_arrow_up
+          </span>
+        </div>
+      </div>
+
+      <div class="flex flex-col mb-2 min-w-[180px] md-wrapper:min-w-[210px]">
+        <label class="text-sm">Color</label>
+        <div class="flex items-center relative">
+          <select
+            [(ngModel)]="selectedColor"
+            (change)="onFilterChange()"
+            (click)="toggleDropdown('color')"
+            class="appearance-none p-2 capitalize focus-visible:outline-none w-full"
+            data-dropdown="color"
+          >
+            <option *ngFor="let c of colors" [value]="c">
+              {{ getColorLabel(c) }}
+            </option>
+          </select>
+          <span
+            class="material-symbols-outlined absolute right-2 pointer-events-none transition-transform duration-300"
+            [class.rotate-180]="dropdownStates['color']"
+          >
+            keyboard_arrow_up
+          </span>
         </div>
       </div>
 
@@ -88,16 +103,26 @@
 
     <div class="flex items-center gap-2 ml-auto">
       <label for="sort" class="font-poppins text-sm">Sort By:</label>
-      <select
-        id="sort"
-        [(ngModel)]="sortBy"
-        (ngModelChange)="onSortChange()"
-        class="p-2 border rounded font-poppins text-sm bg-white text-black"
-      >
-        <option *ngFor="let option of sortOptions" [value]="option.value">
-          {{ option.label }}
-        </option>
-      </select>
+      <div class="relative">
+        <select
+          id="sort"
+          [(ngModel)]="sortBy"
+          (ngModelChange)="onSortChange()"
+          (click)="toggleDropdown('sort')"
+          class="appearance-none p-2 border rounded font-poppins text-sm bg-white text-black pr-8 w-full"
+          data-dropdown="sort"
+        >
+          <option *ngFor="let option of sortOptions" [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+        <span
+          class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none transition-transform duration-300"
+          [class.rotate-180]="dropdownStates['sort']"
+        >
+          keyboard_arrow_up
+        </span>
+      </div>
     </div>
   </div>
 

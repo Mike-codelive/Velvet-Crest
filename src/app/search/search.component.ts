@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from '../services/product.service';
@@ -174,5 +174,41 @@ export class SearchComponent implements OnInit {
     if (!color || color === 'All') return 'All';
     const normalized = color.toUpperCase();
     return this.colorNameMap[normalized] || normalized;
+  }
+
+  dropdownStates: { [key: string]: boolean } = {
+    category: false,
+    color: false,
+    company: false,
+    sort: false,
+  };
+
+  toggleDropdown(dropdownName: string): void {
+    const isCurrentlyOpen = this.dropdownStates[dropdownName];
+
+    Object.keys(this.dropdownStates).forEach((key) => {
+      this.dropdownStates[key] = false;
+    });
+
+    if (!isCurrentlyOpen) {
+      this.dropdownStates[dropdownName] = true;
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const isInsideDropdown = ['category', 'color', 'company', 'sort'].some(
+      (dropdown) => {
+        const element = document.querySelector(`[data-dropdown="${dropdown}"]`);
+        return element && element.contains(target);
+      }
+    );
+
+    if (!isInsideDropdown) {
+      Object.keys(this.dropdownStates).forEach((key) => {
+        this.dropdownStates[key] = false;
+      });
+    }
   }
 }
