@@ -1,0 +1,68 @@
+<!-- Overlay -->
+<div
+  *ngIf="isOpen"
+  class="fixed inset-0 bg-black opacity-50 z-50"
+  (click)="onOverlayClick($event)"
+></div>
+
+<!-- Cart Dropdown -->
+<div
+  class="fixed top-0 bottom-0 right-0 w-full md:w-[480px] h-full bg-white shadow-lg z-50 p-4 rounded-l-lg overflow-y-auto border border-gray-200 transition-transform duration-300 ease-in-out"
+  [class.translate-x-full]="!isOpen"
+  [class.translate-x-0]="isOpen"
+>
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-4 border-b pb-2">
+    <h2 class="font-lora text-xl text-gray-900">Your Cart</h2>
+    <button (click)="onClose()" class="text-gray-600 hover:text-gray-900">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+
+  <!-- Empty Cart Message -->
+  <div *ngIf="cartItems.length === 0" class="text-center text-gray-500 py-8">
+    Your cart is empty.
+  </div>
+
+  <!-- Cart Items -->
+  <div *ngIf="cartItems.length > 0">
+    <div
+      *ngFor="let item of cartItems"
+      class="flex items-center gap-4 mb-4 pb-2 border-b"
+    >
+      <img
+        [src]="item.image"
+        [alt]="item.name"
+        class="w-16 h-16 object-cover rounded"
+      />
+      <div class="flex-1">
+        <h3 class="font-lora text-base text-gray-900">{{ item.name }}</h3>
+        <p class="text-yellow-600 text-sm">
+          ${{ item.price / 100 | number : "1.0-2" }}
+        </p>
+      </div>
+      <button
+        (click)="removeItem(item.id)"
+        class="text-gray-600 hover:text-red-500 focus:outline-none"
+      >
+        <span class="material-symbols-outlined">delete</span>
+      </button>
+    </div>
+
+    <!-- Subtotal -->
+    <div class="flex justify-between items-center mt-4 pt-2 border-t">
+      <span class="font-poppins text-sm text-gray-700">Subtotal</span>
+      <span class="font-poppins text-sm text-gray-900"
+        >${{ subtotal / 100 | number : "1.0-2" }}</span
+      >
+    </div>
+
+    <!-- Checkout Button -->
+    <button
+      (click)="onCheckout()"
+      class="w-full mt-4 p-2 bg-dark-slate-green text-white rounded hover:bg-opacity-90 transition-colors focus:outline-none"
+    >
+      Checkout
+    </button>
+  </div>
+</div>

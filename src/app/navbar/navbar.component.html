@@ -525,9 +525,18 @@
               person
             </span>
           </div>
-          <div class="navbar-header-icon-wrapper">
-            <span class="material-symbols-outlined navbar-header-icon">
+          <div class="navbar-header-icon-wrapper relative">
+            <span
+              (click)="toggleCart()"
+              class="material-symbols-outlined navbar-header-icon"
+            >
               shopping_bag
+            </span>
+            <span
+              *ngIf="cartItemCount > 0"
+              class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-1"
+            >
+              {{ cartItemCount }}
             </span>
           </div>
         </div>
@@ -766,3 +775,8 @@
     </div>
   </div>
 </nav>
+
+<app-cart-dropdown
+  [isOpen]="isCartOpen"
+  (close)="toggleCart()"
+></app-cart-dropdown>

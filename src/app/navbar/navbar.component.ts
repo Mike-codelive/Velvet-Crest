@@ -4,15 +4,22 @@ import { ProductService } from '../services/product.service';
 import { FormsModule } from '@angular/forms';
 import { ProductSummary } from '../models/product-summary.model';
 import { Router } from '@angular/router';
+import { CartService } from '../services/cart.service';
+import { CartDropdownComponent } from '../UI/cart-dropdown/cart-dropdown.component';
 
 @Component({
   selector: 'app-navbar',
-  imports: [CommonModule, FormsModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule, CartDropdownComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent implements OnInit {
-  constructor(public productService: ProductService, private router: Router) {
+  constructor(
+    public productService: ProductService,
+    private router: Router,
+    private cartService: CartService
+  ) {
     (window as any).productService = productService;
   }
   searchTerm = '';
@@ -22,9 +29,16 @@ export class NavbarComponent implements OnInit {
   isSearchVisible: boolean = true;
   activeMenu: number | null = null;
   resizeTimeout: any;
+  isCartOpen = false;
+  cartItemCount = 0;
 
   ngOnInit() {
     this.productService.fetchAllProducts();
+  }
+
+  toggleCart() {
+    this.isCartOpen = !this.isCartOpen;
+    this.updateBodyScroll();
   }
 
   onSearch() {
@@ -83,13 +97,14 @@ export class NavbarComponent implements OnInit {
     this.toggleSearch();
   }
 
-  private sanitizeInput(input: string): string {
-    return input.replace(/[<>&"'\/]/g, '');
+  updateBodyScroll() {
+    const isAnyOpen = this.isMenuOpen || this.isCartOpen;
+    document.body.style.overflowY = isAnyOpen ? 'hidden' : 'auto';
+    document.body.style.paddingRight = isAnyOpen ? '15px' : '0';
   }
 
-  private updateBodyScroll() {
-    document.body.style.overflowY = this.isMenuOpen ? 'hidden' : 'auto';
-    document.body.style.paddingRight = this.isMenuOpen ? '15px' : '0';
+  private sanitizeInput(input: string): string {
+    return input.replace(/[<>&"'\/]/g, '');
   }
 
   private checkResolution() {
