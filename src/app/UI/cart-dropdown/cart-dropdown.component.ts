@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { ProductSummary } from '../../models/product-summary.model';
+import { ButtonComponent } from '../../button/button.component';
 
 @Component({
   selector: 'app-cart-dropdown',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonComponent],
   templateUrl: './cart-dropdown.component.html',
   styleUrls: ['./cart-dropdown.component.css'],
 })
