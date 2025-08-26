@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { FormsModule } from '@angular/forms';
 import { ProductSummary } from '../models/product-summary.model';
 import { Router } from '@angular/router';
 import { CartService } from '../services/cart.service';
 import { CartDropdownComponent } from '../UI/cart-dropdown/cart-dropdown.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +15,7 @@ import { CartDropdownComponent } from '../UI/cart-dropdown/cart-dropdown.compone
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   constructor(
     public productService: ProductService,
     private router: Router,
@@ -22,6 +23,7 @@ export class NavbarComponent implements OnInit {
   ) {
     (window as any).productService = productService;
   }
+
   searchTerm = '';
   searchResults: ProductSummary[] = [];
   private menuStates: { [key: string]: number } = {};
@@ -31,14 +33,26 @@ export class NavbarComponent implements OnInit {
   resizeTimeout: any;
   isCartOpen = false;
   cartItemCount = 0;
+  private cartOpenSubscription!: Subscription;
 
   ngOnInit() {
     this.productService.fetchAllProducts();
+    this.cartOpenSubscription = this.cartService.isCartOpen$.subscribe(
+      (open) => {
+        this.isCartOpen = open;
+        this.updateBodyScroll();
+      }
+    );
+    this.cartService.cartItems$.subscribe((items) => {
+      this.cartItemCount = items.reduce(
+        (total, item) => total + (item.quantity || 1),
+        0
+      );
+    });
   }
 
   toggleCart() {
-    this.isCartOpen = !this.isCartOpen;
-    this.updateBodyScroll();
+    this.cartService.toggleCart();
   }
 
   onSearch() {
@@ -111,6 +125,12 @@ export class NavbarComponent implements OnInit {
     if (window.innerWidth >= 1240 && this.isMenuOpen) {
       this.isMenuOpen = false;
       this.updateBodyScroll();
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.cartOpenSubscription) {
+      this.cartOpenSubscription.unsubscribe();
     }
   }
 }

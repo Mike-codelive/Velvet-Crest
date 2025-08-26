@@ -9,4 +9,5 @@ export interface ProductSummary {
   category: string;
   featured: boolean;
   shipping: boolean;
+  quantity?: number;
 }

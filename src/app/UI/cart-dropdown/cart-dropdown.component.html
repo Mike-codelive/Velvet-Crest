@@ -17,9 +17,9 @@
       (click)="onClose()"
       class="rounded-full bg-gray-200 flex items-center p-0.5 cursor-pointer"
     >
-      <span class="text-small material-symbols-outlined select-none">
-        close
-      </span>
+      <span class="text-small material-symbols-outlined select-none"
+        >close</span
+      >
     </button>
   </header>
 
@@ -47,15 +47,30 @@
       <div class="flex-1">
         <h3 class="font-lora text-base text-gray-900">{{ item.name }}</h3>
         <p class="text-yellow-600 text-sm">
-          ${{ item.price / 100 | number : "1.0-2" }}
+          ${{ (item.price / 100) * (item.quantity || 1) | number : "1.0-2" }}
         </p>
       </div>
-      <button
-        (click)="removeItem(item.id)"
-        class="text-gray-600 hover:text-red-500 focus:outline-none"
-      >
-        <span class="material-symbols-outlined">delete</span>
-      </button>
+      <div class="flex items-center gap-2">
+        <button
+          (click)="decrementQuantity(item.id)"
+          class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300"
+        >
+          <span class="material-symbols-outlined text-sm">remove</span>
+        </button>
+        <span class="text-sm">{{ item.quantity || 1 }}</span>
+        <button
+          (click)="incrementQuantity(item.id)"
+          class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300"
+        >
+          <span class="material-symbols-outlined text-sm">add</span>
+        </button>
+        <button
+          (click)="removeItem(item.id)"
+          class="ml-2 text-gray-600 hover:text-red-500 focus:outline-none"
+        >
+          <span class="material-symbols-outlined">delete</span>
+        </button>
+      </div>
     </div>
 
     <div class="flex justify-between items-center mt-4 pt-2 border-t">

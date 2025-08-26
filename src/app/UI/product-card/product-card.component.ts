@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ProductSummary } from '../../models/product-summary.model';
 import { ButtonComponent } from '../../button/button.component';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -16,7 +17,11 @@ export class ProductCardComponent {
   @Output() imageLoad = new EventEmitter<void>();
   @Output() imageError = new EventEmitter<void>();
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cartService: CartService) {}
+
+  addToCart() {
+    this.cartService.addItem(this.product);
+  }
 
   onViewProduct() {
     if (this.product.id) {
