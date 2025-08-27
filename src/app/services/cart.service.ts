@@ -12,9 +12,18 @@ export class CartService {
   private isCartOpenSubject = new BehaviorSubject<boolean>(false);
   isCartOpen$ = this.isCartOpenSubject.asObservable();
 
+  private readonly STORAGE_KEY = 'velvetCrestCart';
+
+  constructor() {
+    const savedItems = localStorage.getItem(this.STORAGE_KEY);
+    if (savedItems) {
+      const parsedItems = JSON.parse(savedItems) as ProductSummary[];
+      this.cartItemsSubject.next(parsedItems);
+    }
+  }
+
   addItem(product: ProductSummary) {
     if (!product || !product.id) {
-      console.error('Invalid product or missing ID:', product);
       return;
     }
     const currentItems = this.cartItemsSubject.value;
@@ -35,12 +44,7 @@ export class CartService {
         { ...product, quantity: 1 },
       ]);
     }
-    console.log(
-      'Added item to cart:',
-      product,
-      'New cart items:',
-      this.cartItemsSubject.value
-    );
+    this.saveToLocalStorage();
     this.openCart();
   }
 
@@ -52,7 +56,7 @@ export class CartService {
     const currentItems = this.cartItemsSubject.value;
     const updatedItems = currentItems.filter((item) => item.id !== id);
     this.cartItemsSubject.next(updatedItems);
-    console.log('Removed item with id:', id, 'New cart items:', updatedItems);
+    this.saveToLocalStorage();
   }
 
   incrementQuantity(id: string) {
@@ -65,12 +69,7 @@ export class CartService {
         quantity: (updatedItems[itemIndex].quantity || 1) + 1,
       };
       this.cartItemsSubject.next(updatedItems);
-      console.log(
-        'Incremented quantity for id:',
-        id,
-        'New cart items:',
-        updatedItems
-      );
+      this.saveToLocalStorage();
     }
   }
 
@@ -89,12 +88,7 @@ export class CartService {
         updatedItems.splice(itemIndex, 1);
       }
       this.cartItemsSubject.next(updatedItems);
-      console.log(
-        'Decremented quantity for id:',
-        id,
-        'New cart items:',
-        updatedItems
-      );
+      this.saveToLocalStorage();
     }
   }
 
@@ -112,5 +106,11 @@ export class CartService {
     const newState = !this.isCartOpenSubject.value;
     this.isCartOpenSubject.next(newState);
     console.log('Cart toggled to:', newState);
+  }
+
+  private saveToLocalStorage() {
+    const items = this.cartItemsSubject.value;
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(items));
+    console.log('Saved cart items to localStorage:', items);
   }
 }
