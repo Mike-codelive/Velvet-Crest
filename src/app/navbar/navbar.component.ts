@@ -133,4 +133,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.cartOpenSubscription.unsubscribe();
     }
   }
+
+  navigateToHome() {
+    this.router.navigate(['/']);
+    this.isMenuOpen = false;
+    this.updateBodyScroll();
+  }
 }
