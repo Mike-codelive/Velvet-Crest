@@ -139,4 +139,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.isMenuOpen = false;
     this.updateBodyScroll();
   }
+
+  navigateToShop() {
+    this.router.navigate(['/shop']);
+    this.isMenuOpen = false;
+    this.updateBodyScroll();
+  }
 }

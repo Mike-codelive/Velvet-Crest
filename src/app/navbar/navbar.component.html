@@ -601,7 +601,9 @@
               <p class="menu-drawer-secondary-link">Rare Opal Jewelry</p>
               <p class="menu-drawer-secondary-link">New & Back in Stock</p>
               <p class="menu-drawer-secondary-link">Origin of the Week</p>
-              <p class="menu-drawer-secondary-link">Shop All</p>
+              <p class="menu-drawer-secondary-link" (click)="navigateToShop()">
+                Shop All
+              </p>
             </div>
           </div>
         </div>
@@ -755,6 +757,7 @@
           <button
             class="menu-drawer-root-link"
             [class.hidden]="activeMenu !== null"
+            (click)="navigateToShop()"
           >
             <span>Shop All</span>
           </button>

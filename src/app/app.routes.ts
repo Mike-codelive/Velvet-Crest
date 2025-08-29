@@ -21,5 +21,13 @@ export const routes: Routes = [
       ),
     title: 'VelvetCrest - Product Details',
   },
+  {
+    path: 'shop',
+    loadComponent: () =>
+      import('./all-products/all-products.component').then(
+        (m) => m.AllProductsComponent
+      ),
+    title: 'VelvetCrest - All Products',
+  },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
