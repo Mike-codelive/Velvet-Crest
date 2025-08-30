@@ -1,8 +1,19 @@
-<div class="all-products-container max-w-[1132px] mx-auto p-4">
-  <!-- Header -->
-  <h1 class="font-lora text-3xl mb-6 text-center">All Products</h1>
+<div class="max-w-[1132px] mx-auto p-4">
+  <h1 class="font-title text-3xl my-6">All Luxe Opal Gems</h1>
 
-  <!-- Loading State -->
+  <p class="font-text my-12">
+    Our exquisite collection of rare opal gems offers an unparalleled experience
+    for any jewelry enthusiast. Each luxurious piece highlights the unique
+    brilliance and characteristics of its origin, crafted with precision to
+    reflect the natural elegance of the stones. Every gem tells a story of its
+    geological heritage, mining heritage, and the artistry involved in its
+    creation. Discover stunning opal gems from exotic locations like Madagascar,
+    Australia, and Ethiopia, to renowned sources like Mexico and Peru. Available
+    in a variety of settings and styles, explore the finest handcrafted jewelry,
+    including elegant rings, necklaces, and luxurious gift sets, perfect for
+    every opal connoisseur.
+  </p>
+
   <div
     *ngIf="loading$ | async; else productGrid"
     class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-pulse"
@@ -13,7 +24,6 @@
     ></div>
   </div>
 
-  <!-- Product Grid -->
   <ng-template #productGrid>
     <div
       *ngIf="(allProducts$ | async)?.length; then productList; else noProducts"
