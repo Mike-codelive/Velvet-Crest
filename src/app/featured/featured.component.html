@@ -3,9 +3,9 @@
     <div class="featured-collections">
       <a
         *ngFor="let collection of collections"
-        class="featured-collection group"
-        [href]="collection.link"
+        class="featured-collection group cursor-pointer"
         [attr.aria-label]="'View ' + collection.title + ' collection'"
+        (click)="navigateToShop()"
       >
         <div class="picture-element-wrapper">
           <img

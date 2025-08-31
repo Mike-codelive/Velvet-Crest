@@ -2,7 +2,7 @@
   <div class="wrapper select-none">
     <div class="collection-slider-content">
       <p class="collection-slider-title">Explore Popular Origins</p>
-      <p class="collection-slider-cta">
+      <p class="collection-slider-cta" (click)="navigateToShop()">
         shop all luxury's
         <span class="material-symbols-outlined thin-icon"> chevron_right </span>
       </p>
@@ -10,7 +10,7 @@
     <div id="collection-swiper" class="swiper collection-swiper">
       <div class="swiper-wrapper collection-swiper-wrapper">
         @for (slide of slides; track slide.id) {
-        <div class="swiper-slide group">
+        <div class="swiper-slide group" (click)="navigateToShop()">
           <div class="collection-swiper-img-wrapper">
             <img
               [src]="slide.image"

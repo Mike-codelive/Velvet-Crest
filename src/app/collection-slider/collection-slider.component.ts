@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Pagination } from 'swiper/modules';
 import Swiper from 'swiper';
+import { NavigationService } from '../services/navigation.service';
 
 @Component({
   selector: 'app-collection-slider',
@@ -9,6 +10,12 @@ import Swiper from 'swiper';
   styleUrl: './collection-slider.component.css',
 })
 export class CollectionSliderComponent {
+  constructor(public navigationService: NavigationService) {}
+
+  navigateToShop() {
+    this.navigationService.navToShop();
+  }
+
   slides = [
     {
       image: '/collection_1.jpg',
@@ -54,7 +61,6 @@ export class CollectionSliderComponent {
   ngAfterViewInit() {
     this.swiper = new Swiper('.collection-swiper', {
       modules: [Pagination],
-      // autoHeight: true,
       slidesPerView: 1,
       spaceBetween: 8,
       breakpoints: {

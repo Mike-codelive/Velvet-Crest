@@ -13,8 +13,9 @@ import { AsyncPipe, NgIf, NgFor } from '@angular/common';
 import { Observable, take } from 'rxjs';
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
-import { Router } from '@angular/router';
+
 import { ProductCardComponent } from '../UI/product-card/product-card.component';
+import { NavigationService } from '../services/navigation.service';
 
 Swiper.use([Pagination, Navigation]);
 
@@ -41,7 +42,14 @@ export class FeaturedProductsComponent
   loadedImages = 0;
   allImagesLoaded = false;
 
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(
+    private productService: ProductService,
+    private navigationService: NavigationService
+  ) {}
+
+  navigateToShop() {
+    this.navigationService.navToShop();
+  }
 
   ngOnInit(): void {
     this.featuredProducts$ = this.productService.featuredProducts$;

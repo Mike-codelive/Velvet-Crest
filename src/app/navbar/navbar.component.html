@@ -1,4 +1,4 @@
-<nav id="navbar" class="navbar">
+<nav id="navbar" #navbar class="navbar" [class.no-hover]="false">
   <div class="navbar-header">
     <div class="navbar-wrapper wrapper">
       <div class="navbar-header-left">
@@ -37,21 +37,43 @@
                       keyboard_arrow_right
                     </span>
                   </p>
-                  <p class="megamenu-subcategory-title">
+                  <p
+                    class="megamenu-subcategory-title"
+                    (click)="navigateToShop()"
+                  >
                     <span> opal shine sets </span>
                   </p>
                   <div class="megamenu-menu-secondary">
-                    <p class="megamenu-menu-secondary-item">bestsellers</p>
-                    <p class="megamenu-menu-secondary-item">
+                    <p
+                      class="megamenu-menu-secondary-item"
+                      (click)="navigateToShop()"
+                    >
+                      bestsellers
+                    </p>
+                    <p
+                      class="megamenu-menu-secondary-item"
+                      (click)="navigateToShop()"
+                    >
                       Wild Animal luxury
                     </p>
-                    <p class="megamenu-menu-secondary-item">
+                    <p
+                      class="megamenu-menu-secondary-item"
+                      (click)="navigateToShop()"
+                    >
                       New & Back in Stock
                     </p>
-                    <p class="megamenu-menu-secondary-item">
+                    <p
+                      class="megamenu-menu-secondary-item"
+                      (click)="navigateToShop()"
+                    >
                       Origin of the Week
                     </p>
-                    <p class="megamenu-menu-secondary-item">Shop All</p>
+                    <p
+                      class="megamenu-menu-secondary-item"
+                      (click)="navigateToShop()"
+                    >
+                      Shop All
+                    </p>
                   </div>
                 </div>
                 <div class="megamenu-subcategory-wrapper">
@@ -60,58 +82,246 @@
                     [ngClass]="{ 'is-active': menuState('menu-1') === 0 }"
                   >
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">africa</p>
-                      <p class="megamenu-child-link-item">canary islands</p>
-                      <p class="megamenu-child-link-item">ethiopia</p>
-                      <p class="megamenu-child-link-item">kenya</p>
-                      <p class="megamenu-child-link-item">madagascar</p>
-                      <p class="megamenu-child-link-item">rwanda</p>
-                      <p class="megamenu-child-link-item">sao tome</p>
-                      <p class="megamenu-child-link-item">south africa</p>
-                      <p class="megamenu-child-link-item">st helena</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        africa
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        canary islands
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        ethiopia
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        kenya
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        madagascar
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        rwanda
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        sao tome
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        south africa
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        st helena
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">asia</p>
-                      <p class="megamenu-child-link-item">india</p>
-                      <p class="megamenu-child-link-item">indonesia</p>
-                      <p class="megamenu-child-link-item">japan</p>
-                      <p class="megamenu-child-link-item">nepal</p>
-                      <p class="megamenu-child-link-item">taiwan</p>
-                      <p class="megamenu-child-link-item">yemen</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        asia
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        india
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        indonesia
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        japan
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        nepal
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        taiwan
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        yemen
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">caribbean</p>
-                      <p class="megamenu-child-link-item">Guadeloupe</p>
-                      <p class="megamenu-child-link-item">haiti</p>
-                      <p class="megamenu-child-link-item">
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        caribbean
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        Guadeloupe
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        haiti
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
                         jamaican blue mountain
                       </p>
-                      <p class="megamenu-child-link-item">puerto rico</p>
-                      <p class="megamenu-child-link-item">saint vincent</p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        puerto rico
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        saint vincent
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">central america</p>
-                      <p class="megamenu-child-link-item">costa rica</p>
-                      <p class="megamenu-child-link-item">dominican republic</p>
-                      <p class="megamenu-child-link-item">panama</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        central america
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        costa rica
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        dominican republic
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        panama
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">north america</p>
-                      <p class="megamenu-child-link-item">california</p>
-                      <p class="megamenu-child-link-item">hawaii</p>
-                      <p class="megamenu-child-link-item">mexico</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        north america
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        california
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        hawaii
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        mexico
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">oceania</p>
-                      <p class="megamenu-child-link-item">fiji</p>
-                      <p class="megamenu-child-link-item">new caledonia</p>
-                      <p class="megamenu-child-link-item">pitcairn</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        oceania
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        fiji
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        new caledonia
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        pitcairn
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">South America</p>
-                      <p class="megamenu-child-link-item">brazil</p>
-                      <p class="megamenu-child-link-item">galapagos</p>
-                      <p class="megamenu-child-link-item">peru</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        South America
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        brazil
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        galapagos
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        peru
+                      </p>
                     </div>
                   </div>
                   <div
@@ -119,43 +329,188 @@
                     [ngClass]="{ 'is-active': menuState('menu-1') === 1 }"
                   >
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">by type</p>
-                      <p class="megamenu-child-link-item">dark roast</p>
-                      <p class="megamenu-child-link-item">organic</p>
-                      <p class="megamenu-child-link-item">wild animal</p>
-                      <p class="megamenu-child-link-item">naturally low</p>
-                      <p class="megamenu-child-link-item">decaffeinated</p>
-                      <p class="megamenu-child-link-item">low acidity</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        by type
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        dark roast
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        organic
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        wild animal
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        naturally low
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        decaffeinated
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        low acidity
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">by taste profile</p>
-                      <p class="megamenu-child-link-item">cocoa</p>
-                      <p class="megamenu-child-link-item">flora</p>
-                      <p class="megamenu-child-link-item">fruity</p>
-                      <p class="megamenu-child-link-item">nutty</p>
-                      <p class="megamenu-child-link-item">spicy</p>
-                      <p class="megamenu-child-link-item">sweet</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        by taste profile
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        cocoa
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        flora
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        fruity
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        nutty
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        spicy
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        sweet
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">by varietal</p>
-                      <p class="megamenu-child-link-item">typical</p>
-                      <p class="megamenu-child-link-item">geisha</p>
-                      <p class="megamenu-child-link-item">bourbon</p>
-                      <p class="megamenu-child-link-item">caturra</p>
-                      <p class="megamenu-child-link-item">peaberry</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        by varietal
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        typical
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        geisha
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        bourbon
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        caturra
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        peaberry
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">by process</p>
-                      <p class="megamenu-child-link-item">washed</p>
-                      <p class="megamenu-child-link-item">natural</p>
-                      <p class="megamenu-child-link-item">honey</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        by process
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        washed
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        natural
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        honey
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">wild animal</p>
-                      <p class="megamenu-child-link-item">Wild Kopi Luwak</p>
-                      <p class="megamenu-child-link-item">Wild Jacu Bird</p>
-                      <p class="megamenu-child-link-item">Wild Toucan</p>
-                      <p class="megamenu-child-link-item">Uchuñari</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        wild animal
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        Wild Kopi Luwak
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        Wild Jacu Bird
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        Wild Toucan
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        Uchuñari
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -172,30 +527,30 @@
                       <p class="megamenu-tier-title">
                         Buy Luxe Opal Jewelry Gems
                       </p>
-                      <p class="megamenu-link">
+                      <p class="megamenu-link" (click)="navigateToShop()">
                         galapagos <span class="megamenu-badge md-dark"></span>
                         <span class="megamenu-badge-text">Medium-Dark</span>
                       </p>
-                      <p class="megamenu-link">
+                      <p class="megamenu-link" (click)="navigateToShop()">
                         Hawaii Kona
                         <span class="megamenu-badge md-dark"></span>
                         <span class="megamenu-badge-text">Medium-Dark</span>
                       </p>
-                      <p class="megamenu-link">
+                      <p class="megamenu-link" (click)="navigateToShop()">
                         Jamaica Blue Mountain
                         <span class="megamenu-badge-watch">bestseller</span>
                       </p>
-                      <p class="megamenu-link">
+                      <p class="megamenu-link" (click)="navigateToShop()">
                         Panama Geisha
                         <span class="megamenu-badge md"></span>
                         <span class="megamenu-badge-text">Medium</span>
                       </p>
-                      <p class="megamenu-link">
+                      <p class="megamenu-link" (click)="navigateToShop()">
                         St Helena
                         <span class="megamenu-badge md"></span>
                         <span class="megamenu-badge-text">Medium</span>
                       </p>
-                      <p class="megamenu-link">
+                      <p class="megamenu-link" (click)="navigateToShop()">
                         Wild Kopi Luwak
                         <span class="megamenu-badge md"></span>
                         <span class="megamenu-badge-text">Medium</span>
@@ -203,27 +558,27 @@
                     </div>
                     <div class="megamenu-tier">
                       <p class="megamenu-tier-title">Opal Crest Valley Gems</p>
-                      <p class="megamenu-link">
+                      <p class="megamenu-link" (click)="navigateToShop()">
                         Stoneleigh Estate
                         <span class="megamenu-badge light"></span>
                         <span class="megamenu-badge-text text-badge-light"
                           >Light</span
                         >
                       </p>
-                      <p class="megamenu-link">
+                      <p class="megamenu-link" (click)="navigateToShop()">
                         Blue Baron Estate<span class="megamenu-badge md"></span>
                         <span class="megamenu-badge-text text-badge-md"
                           >Medium</span
                         >
                       </p>
-                      <p class="megamenu-link">
+                      <p class="megamenu-link" (click)="navigateToShop()">
                         Clifton Mount Estate
                         <span class="megamenu-badge md-dark"></span>
                         <span class="megamenu-badge-text text-badge-md-dark"
                           >Medium-Dark</span
                         >
                       </p>
-                      <p class="megamenu-link">
+                      <p class="megamenu-link" (click)="navigateToShop()">
                         Signature Collection
                         <span class="megamenu-badge dark"></span>
                         <span class="megamenu-badge-text text-badge-dark"
@@ -233,12 +588,18 @@
                     </div>
                     <div class="megamenu-tier">
                       <p class="megamenu-tier-title">Opal Gem Storage Cases</p>
-                      <p class="megamenu-link">
+                      <p class="megamenu-link" (click)="navigateToShop()">
                         Jamaica Blue Mountain Collection
                       </p>
-                      <p class="megamenu-link">Luxury Pod Collection</p>
-                      <p class="megamenu-link">Discovery Pod Collection</p>
-                      <p class="megamenu-link">All Collection Boxes</p>
+                      <p class="megamenu-link" (click)="navigateToShop()">
+                        Luxury Pod Collection
+                      </p>
+                      <p class="megamenu-link" (click)="navigateToShop()">
+                        Discovery Pod Collection
+                      </p>
+                      <p class="megamenu-link" (click)="navigateToShop()">
+                        All Collection Boxes
+                      </p>
                     </div>
                   </div>
                   <div class="megamenu-bottom-bar">
@@ -253,7 +614,9 @@
                     Discover the purest opal gems, rare mountain-crafted jewelry
                     pieces
                   </p>
-                  <a class="megamenu-banner-link" href="#">SHOP NOW</a>
+                  <a class="megamenu-banner-link" (click)="navigateToShop()"
+                    >SHOP NOW</a
+                  >
                 </div>
               </div>
             </div>
@@ -267,9 +630,11 @@
                   black boxes and finished with satin white ribbon - the perfect
                   gift for any ocation.
                 </p>
-                <a class="megamenu-banner-link" href="#">shop all gifts</a>
+                <a class="megamenu-banner-link" (click)="navigateToShop()"
+                  >shop all gifts</a
+                >
               </div>
-              <div class="megamenu-banner-img">
+              <div class="megamenu-banner-img" (click)="navigateToShop()">
                 <img src="/megamenu_0.jpg" alt="gift one" />
                 <div class="megamenu-banner-content">
                   <p class="megamenu-banner-title">gift sets</p>
@@ -279,7 +644,7 @@
                   </p>
                 </div>
               </div>
-              <div class="megamenu-banner-img">
+              <div class="megamenu-banner-img" (click)="navigateToShop()">
                 <img src="/cta_2.jpg" alt="gift one" />
                 <div class="megamenu-banner-content">
                   <p class="megamenu-banner-title">Gift Barrel</p>
@@ -288,7 +653,7 @@
                   </p>
                 </div>
               </div>
-              <div class="megamenu-banner-img">
+              <div class="megamenu-banner-img" (click)="navigateToShop()">
                 <img src="/cta_3.jpg" alt="gift one" />
                 <div class="megamenu-banner-content">
                   <p class="megamenu-banner-title">Gift Card</p>
@@ -330,17 +695,36 @@
                     </span>
                   </p>
                   <div class="megamenu-menu-secondary">
-                    <p class="megamenu-menu-secondary-item">bestsellers</p>
-                    <p class="megamenu-menu-secondary-item">
+                    <p
+                      class="megamenu-menu-secondary-item"
+                      (click)="navigateToShop()"
+                    >
+                      bestsellers
+                    </p>
+                    <p
+                      class="megamenu-menu-secondary-item"
+                      (click)="navigateToShop()"
+                    >
                       Wild Animal luxury
                     </p>
-                    <p class="megamenu-menu-secondary-item">
+                    <p
+                      class="megamenu-menu-secondary-item"
+                      (click)="navigateToShop()"
+                    >
                       New & Back in Stock
                     </p>
-                    <p class="megamenu-menu-secondary-item">
+                    <p
+                      class="megamenu-menu-secondary-item"
+                      (click)="navigateToShop()"
+                    >
                       Origin of the Week
                     </p>
-                    <p class="megamenu-menu-secondary-item">Shop All</p>
+                    <p
+                      class="megamenu-menu-secondary-item"
+                      (click)="navigateToShop()"
+                    >
+                      Shop All
+                    </p>
                   </div>
                 </div>
                 <div class="megamenu-subcategory-wrapper">
@@ -349,58 +733,246 @@
                     [ngClass]="{ 'is-active': menuState('menu-2') === 0 }"
                   >
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">africa</p>
-                      <p class="megamenu-child-link-item">canary islands</p>
-                      <p class="megamenu-child-link-item">ethiopia</p>
-                      <p class="megamenu-child-link-item">kenya</p>
-                      <p class="megamenu-child-link-item">madagascar</p>
-                      <p class="megamenu-child-link-item">rwanda</p>
-                      <p class="megamenu-child-link-item">sao tome</p>
-                      <p class="megamenu-child-link-item">south africa</p>
-                      <p class="megamenu-child-link-item">st helena</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        africa
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        canary islands
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        ethiopia
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        kenya
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        madagascar
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        rwanda
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        sao tome
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        south africa
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        st helena
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">asia</p>
-                      <p class="megamenu-child-link-item">india</p>
-                      <p class="megamenu-child-link-item">indonesia</p>
-                      <p class="megamenu-child-link-item">japan</p>
-                      <p class="megamenu-child-link-item">nepal</p>
-                      <p class="megamenu-child-link-item">taiwan</p>
-                      <p class="megamenu-child-link-item">yemen</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        asia
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        india
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        indonesia
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        japan
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        nepal
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        taiwan
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        yemen
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">caribbean</p>
-                      <p class="megamenu-child-link-item">Guadeloupe</p>
-                      <p class="megamenu-child-link-item">haiti</p>
-                      <p class="megamenu-child-link-item">
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        caribbean
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        Guadeloupe
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        haiti
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
                         jamaican blue mountain
                       </p>
-                      <p class="megamenu-child-link-item">puerto rico</p>
-                      <p class="megamenu-child-link-item">saint vincent</p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        puerto rico
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        saint vincent
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">central america</p>
-                      <p class="megamenu-child-link-item">costa rica</p>
-                      <p class="megamenu-child-link-item">dominican republic</p>
-                      <p class="megamenu-child-link-item">panama</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        central america
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        costa rica
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        dominican republic
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        panama
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">north america</p>
-                      <p class="megamenu-child-link-item">california</p>
-                      <p class="megamenu-child-link-item">hawaii</p>
-                      <p class="megamenu-child-link-item">mexico</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        north america
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        california
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        hawaii
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        mexico
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">oceania</p>
-                      <p class="megamenu-child-link-item">fiji</p>
-                      <p class="megamenu-child-link-item">new caledonia</p>
-                      <p class="megamenu-child-link-item">pitcairn</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        oceania
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        fiji
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        new caledonia
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        pitcairn
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">South America</p>
-                      <p class="megamenu-child-link-item">brazil</p>
-                      <p class="megamenu-child-link-item">galapagos</p>
-                      <p class="megamenu-child-link-item">peru</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        South America
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        brazil
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        galapagos
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        peru
+                      </p>
                     </div>
                   </div>
                   <div
@@ -408,43 +980,188 @@
                     [ngClass]="{ 'is-active': menuState('menu-2') === 1 }"
                   >
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">by type</p>
-                      <p class="megamenu-child-link-item">dark roast</p>
-                      <p class="megamenu-child-link-item">organic</p>
-                      <p class="megamenu-child-link-item">wild animal</p>
-                      <p class="megamenu-child-link-item">naturally low</p>
-                      <p class="megamenu-child-link-item">decaffeinated</p>
-                      <p class="megamenu-child-link-item">low acidity</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        by type
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        dark roast
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        organic
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        wild animal
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        naturally low
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        decaffeinated
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        low acidity
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">by taste profile</p>
-                      <p class="megamenu-child-link-item">cocoa</p>
-                      <p class="megamenu-child-link-item">flora</p>
-                      <p class="megamenu-child-link-item">fruity</p>
-                      <p class="megamenu-child-link-item">nutty</p>
-                      <p class="megamenu-child-link-item">spicy</p>
-                      <p class="megamenu-child-link-item">sweet</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        by taste profile
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        cocoa
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        flora
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        fruity
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        nutty
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        spicy
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        sweet
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">by varietal</p>
-                      <p class="megamenu-child-link-item">typical</p>
-                      <p class="megamenu-child-link-item">geisha</p>
-                      <p class="megamenu-child-link-item">bourbon</p>
-                      <p class="megamenu-child-link-item">caturra</p>
-                      <p class="megamenu-child-link-item">peaberry</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        by varietal
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        typical
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        geisha
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        bourbon
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        caturra
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        peaberry
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">by process</p>
-                      <p class="megamenu-child-link-item">washed</p>
-                      <p class="megamenu-child-link-item">natural</p>
-                      <p class="megamenu-child-link-item">honey</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        by process
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        washed
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        natural
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        honey
+                      </p>
                     </div>
                     <div class="megamenu-subcategory-item">
-                      <p class="megamenu-children-title">wild animal</p>
-                      <p class="megamenu-child-link-item">Wild Kopi Luwak</p>
-                      <p class="megamenu-child-link-item">Wild Jacu Bird</p>
-                      <p class="megamenu-child-link-item">Wild Toucan</p>
-                      <p class="megamenu-child-link-item">Uchuñari</p>
+                      <p
+                        class="megamenu-children-title"
+                        (click)="navigateToShop()"
+                      >
+                        wild animal
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        Wild Kopi Luwak
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        Wild Jacu Bird
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        Wild Toucan
+                      </p>
+                      <p
+                        class="megamenu-child-link-item"
+                        (click)="navigateToShop()"
+                      >
+                        Uchuñari
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -483,7 +1200,9 @@
                     Looking for a gift? Our gift sets are curated to showcase
                     some of our best complementary origins.
                   </p>
-                  <p class="megamenu-banner-link">shop all gifts</p>
+                  <p class="megamenu-banner-link" (click)="navigateToShop()">
+                    shop all gifts
+                  </p>
                 </div>
                 <div class="megamenu-banner-image">
                   <p class="megamenu-banner-badge">
@@ -494,7 +1213,12 @@
                   </p>
                   <br />
                   <br />
-                  <p class="megamenu-banner-link z-30">Shop now</p>
+                  <p
+                    class="megamenu-banner-link z-30"
+                    (click)="navigateToShop()"
+                  >
+                    Shop now
+                  </p>
                 </div>
               </div>
             </div>

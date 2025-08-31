@@ -1,9 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { FormsModule } from '@angular/forms';
 import { ProductSummary } from '../models/product-summary.model';
-import { Router } from '@angular/router';
+import { NavigationService } from '../services/navigation.service';
 import { CartService } from '../services/cart.service';
 import { CartDropdownComponent } from '../UI/cart-dropdown/cart-dropdown.component';
 import { Subscription } from 'rxjs';
@@ -18,7 +25,7 @@ import { Subscription } from 'rxjs';
 export class NavbarComponent implements OnInit, OnDestroy {
   constructor(
     public productService: ProductService,
-    private router: Router,
+    public navigationService: NavigationService,
     private cartService: CartService
   ) {
     (window as any).productService = productService;
@@ -34,6 +41,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   isCartOpen = false;
   cartItemCount = 0;
   private cartOpenSubscription!: Subscription;
+  @ViewChild('navbar') navbar!: ElementRef;
 
   ngOnInit() {
     this.productService.fetchAllProducts();
@@ -56,20 +64,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   onSearch() {
-    const sanitizedTerm = this.sanitizeInput(this.searchTerm);
-    if (sanitizedTerm.trim()) {
-      const limitedTerm = sanitizedTerm.substring(0, 50);
-      this.router.navigate(['/search'], { queryParams: { q: limitedTerm } });
-      this.searchTerm = '';
-      this.isMenuOpen = false;
-      this.updateBodyScroll();
-    }
+    this.navigationService.navigateToSearch(this.searchTerm);
+    this.searchTerm = '';
+    this.isMenuOpen = false;
+    this.updateBodyScroll();
   }
 
   onSelectProduct(product: ProductSummary) {
-    this.router.navigate(['/product', product.id]).then(() => {
-      window.scrollTo({ top: 0 });
-    });
+    this.navigationService.navigateToProduct(product.id);
     this.searchTerm = '';
     this.searchResults = [];
   }
@@ -117,10 +119,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     document.body.style.paddingRight = isAnyOpen ? '15px' : '0';
   }
 
-  private sanitizeInput(input: string): string {
-    return input.replace(/[<>&"'\/]/g, '');
-  }
-
   private checkResolution() {
     if (window.innerWidth >= 1240 && this.isMenuOpen) {
       this.isMenuOpen = false;
@@ -135,14 +133,24 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   navigateToHome() {
-    this.router.navigate(['/']);
-    this.isMenuOpen = false;
-    this.updateBodyScroll();
+    this.navigationService.navigateToHome();
+    this.closeSubmenu();
   }
 
   navigateToShop() {
-    this.router.navigate(['/shop']);
+    this.navigationService.navToShop();
+    this.closeSubmenu();
+  }
+
+  private closeSubmenu() {
+    this.menuStates = {};
     this.isMenuOpen = false;
+    if (this.navbar && this.navbar.nativeElement) {
+      this.navbar.nativeElement.classList.add('no-hover');
+      setTimeout(() => {
+        this.navbar.nativeElement.classList.remove('no-hover');
+      }, 100);
+    }
     this.updateBodyScroll();
   }
 }

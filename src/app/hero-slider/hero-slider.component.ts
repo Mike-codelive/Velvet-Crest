@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import Swiper from 'swiper';
 import { Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import { ButtonComponent } from '../button/button.component';
+import { NavigationService } from '../services/navigation.service';
 
 Swiper.use([Pagination, Autoplay, EffectFade]);
 
@@ -13,6 +14,7 @@ Swiper.use([Pagination, Autoplay, EffectFade]);
   imports: [CommonModule, ButtonComponent],
 })
 export class HeroSliderComponent implements AfterViewInit {
+  constructor(public navigationService: NavigationService) {}
   swiper!: Swiper;
 
   private heroSwiperBulletStyles(index: number): void {
@@ -60,5 +62,9 @@ export class HeroSliderComponent implements AfterViewInit {
         crossFade: true,
       },
     });
+  }
+
+  navigateToShop() {
+    this.navigationService.navToShop();
   }
 }

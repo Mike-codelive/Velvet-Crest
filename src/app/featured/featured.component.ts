@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NavigationService } from '../services/navigation.service';
 
 @Component({
   selector: 'app-featured',
@@ -8,6 +9,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './featured.component.css',
 })
 export class FeaturedComponent {
+  constructor(public navigationService: NavigationService) {}
+
+  navigateToShop() {
+    this.navigationService.navToShop();
+  }
+
   collections = [
     {
       title: 'Luxury Gifts',

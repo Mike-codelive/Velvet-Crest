@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../button/button.component';
+import { NavigationService } from '../services/navigation.service';
 
 @Component({
   selector: 'app-cta',
@@ -10,6 +11,12 @@ import { ButtonComponent } from '../button/button.component';
   styleUrl: './cta.component.css',
 })
 export class CtaComponent {
+  constructor(public navigationService: NavigationService) {}
+
+  navigateToShop() {
+    this.navigationService.navToShop();
+  }
+
   @Input() headline: string = 'BACK IN STOCK: Discover our rarest opal';
   @Input() headlineTag: boolean = false;
   @Input() roundedImage: boolean = false;

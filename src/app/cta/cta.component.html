@@ -66,9 +66,12 @@
               </p>
             </div>
           </div>
-          <app-button *ngIf="showBtn" [style]="buttonStyle">{{
-            buttonText
-          }}</app-button>
+          <app-button
+            *ngIf="showBtn"
+            (click)="navigateToShop()"
+            [style]="buttonStyle"
+            >{{ buttonText }}</app-button
+          >
         </div>
       </div>
     </div>
