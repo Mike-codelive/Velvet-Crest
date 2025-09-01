@@ -4,11 +4,12 @@ import { ProductService } from '../services/product.service';
 import { ProductSummary } from '../models/product-summary.model';
 import { ProductCardComponent } from '../UI/product-card/product-card.component';
 import { Observable } from 'rxjs';
+import { CtaComponent } from '../cta/cta.component';
 
 @Component({
   selector: 'app-all-products',
   standalone: true,
-  imports: [CommonModule, ProductCardComponent],
+  imports: [CommonModule, ProductCardComponent, CtaComponent],
   templateUrl: './all-products.component.html',
   styleUrls: ['./all-products.component.css'],
 })

@@ -18,6 +18,7 @@ export class CtaComponent {
   }
 
   @Input() headline: string = 'BACK IN STOCK: Discover our rarest opal';
+  @Input() customHeight: string = '';
   @Input() headlineTag: boolean = false;
   @Input() roundedImage: boolean = false;
   @Input() subheadline: string =

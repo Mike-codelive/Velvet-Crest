@@ -9,7 +9,7 @@
 }
 
 .cta-img {
-  @apply rounded-tl-sm rounded-bl-sm object-cover h-full;
+  @apply rounded-tl-sm rounded-bl-sm object-cover h-full w-full;
 }
 
 .cta-img.rounded {

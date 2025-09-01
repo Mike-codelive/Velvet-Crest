@@ -1,43 +1,62 @@
-<div class="max-w-[1132px] mx-auto p-4">
-  <h1 class="font-title text-3xl my-6">All Luxe Opal Gems</h1>
-
-  <p class="font-text my-12">
-    Our exquisite collection of rare opal gems offers an unparalleled experience
-    for any jewelry enthusiast. Each luxurious piece highlights the unique
-    brilliance and characteristics of its origin, crafted with precision to
-    reflect the natural elegance of the stones. Every gem tells a story of its
-    geological heritage, mining heritage, and the artistry involved in its
-    creation. Discover stunning opal gems from exotic locations like Madagascar,
-    Australia, and Ethiopia, to renowned sources like Mexico and Peru. Available
-    in a variety of settings and styles, explore the finest handcrafted jewelry,
-    including elegant rings, necklaces, and luxurious gift sets, perfect for
-    every opal connoisseur.
-  </p>
-
-  <div
-    *ngIf="loading$ | async; else productGrid"
-    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-pulse"
-  >
+<section id="all-products">
+  <div class="wrapper p-4">
+    <h1 class="font-title text-3xl my-6">All Luxe Opal Gems</h1>
+    <p class="font-text my-12">
+      Our exquisite collection of rare opal gems offers an unparalleled
+      experience for any jewelry enthusiast. Each luxurious piece highlights the
+      unique brilliance and characteristics of its origin, crafted with
+      precision to reflect the natural elegance of the stones. Every gem tells a
+      story of its geological heritage, mining heritage, and the artistry
+      involved in its creation. Discover stunning opal gems from exotic
+      locations like Madagascar, Australia, and Ethiopia, to renowned sources
+      like Mexico and Peru. Available in a variety of settings and styles,
+      explore the finest handcrafted jewelry, including elegant rings,
+      necklaces, and luxurious gift sets, perfect for every opal connoisseur.
+    </p>
     <div
-      *ngFor="let _ of [1, 2, 3, 4, 5, 6]"
-      class="bg-gray-200 p-4 rounded shadow-md h-64"
-    ></div>
+      *ngIf="loading$ | async; else productGrid"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-pulse"
+    >
+      <div
+        *ngFor="let _ of [1, 2, 3, 4, 5, 6]"
+        class="bg-gray-200 p-4 rounded shadow-md h-64"
+      ></div>
+    </div>
+    <ng-template #productGrid>
+      <div
+        *ngIf="
+          (allProducts$ | async)?.length;
+          then productList;
+          else noProducts
+        "
+      ></div>
+      <ng-template #productList>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          <app-product-card
+            *ngFor="let product of allProducts$ | async"
+            [product]="product"
+          ></app-product-card>
+        </div>
+      </ng-template>
+      <ng-template #noProducts>
+        <p class="text-center text-gray-500">No products available.</p>
+      </ng-template>
+    </ng-template>
   </div>
-
-  <ng-template #productGrid>
-    <div
-      *ngIf="(allProducts$ | async)?.length; then productList; else noProducts"
-    ></div>
-    <ng-template #productList>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <app-product-card
-          *ngFor="let product of allProducts$ | async"
-          [product]="product"
-        ></app-product-card>
-      </div>
-    </ng-template>
-    <ng-template #noProducts>
-      <p class="text-center text-gray-500">No products available.</p>
-    </ng-template>
-  </ng-template>
-</div>
+  <div class="my-6">
+    <app-cta
+      bgColor="transparent"
+      innerBg="bg-[#f9f9f9]"
+      customHeight="h-[200px]"
+      headline="Save 10% when you subscribe!"
+      subheadline=""
+      description="Select the subscription option on any product page to save 10% off the normal price. Subscriptions automatically renew on the date of your choice."
+      [textPaddingLefth]="false"
+      [showSeparator]="true"
+      [images]="[{ src: '/all_products_cta.png', alt: 'Mexico City Opal 1' }]"
+      buttonText="learn more"
+    ></app-cta>
+  </div>
+</section>

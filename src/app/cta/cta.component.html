@@ -3,8 +3,10 @@
     <div
       [ngClass]="[
         reverseLayout ? 'cta-inner-reverse' : '',
+        customHeight,
         innerBg,
-        'cta-inner'
+        'cta-inner',
+        'max-md-wrapper:h-full'
       ]"
     >
       <div class="cta-img-container">
