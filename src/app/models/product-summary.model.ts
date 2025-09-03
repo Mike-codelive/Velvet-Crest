@@ -11,3 +11,8 @@ export interface ProductSummary {
   shipping: boolean;
   quantity?: number;
 }
+
+export interface CartItem extends ProductSummary {
+  quantity: number;
+  selectedColor?: string;
+}

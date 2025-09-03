@@ -13,7 +13,6 @@
         <ng-container *ngIf="images.length === 1; else multiImage">
           <img
             [ngClass]="['cta-img', roundedImage ? 'rounded' : '']"
-            class="cta-img"
             [src]="images[0].src"
             [alt]="images[0].alt"
           />

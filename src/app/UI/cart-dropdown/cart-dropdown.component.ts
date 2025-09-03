@@ -1,8 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { NavigationService } from '../../services/navigation.service';
 import { CartService } from '../../services/cart.service';
-import { ProductSummary } from '../../models/product-summary.model';
+import { CartItem } from '../../models/product-summary.model';
 import { Subscription } from 'rxjs';
 import { ButtonComponent } from '../../button/button.component';
 
@@ -15,16 +15,19 @@ import { ButtonComponent } from '../../button/button.component';
 })
 export class CartDropdownComponent implements OnDestroy {
   isOpen = false;
-  cartItems: ProductSummary[] = [];
+  cartItems: CartItem[] = [];
   subtotal: number = 0;
   private cartSubscription!: Subscription;
   private openSubscription!: Subscription;
 
-  constructor(private cartService: CartService, private router: Router) {}
+  constructor(
+    private cartService: CartService,
+    private navigationService: NavigationService
+  ) {}
 
   ngOnInit() {
     this.cartSubscription = this.cartService.cartItems$.subscribe((items) => {
-      this.cartItems = [...items];
+      this.cartItems = [...items] as CartItem[];
       this.subtotal = this.calculateSubtotal();
       console.log('Cart items updated:', items);
     });
@@ -55,7 +58,7 @@ export class CartDropdownComponent implements OnDestroy {
   }
 
   onCheckout() {
-    this.router.navigate(['/checkout']);
+    this.navigationService.navigateToRoute(['/checkout']);
     this.cartService.closeCart();
   }
 
@@ -72,5 +75,26 @@ export class CartDropdownComponent implements OnDestroy {
   ngOnDestroy() {
     if (this.cartSubscription) this.cartSubscription.unsubscribe();
     if (this.openSubscription) this.openSubscription.unsubscribe();
+  }
+
+  getColorName(hex: string): string {
+    const hexToNameMap: { [key: string]: string } = {
+      '#000': 'Black',
+      '#FFFFFF': 'White',
+      '#FF0000': 'Red',
+      '#00FF00': 'Lime',
+      '#0000FF': 'Blue',
+      '#FFB900': 'Yellow',
+      '#FFA500': 'Orange',
+      '#800080': 'Purple',
+      '#808080': 'Gray',
+      '#A52A2A': 'Brown',
+      '#FFC0CB': 'Pink',
+      '#00FFFF': 'Cyan',
+      '#008000': 'Green',
+      '#FFD700': 'Gold',
+      '#F5F5DC': 'Beige',
+    };
+    return hexToNameMap[hex.toUpperCase()] || hex;
   }
 }

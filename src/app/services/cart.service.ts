@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ProductSummary } from '../models/product-summary.model';
+import { ProductSummary, CartItem } from '../models/product-summary.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private cartItemsSubject = new BehaviorSubject<ProductSummary[]>([]);
+  private cartItemsSubject = new BehaviorSubject<CartItem[]>([]);
   cartItems$ = this.cartItemsSubject.asObservable();
 
   private isCartOpenSubject = new BehaviorSubject<boolean>(false);
@@ -17,7 +17,7 @@ export class CartService {
   constructor() {
     const savedItems = localStorage.getItem(this.STORAGE_KEY);
     if (savedItems) {
-      const parsedItems = JSON.parse(savedItems) as ProductSummary[];
+      const parsedItems = JSON.parse(savedItems) as CartItem[];
       this.cartItemsSubject.next(parsedItems);
     }
   }
@@ -28,7 +28,8 @@ export class CartService {
     }
     const currentItems = this.cartItemsSubject.value;
     const existingItemIndex = currentItems.findIndex(
-      (item) => item.id === product.id
+      (item) =>
+        item.id === product.id && item.selectedColor === product.colors?.[0]
     );
 
     if (existingItemIndex > -1) {
@@ -39,10 +40,12 @@ export class CartService {
       };
       this.cartItemsSubject.next(updatedItems);
     } else {
-      this.cartItemsSubject.next([
-        ...currentItems,
-        { ...product, quantity: 1 },
-      ]);
+      const cartItem: CartItem = {
+        ...product,
+        quantity: 1,
+        selectedColor: product.colors?.length ? product.colors[0] : undefined,
+      };
+      this.cartItemsSubject.next([...currentItems, cartItem]);
     }
     this.saveToLocalStorage();
     this.openCart();
@@ -94,23 +97,19 @@ export class CartService {
 
   openCart() {
     this.isCartOpenSubject.next(true);
-    console.log('Cart opened');
   }
 
   closeCart() {
     this.isCartOpenSubject.next(false);
-    console.log('Cart closed');
   }
 
   toggleCart() {
     const newState = !this.isCartOpenSubject.value;
     this.isCartOpenSubject.next(newState);
-    console.log('Cart toggled to:', newState);
   }
 
   private saveToLocalStorage() {
     const items = this.cartItemsSubject.value;
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(items));
-    console.log('Saved cart items to localStorage:', items);
   }
 }
