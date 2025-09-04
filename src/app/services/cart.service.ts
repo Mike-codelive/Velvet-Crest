@@ -18,32 +18,63 @@ export class CartService {
     const savedItems = localStorage.getItem(this.STORAGE_KEY);
     if (savedItems) {
       const parsedItems = JSON.parse(savedItems) as CartItem[];
-      this.cartItemsSubject.next(parsedItems);
+      this.cartItemsSubject.next(
+        parsedItems.map((item) => ({
+          ...item,
+          adjustedPrice: item.adjustedPrice || item.price,
+        }))
+      );
     }
   }
 
-  addItem(product: ProductSummary) {
+  addItem(
+    product: ProductSummary,
+    quantity: number,
+    isSubscribed: boolean = false,
+    giftWrap: boolean = false,
+    selectedColor?: string,
+    subscriptionPlan?: string
+  ) {
     if (!product || !product.id) {
       return;
     }
     const currentItems = this.cartItemsSubject.value;
     const existingItemIndex = currentItems.findIndex(
-      (item) =>
-        item.id === product.id && item.selectedColor === product.colors?.[0]
+      (item) => item.id === product.id && item.selectedColor === selectedColor
     );
+
+    const basePrice = product.price;
+    let adjustedPrice = basePrice;
+    if (isSubscribed) adjustedPrice *= 0.9; // 10% discount
+    if (giftWrap) adjustedPrice += 900; // $9.00 charge in cents
 
     if (existingItemIndex > -1) {
       const updatedItems = [...currentItems];
       updatedItems[existingItemIndex] = {
         ...updatedItems[existingItemIndex],
-        quantity: (updatedItems[existingItemIndex].quantity || 1) + 1,
+        quantity: (updatedItems[existingItemIndex].quantity || 1) + quantity,
+        isSubscribed,
+        giftWrap,
+        subscriptionPlan: isSubscribed
+          ? subscriptionPlan
+          : updatedItems[existingItemIndex].subscriptionPlan, // Update or keep existing plan
+        adjustedPrice:
+          ((updatedItems[existingItemIndex].adjustedPrice || basePrice) *
+            ((updatedItems[existingItemIndex].quantity || 1) + quantity)) /
+            updatedItems[existingItemIndex].quantity! +
+          (giftWrap ? 900 : 0) -
+          (isSubscribed ? basePrice * 0.1 * quantity : 0),
       };
       this.cartItemsSubject.next(updatedItems);
     } else {
       const cartItem: CartItem = {
         ...product,
-        quantity: 1,
-        selectedColor: product.colors?.length ? product.colors[0] : undefined,
+        quantity,
+        selectedColor: selectedColor,
+        isSubscribed,
+        giftWrap,
+        subscriptionPlan: isSubscribed ? subscriptionPlan : undefined, // Store plan if subscribed
+        adjustedPrice: adjustedPrice * quantity,
       };
       this.cartItemsSubject.next([...currentItems, cartItem]);
     }
@@ -70,6 +101,13 @@ export class CartService {
       updatedItems[itemIndex] = {
         ...updatedItems[itemIndex],
         quantity: (updatedItems[itemIndex].quantity || 1) + 1,
+        adjustedPrice:
+          (updatedItems[itemIndex].adjustedPrice ||
+            updatedItems[itemIndex].price) +
+          (updatedItems[itemIndex].giftWrap ? 900 : 0) -
+          (updatedItems[itemIndex].isSubscribed
+            ? updatedItems[itemIndex].price * 0.1
+            : 0),
       };
       this.cartItemsSubject.next(updatedItems);
       this.saveToLocalStorage();
@@ -86,6 +124,13 @@ export class CartService {
         updatedItems[itemIndex] = {
           ...updatedItems[itemIndex],
           quantity: currentQuantity - 1,
+          adjustedPrice:
+            (updatedItems[itemIndex].adjustedPrice ||
+              updatedItems[itemIndex].price) -
+            (updatedItems[itemIndex].giftWrap ? 900 : 0) +
+            (updatedItems[itemIndex].isSubscribed
+              ? updatedItems[itemIndex].price * 0.1
+              : 0),
         };
       } else {
         updatedItems.splice(itemIndex, 1);

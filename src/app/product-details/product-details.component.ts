@@ -20,6 +20,8 @@ import { CtaComponent } from '../cta/cta.component';
 import { CardComponent } from '../UI/card/card.component';
 import { FormsModule } from '@angular/forms';
 import { ProductColor } from '../models/product-color.model';
+import { CartService } from '../services/cart.service';
+import { ProductSummary } from '../models/product-summary.model';
 
 Swiper.use([Pagination, Navigation]);
 
@@ -52,6 +54,7 @@ export class ProductDetailsComponent
   totalImages: number = 0;
   loadedImages: number = 0;
   allImagesLoaded: boolean = false;
+  isGiftWrap: boolean = false; // Track gift wrap selection
 
   private hexColorNames: Record<string, string> = {
     '#ff0000': 'Red',
@@ -157,7 +160,8 @@ export class ProductDetailsComponent
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private titleService: Title
+    private titleService: Title,
+    private cartService: CartService
   ) {}
 
   onQuantityInput(event: Event): void {
@@ -206,6 +210,31 @@ export class ProductDetailsComponent
     if (this.quantity > 1) this.quantity--;
   }
 
+  addToCart() {
+    if (this.product && this.quantity > 0) {
+      const isSubscribed = this.selectedBuyType === 'Subscribe';
+      const giftWrap = this.isGiftWrap;
+      const productWithColor: ProductSummary = {
+        ...this.product,
+        image: this.product.images[0].url,
+      };
+      const selectedColorHex =
+        this.selectedColor?.hex || this.product.colors[0];
+      this.cartService.addItem(
+        productWithColor,
+        this.quantity,
+        isSubscribed,
+        giftWrap,
+        selectedColorHex,
+        isSubscribed ? this.selectedPlan : undefined
+      );
+    }
+  }
+
+  onGiftWrapChange(event: Event) {
+    this.isGiftWrap = (event.target as HTMLInputElement).checked;
+  }
+
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
@@ -218,7 +247,7 @@ export class ProductDetailsComponent
             name: this.inferColorName(hex),
           }));
           if (this.colors.length > 0) {
-            this.selectedColor = this.colors[0];
+            this.selectedColor = this.colors[0]; // Default to first color
           }
         }
         this.titleService.setTitle(

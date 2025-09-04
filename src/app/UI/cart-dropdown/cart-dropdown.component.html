@@ -50,10 +50,23 @@
           *ngIf="item.selectedColor"
           class="text-sm text-gray-600 flex items-center gap-2"
         >
-          {{ getColorName(item.selectedColor) }}
+          Color: {{ getColorName(item.selectedColor) }}
+          <span
+            class="w-4 h-4 rounded-full"
+            [style.background-color]="item.selectedColor"
+          ></span>
+        </p>
+        <p
+          *ngIf="item.isSubscribed && item.subscriptionPlan"
+          class="text-sm text-gray-600"
+        >
+          Subscription: {{ getSubscriptionDisplay(item.subscriptionPlan) }}
         </p>
         <p class="text-yellow-600 text-sm">
-          ${{ (item.price / 100) * (item.quantity || 1) | number : "1.0-2" }}
+          ${{
+            ((item.adjustedPrice || item.price) / 100) * (item.quantity || 1)
+              | number : "1.0-2"
+          }}
         </p>
       </div>
       <div class="flex items-center gap-2">

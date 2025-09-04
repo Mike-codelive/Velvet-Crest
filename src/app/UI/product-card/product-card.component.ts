@@ -28,9 +28,9 @@ export class ProductCardComponent {
         ...this.product,
         selectedColor: this.product.colors[0],
       };
-      this.cartService.addItem(productWithColor);
+      this.cartService.addItem(productWithColor, 1); // Default quantity of 1
     } else {
-      this.cartService.addItem(this.product);
+      this.cartService.addItem(this.product, 1); // Default quantity of 1
     }
   }
 
