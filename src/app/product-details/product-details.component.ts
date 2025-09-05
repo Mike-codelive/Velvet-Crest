@@ -211,15 +211,24 @@ export class ProductDetailsComponent
   }
 
   addToCart() {
+    console.log('AddToCart called with qty:', this.quantity);
+
     if (this.product && this.quantity > 0) {
       const isSubscribed = this.selectedBuyType === 'Subscribe';
       const giftWrap = this.isGiftWrap;
+
       const productWithColor: ProductSummary = {
         ...this.product,
         image: this.product.images[0].url,
       };
-      const selectedColorHex =
-        this.selectedColor?.hex || this.product.colors[0];
+
+      console.log('Before cartService.addItem');
+      let selectedColorHex =
+        this.selectedColor?.hex ||
+        (this.product.colors?.[0]
+          ? `#${this.product.colors[0].replace(/^#/, '')}`
+          : undefined);
+
       this.cartService.addItem(
         productWithColor,
         this.quantity,
@@ -228,6 +237,7 @@ export class ProductDetailsComponent
         selectedColorHex,
         isSubscribed ? this.selectedPlan : undefined
       );
+      console.log('After cartService.addItem');
     }
   }
 

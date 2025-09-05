@@ -39,6 +39,9 @@ export class CartService {
       return;
     }
     const currentItems = this.cartItemsSubject.value;
+
+    console.log('CartService.addItem called with qty:', quantity);
+
     const existingItemIndex = currentItems.findIndex(
       (item) => item.id === product.id && item.selectedColor === selectedColor
     );
@@ -49,6 +52,7 @@ export class CartService {
     if (giftWrap) adjustedPrice += 900;
 
     if (existingItemIndex > -1) {
+      console.log('Updating existing item');
       const updatedItems = [...currentItems];
       updatedItems[existingItemIndex] = {
         ...updatedItems[existingItemIndex],
@@ -67,6 +71,7 @@ export class CartService {
       };
       this.cartItemsSubject.next(updatedItems);
     } else {
+      console.log('Pushing new item');
       const cartItem: CartItem = {
         ...product,
         quantity,
