@@ -62,6 +62,9 @@
         >
           Subscription: {{ getSubscriptionDisplay(item.subscriptionPlan) }}
         </p>
+        <p *ngIf="item.giftWrap" class="text-sm text-gray-600">
+          Gift Wrap: +$9.00
+        </p>
         <p class="text-yellow-600 text-sm">
           ${{
             ((item.adjustedPrice || item.price) / 100) * (item.quantity || 1)
@@ -71,20 +74,20 @@
       </div>
       <div class="flex items-center gap-2">
         <button
-          (click)="decrementQuantity(item.id)"
+          (click)="decrementQuantity(item.id, item.selectedColor)"
           class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300"
         >
           <span class="material-symbols-outlined text-sm">remove</span>
         </button>
         <span class="text-sm">{{ item.quantity || 1 }}</span>
         <button
-          (click)="incrementQuantity(item.id)"
+          (click)="incrementQuantity(item.id, item.selectedColor)"
           class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300"
         >
           <span class="material-symbols-outlined text-sm">add</span>
         </button>
         <button
-          (click)="removeItem(item.id)"
+          (click)="removeItem(item.id, item.selectedColor)"
           class="ml-2 text-gray-600 hover:text-red-500 focus:outline-none"
         >
           <span class="material-symbols-outlined">delete</span>

@@ -45,8 +45,8 @@ export class CartService {
 
     const basePrice = product.price;
     let adjustedPrice = basePrice;
-    if (isSubscribed) adjustedPrice *= 0.9; // 10% discount
-    if (giftWrap) adjustedPrice += 900; // $9.00 charge in cents
+    if (isSubscribed) adjustedPrice *= 0.9;
+    if (giftWrap) adjustedPrice += 900;
 
     if (existingItemIndex > -1) {
       const updatedItems = [...currentItems];
@@ -57,7 +57,7 @@ export class CartService {
         giftWrap,
         subscriptionPlan: isSubscribed
           ? subscriptionPlan
-          : updatedItems[existingItemIndex].subscriptionPlan, // Update or keep existing plan
+          : updatedItems[existingItemIndex].subscriptionPlan,
         adjustedPrice:
           ((updatedItems[existingItemIndex].adjustedPrice || basePrice) *
             ((updatedItems[existingItemIndex].quantity || 1) + quantity)) /
@@ -70,10 +70,10 @@ export class CartService {
       const cartItem: CartItem = {
         ...product,
         quantity,
-        selectedColor: selectedColor,
+        selectedColor,
         isSubscribed,
         giftWrap,
-        subscriptionPlan: isSubscribed ? subscriptionPlan : undefined, // Store plan if subscribed
+        subscriptionPlan: isSubscribed ? subscriptionPlan : undefined,
         adjustedPrice: adjustedPrice * quantity,
       };
       this.cartItemsSubject.next([...currentItems, cartItem]);
@@ -82,55 +82,57 @@ export class CartService {
     this.openCart();
   }
 
-  removeItem(id: string) {
+  removeItem(id: string, selectedColor?: string) {
     if (!id) {
       console.error('Invalid ID for removal:', id);
       return;
     }
     const currentItems = this.cartItemsSubject.value;
-    const updatedItems = currentItems.filter((item) => item.id !== id);
+    const updatedItems = currentItems.filter(
+      (item) => !(item.id === id && item.selectedColor === selectedColor)
+    );
     this.cartItemsSubject.next(updatedItems);
     this.saveToLocalStorage();
   }
 
-  incrementQuantity(id: string) {
+  incrementQuantity(id: string, selectedColor?: string) {
     const currentItems = this.cartItemsSubject.value;
-    const itemIndex = currentItems.findIndex((item) => item.id === id);
+    const itemIndex = currentItems.findIndex(
+      (item) => item.id === id && item.selectedColor === selectedColor
+    );
     if (itemIndex > -1) {
       const updatedItems = [...currentItems];
+      const item = updatedItems[itemIndex];
       updatedItems[itemIndex] = {
-        ...updatedItems[itemIndex],
-        quantity: (updatedItems[itemIndex].quantity || 1) + 1,
+        ...item,
+        quantity: (item.quantity || 1) + 1,
         adjustedPrice:
-          (updatedItems[itemIndex].adjustedPrice ||
-            updatedItems[itemIndex].price) +
-          (updatedItems[itemIndex].giftWrap ? 900 : 0) -
-          (updatedItems[itemIndex].isSubscribed
-            ? updatedItems[itemIndex].price * 0.1
-            : 0),
+          (item.adjustedPrice || item.price) +
+          (item.giftWrap ? 900 : 0) -
+          (item.isSubscribed ? item.price * 0.1 : 0),
       };
       this.cartItemsSubject.next(updatedItems);
       this.saveToLocalStorage();
     }
   }
 
-  decrementQuantity(id: string) {
+  decrementQuantity(id: string, selectedColor?: string) {
     const currentItems = this.cartItemsSubject.value;
-    const itemIndex = currentItems.findIndex((item) => item.id === id);
+    const itemIndex = currentItems.findIndex(
+      (item) => item.id === id && item.selectedColor === selectedColor
+    );
     if (itemIndex > -1) {
       const updatedItems = [...currentItems];
-      const currentQuantity = updatedItems[itemIndex].quantity || 1;
+      const item = updatedItems[itemIndex];
+      const currentQuantity = item.quantity || 1;
       if (currentQuantity > 1) {
         updatedItems[itemIndex] = {
-          ...updatedItems[itemIndex],
+          ...item,
           quantity: currentQuantity - 1,
           adjustedPrice:
-            (updatedItems[itemIndex].adjustedPrice ||
-              updatedItems[itemIndex].price) -
-            (updatedItems[itemIndex].giftWrap ? 900 : 0) +
-            (updatedItems[itemIndex].isSubscribed
-              ? updatedItems[itemIndex].price * 0.1
-              : 0),
+            (item.adjustedPrice || item.price) -
+            (item.giftWrap ? 900 : 0) +
+            (item.isSubscribed ? item.price * 0.1 : 0),
         };
       } else {
         updatedItems.splice(itemIndex, 1);

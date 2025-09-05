@@ -28,9 +28,15 @@ export class ProductCardComponent {
         ...this.product,
         selectedColor: this.product.colors[0],
       };
-      this.cartService.addItem(productWithColor, 1); // Default quantity of 1
+      this.cartService.addItem(
+        productWithColor,
+        1,
+        false,
+        false,
+        this.product.colors[0]
+      );
     } else {
-      this.cartService.addItem(this.product, 1); // Default quantity of 1
+      this.cartService.addItem(this.product, 1, false, false);
     }
   }
 

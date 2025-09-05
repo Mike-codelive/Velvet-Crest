@@ -194,8 +194,8 @@
                 ></span>
                 Subscribe & Save 10%
                 <span class="ml-auto">
-                  <span>
-                    ${{ (product.price * 0.9) / 100 | number : "1.0-2" }}</span
+                  <span
+                    >${{ (product.price * 0.9) / 100 | number : "1.0-2" }}</span
                   >
                   <span class="line-through text-[#6A6A6A] ml-2">
                     ${{ product.price / 100 | number : "1.0-2" }}
@@ -311,27 +311,32 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="gift-wrap mb-4"
-                [class.hidden]="selectedBuyType === 'Subscribe'"
-              >
-                <input
-                  type="checkbox"
-                  name="gift_wrap"
-                  value="gift"
-                  id="gift_wrap"
-                  class="gift-checkbox hidden"
-                />
-                <label
-                  for="gift_wrap"
-                  class="gift-wrap border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border select-none"
+
+              <div>
+                <div
+                  class="gift-wrap mt-2 mb-4"
+                  [class.hidden]="selectedBuyType === 'Subscribe'"
                 >
-                  <span
-                    class="radio-square text-base flex items-center w-6 h-6 rounded-xs border border-black mr-2 p-0.5 transition-all duration-[350ms] ease-in"
-                  ></span>
-                  Add gift wrapping for $9.00
-                </label>
+                  <input
+                    type="checkbox"
+                    name="gift_wrap"
+                    value="gift"
+                    id="gift_wrap"
+                    class="gift-checkbox hidden"
+                    (change)="onGiftWrapChange($event)"
+                  />
+                  <label
+                    for="gift_wrap"
+                    class="gift-wrap border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border select-none"
+                  >
+                    <span
+                      class="radio-square text-base flex items-center w-6 h-6 rounded-xs border border-black mr-2 p-0.5 transition-all duration-[350ms] ease-in"
+                    ></span>
+                    Add gift wrapping for $9.00
+                  </label>
+                </div>
               </div>
+
               <div class="color-selection mb-4">
                 <div
                   class="relative z-10 cursor-pointer font-text text-sm capitalize rounded-[4px] border border-[#6A6A6A] transition-all text-left"
@@ -370,8 +375,7 @@
                         class="hidden"
                         [value]="color.hex"
                         [id]="color.name"
-                        [(ngModel)]="selectColor"
-                      />
+                        [(ngModel)]="selectedColor"
                       />
                       <label
                         class="flex items-center gap-3 cursor-pointer py-3 px-6 text-sm select-none"
@@ -390,7 +394,6 @@
               </div>
             </div>
           </div>
-          <!-- ... (previous HTML remains unchanged until product-actions) ... -->
           <div class="product-actions">
             <div class="flex gap-4 h-[64px]">
               <div class="flex h-[64px]">
@@ -421,10 +424,11 @@
                   <span
                     class="material-symbols-outlined group-hover:text-white"
                   >
-                    Add
+                    add
                   </span>
                 </button>
               </div>
+
               <app-button
                 class="flex-1"
                 [paddingX]="'px-2.5'"
@@ -436,28 +440,6 @@
                 (click)="addToCart()"
                 >Add to Cart</app-button
               >
-            </div>
-            <div
-              class="gift-wrap mt-4"
-              [class.hidden]="selectedBuyType === 'Subscribe'"
-            >
-              <input
-                type="checkbox"
-                name="gift_wrap"
-                value="gift"
-                id="gift_wrap"
-                class="gift-checkbox hidden"
-                (change)="onGiftWrapChange($event)"
-              />
-              <label
-                for="gift_wrap"
-                class="gift-wrap border-[#e2e1e1] flex items-center gap-1 text-center cursor-pointer text-black py-4 px-6 rounded-sm font-text transition-all duration-300 ease-out text-sm font-normal border select-none"
-              >
-                <span
-                  class="radio-square text-base flex items-center w-6 h-6 rounded-xs border border-black mr-2 p-0.5 transition-all duration-[350ms] ease-in"
-                ></span>
-                Add gift wrapping for $9.00
-              </label>
             </div>
           </div>
           <div class="single-product-menu">

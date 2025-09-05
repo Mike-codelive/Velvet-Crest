@@ -45,16 +45,16 @@ export class CartDropdownComponent implements OnDestroy {
     );
   }
 
-  removeItem(id: string) {
-    this.cartService.removeItem(id);
+  removeItem(id: string, selectedColor?: string) {
+    this.cartService.removeItem(id, selectedColor);
   }
 
-  incrementQuantity(id: string) {
-    this.cartService.incrementQuantity(id);
+  incrementQuantity(id: string, selectedColor?: string) {
+    this.cartService.incrementQuantity(id, selectedColor);
   }
 
-  decrementQuantity(id: string) {
-    this.cartService.decrementQuantity(id);
+  decrementQuantity(id: string, selectedColor?: string) {
+    this.cartService.decrementQuantity(id, selectedColor);
   }
 
   onCheckout() {
