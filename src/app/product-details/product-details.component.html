@@ -160,8 +160,8 @@
                 value="one_time"
                 id="buy-type"
                 class="hidden"
-                [(ngModel)]="selectedBuyType"
-                checked
+                [checked]="selectedBuyType === 'one_time'"
+                (change)="setBuyType('one_time')"
               />
               <label
                 for="buy-type"
@@ -183,7 +183,8 @@
                 value="Subscribe"
                 id="buy-type_0"
                 class="hidden"
-                [(ngModel)]="selectedBuyType"
+                [checked]="selectedBuyType === 'Subscribe'"
+                (change)="setBuyType('Subscribe')"
               />
               <label
                 for="buy-type_0"
@@ -323,6 +324,7 @@
                     value="gift"
                     id="gift_wrap"
                     class="gift-checkbox hidden"
+                    [checked]="isGiftWrap"
                     (change)="onGiftWrapChange($event)"
                   />
                   <label

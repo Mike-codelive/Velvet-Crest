@@ -54,7 +54,7 @@ export class ProductDetailsComponent
   totalImages: number = 0;
   loadedImages: number = 0;
   allImagesLoaded: boolean = false;
-  isGiftWrap: boolean = false; // Track gift wrap selection
+  isGiftWrap: boolean = false;
 
   private hexColorNames: Record<string, string> = {
     '#ff0000': 'Red',
@@ -243,6 +243,10 @@ export class ProductDetailsComponent
 
   onGiftWrapChange(event: Event) {
     this.isGiftWrap = (event.target as HTMLInputElement).checked;
+    if (this.isGiftWrap) {
+      this.selectedBuyType = 'one_time';
+      this.selectedPlan = '';
+    }
   }
 
   ngOnInit() {
@@ -324,6 +328,13 @@ export class ProductDetailsComponent
     const nextEl = document.querySelector('.product-details-navigation-next');
     if (prevEl) prevEl.classList.toggle('hidden', swiper.isBeginning);
     if (nextEl) nextEl.classList.toggle('hidden', swiper.isEnd);
+  }
+
+  setBuyType(type: string) {
+    this.selectedBuyType = type;
+    if (type === 'Subscribe') {
+      this.isGiftWrap = false;
+    }
   }
 
   expandedSections: boolean[] = new Array(this.menuSections.length).fill(false);

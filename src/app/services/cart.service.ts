@@ -22,6 +22,24 @@ export class CartService {
     }
   }
 
+  private calculateFinalPrice(
+    basePrice: number,
+    isSubscribed: boolean,
+    giftWrap: boolean
+  ): number {
+    let price = basePrice;
+
+    if (isSubscribed) {
+      price *= 0.9;
+    }
+
+    if (giftWrap) {
+      price += 900;
+    }
+
+    return Math.round(price);
+  }
+
   addItem(
     product: ProductSummary,
     quantity: number,
@@ -35,6 +53,11 @@ export class CartService {
     }
 
     const currentItems = this.cartItemsSubject.value;
+    const finalPrice = this.calculateFinalPrice(
+      product.price,
+      isSubscribed,
+      giftWrap
+    );
 
     console.log('CartService.addItem called with qty:', quantity);
 
@@ -53,12 +76,14 @@ export class CartService {
         subscriptionPlan: isSubscribed
           ? subscriptionPlan
           : updatedItems[existingItemIndex].subscriptionPlan,
+        price: finalPrice,
       };
       this.cartItemsSubject.next(updatedItems);
     } else {
       console.log('Pushing new item');
       const cartItem: CartItem = {
         ...product,
+        price: finalPrice,
         quantity,
         selectedColor,
         isSubscribed,
@@ -96,6 +121,11 @@ export class CartService {
       updatedItems[itemIndex] = {
         ...item,
         quantity: (item.quantity || 1) + 1,
+        price: this.calculateFinalPrice(
+          item.price,
+          !!item.isSubscribed,
+          !!item.giftWrap
+        ),
       };
       this.cartItemsSubject.next(updatedItems);
       this.saveToLocalStorage();
@@ -115,6 +145,11 @@ export class CartService {
         updatedItems[itemIndex] = {
           ...item,
           quantity: currentQuantity - 1,
+          price: this.calculateFinalPrice(
+            item.price,
+            !!item.isSubscribed,
+            !!item.giftWrap
+          ),
         };
       } else {
         updatedItems.splice(itemIndex, 1);
@@ -126,19 +161,10 @@ export class CartService {
 
   getCartTotal(): number {
     const items = this.cartItemsSubject.value;
-    return items.reduce((total, item) => {
-      let price = item.price;
-
-      if (item.isSubscribed) {
-        price *= 0.9;
-      }
-
-      if (item.giftWrap) {
-        price += 900;
-      }
-
-      return total + price * (item.quantity || 1);
-    }, 0);
+    return items.reduce(
+      (total, item) => total + item.price * (item.quantity || 1),
+      0
+    );
   }
 
   getCartCount(): number {
