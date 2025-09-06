@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationService } from '../../services/navigation.service';
 import { CartService } from '../../services/cart.service';
@@ -13,12 +13,13 @@ import { ButtonComponent } from '../../button/button.component';
   templateUrl: './cart-dropdown.component.html',
   styleUrls: ['./cart-dropdown.component.css'],
 })
-export class CartDropdownComponent implements OnDestroy {
+export class CartDropdownComponent implements OnInit, OnDestroy {
   isOpen = false;
   cartItems: CartItem[] = [];
-  subtotal: number = 0;
-  private cartSubscription!: Subscription;
-  private openSubscription!: Subscription;
+  subtotal = 0;
+
+  private cartSubscription: Subscription | null = null;
+  private openSubscription: Subscription | null = null;
 
   constructor(
     private cartService: CartService,
@@ -27,7 +28,7 @@ export class CartDropdownComponent implements OnDestroy {
 
   ngOnInit() {
     this.cartSubscription = this.cartService.cartItems$.subscribe((items) => {
-      this.cartItems = [...items] as CartItem[];
+      this.cartItems = [...items];
       this.subtotal = this.calculateSubtotal();
       console.log('Cart items updated:', items);
     });
@@ -40,7 +41,7 @@ export class CartDropdownComponent implements OnDestroy {
 
   calculateSubtotal(): number {
     return this.cartItems.reduce(
-      (total, item) => total + item.price * (item.quantity || 1),
+      (total, item) => total + item.price * (item.quantity ?? 1),
       0
     );
   }
@@ -87,14 +88,9 @@ export class CartDropdownComponent implements OnDestroy {
     }
   }
 
-  ngOnDestroy() {
-    if (this.cartSubscription) this.cartSubscription.unsubscribe();
-    if (this.openSubscription) this.openSubscription.unsubscribe();
-  }
-
   getColorName(hex: string): string {
     const hexToNameMap: { [key: string]: string } = {
-      '#000': 'Black',
+      '#000000': 'Black',
       '#FFFFFF': 'White',
       '#FF0000': 'Red',
       '#00FF00': 'Lime',
@@ -111,5 +107,10 @@ export class CartDropdownComponent implements OnDestroy {
       '#F5F5DC': 'Beige',
     };
     return hexToNameMap[hex.toUpperCase()] || hex;
+  }
+
+  ngOnDestroy() {
+    if (this.cartSubscription) this.cartSubscription.unsubscribe();
+    if (this.openSubscription) this.openSubscription.unsubscribe();
   }
 }

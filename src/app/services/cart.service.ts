@@ -18,12 +18,7 @@ export class CartService {
     const savedItems = localStorage.getItem(this.STORAGE_KEY);
     if (savedItems) {
       const parsedItems = JSON.parse(savedItems) as CartItem[];
-      this.cartItemsSubject.next(
-        parsedItems.map((item) => ({
-          ...item,
-          adjustedPrice: item.adjustedPrice || item.price,
-        }))
-      );
+      this.cartItemsSubject.next(parsedItems);
     }
   }
 
@@ -38,6 +33,7 @@ export class CartService {
     if (!product || !product.id) {
       return;
     }
+
     const currentItems = this.cartItemsSubject.value;
 
     console.log('CartService.addItem called with qty:', quantity);
@@ -45,11 +41,6 @@ export class CartService {
     const existingItemIndex = currentItems.findIndex(
       (item) => item.id === product.id && item.selectedColor === selectedColor
     );
-
-    const basePrice = product.price;
-    let adjustedPrice = basePrice;
-    if (isSubscribed) adjustedPrice *= 0.9;
-    if (giftWrap) adjustedPrice += 900;
 
     if (existingItemIndex > -1) {
       console.log('Updating existing item');
@@ -62,12 +53,6 @@ export class CartService {
         subscriptionPlan: isSubscribed
           ? subscriptionPlan
           : updatedItems[existingItemIndex].subscriptionPlan,
-        adjustedPrice:
-          ((updatedItems[existingItemIndex].adjustedPrice || basePrice) *
-            ((updatedItems[existingItemIndex].quantity || 1) + quantity)) /
-            updatedItems[existingItemIndex].quantity! +
-          (giftWrap ? 900 : 0) -
-          (isSubscribed ? basePrice * 0.1 * quantity : 0),
       };
       this.cartItemsSubject.next(updatedItems);
     } else {
@@ -79,10 +64,10 @@ export class CartService {
         isSubscribed,
         giftWrap,
         subscriptionPlan: isSubscribed ? subscriptionPlan : undefined,
-        adjustedPrice: adjustedPrice * quantity,
       };
       this.cartItemsSubject.next([...currentItems, cartItem]);
     }
+
     this.saveToLocalStorage();
     this.openCart();
   }
@@ -111,10 +96,6 @@ export class CartService {
       updatedItems[itemIndex] = {
         ...item,
         quantity: (item.quantity || 1) + 1,
-        adjustedPrice:
-          (item.adjustedPrice || item.price) +
-          (item.giftWrap ? 900 : 0) -
-          (item.isSubscribed ? item.price * 0.1 : 0),
       };
       this.cartItemsSubject.next(updatedItems);
       this.saveToLocalStorage();
@@ -134,10 +115,6 @@ export class CartService {
         updatedItems[itemIndex] = {
           ...item,
           quantity: currentQuantity - 1,
-          adjustedPrice:
-            (item.adjustedPrice || item.price) -
-            (item.giftWrap ? 900 : 0) +
-            (item.isSubscribed ? item.price * 0.1 : 0),
         };
       } else {
         updatedItems.splice(itemIndex, 1);
@@ -145,6 +122,28 @@ export class CartService {
       this.cartItemsSubject.next(updatedItems);
       this.saveToLocalStorage();
     }
+  }
+
+  getCartTotal(): number {
+    const items = this.cartItemsSubject.value;
+    return items.reduce((total, item) => {
+      let price = item.price;
+
+      if (item.isSubscribed) {
+        price *= 0.9;
+      }
+
+      if (item.giftWrap) {
+        price += 900;
+      }
+
+      return total + price * (item.quantity || 1);
+    }, 0);
+  }
+
+  getCartCount(): number {
+    const items = this.cartItemsSubject.value;
+    return items.reduce((count, item) => count + (item.quantity || 1), 0);
   }
 
   openCart() {
