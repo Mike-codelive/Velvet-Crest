@@ -90,7 +90,7 @@ export class CartDropdownComponent implements OnInit, OnDestroy {
 
   getColorName(hex: string): string {
     const hexToNameMap: { [key: string]: string } = {
-      '#000000': 'Black',
+      '#000': 'Black',
       '#FFFFFF': 'White',
       '#FF0000': 'Red',
       '#00FF00': 'Lime',

@@ -17,7 +17,7 @@
       (click)="onClose()"
       class="rounded-full bg-gray-200 flex items-center p-0.5 cursor-pointer"
     >
-      <span class="text-small material-symbols-outlined select-none"
+      <span class="material-symbols-outlined !text-[20px] select-none"
         >close</span
       >
     </button>
@@ -34,75 +34,87 @@
     </div>
   </div>
 
-  <div *ngIf="cartItems.length > 0" class="flex-1 px-8 py-6 overflow-y-auto">
+  <div
+    *ngIf="cartItems.length > 0"
+    class="flex flex-col flex-1 py-6 overflow-y-auto"
+  >
     <div
       *ngFor="let item of cartItems"
-      class="flex items-center gap-4 mb-4 pb-2 border-b"
+      class="flex items-center gap-4 py-5 px-8 border-b border-[#e2e1e1]"
     >
       <img
         [src]="item.image"
         [alt]="item.name"
-        class="w-16 h-16 object-cover rounded"
+        class="w-24 h-24 object-cover rounded"
       />
       <div class="flex-1">
-        <h3 class="font-lora text-base text-gray-900">{{ item.name }}</h3>
-        <p
-          *ngIf="item.selectedColor"
-          class="text-sm text-gray-600 flex items-center gap-2"
-        >
-          {{ getColorName(item.selectedColor) }}
-        </p>
-        <p
-          *ngIf="item.isSubscribed && item.subscriptionPlan"
-          class="text-sm text-gray-600"
-        >
-          Subscription: {{ getSubscriptionDisplay(item.subscriptionPlan) }}
-        </p>
-        <p *ngIf="item.giftWrap" class="text-sm text-gray-600">
-          Gift Wrap: +$9.00
-        </p>
-        <p class="text-yellow-600 text-sm">
-          ${{
-            ((item.adjustedPrice || item.price) / 100) * (item.quantity || 1)
-              | number : "1.0-2"
-          }}
-        </p>
-      </div>
-      <div class="flex items-center gap-2">
-        <button
-          (click)="decrementQuantity(item.id, item.selectedColor)"
-          class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300"
-        >
-          <span class="material-symbols-outlined text-sm">remove</span>
-        </button>
-        <span class="text-sm">{{ item.quantity || 1 }}</span>
-        <button
-          (click)="incrementQuantity(item.id, item.selectedColor)"
-          class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300"
-        >
-          <span class="material-symbols-outlined text-sm">add</span>
-        </button>
-        <button
-          (click)="removeItem(item.id, item.selectedColor)"
-          class="ml-2 text-gray-600 hover:text-red-500 focus:outline-none"
-        >
-          <span class="material-symbols-outlined">delete</span>
-        </button>
+        <div class="flex justify-between">
+          <h3 class="font-title text-base text-gray-900 capitalize">
+            {{ item.name }}&nbsp;•&nbsp;{{ item.company }}
+          </h3>
+
+          <button
+            (click)="removeItem(item.id, item.selectedColor)"
+            class="rounded-full bg-gray-200 flex items-center justify-center w-[20px] h-[20px] cursor-pointer"
+          >
+            <span class="material-symbols-outlined !text-[15px] select-none"
+              >close</span
+            >
+          </button>
+        </div>
+        <div class="font-text text-xs flex">
+          <p
+            *ngIf="item.selectedColor"
+            class="text-gray-600 flex items-center gap-2"
+          >
+            {{ getColorName(item.selectedColor) }}&nbsp;
+          </p>
+          <p
+            *ngIf="item.isSubscribed && item.subscriptionPlan"
+            class="text-gray-600"
+          >
+            / {{ getSubscriptionDisplay(item.subscriptionPlan) }}
+          </p>
+          <p *ngIf="item.giftWrap" class="text-gray-600">/ Gift Wrap</p>
+        </div>
+
+        <div class="flex justify-between mt-[28px]">
+          <div class="flex items-center gap-2">
+            <button
+              (click)="decrementQuantity(item.id, item.selectedColor)"
+              class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300"
+            >
+              <span class="material-symbols-outlined text-sm">remove</span>
+            </button>
+            <span class="text-sm">{{ item.quantity || 1 }}</span>
+            <button
+              (click)="incrementQuantity(item.id, item.selectedColor)"
+              class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300"
+            >
+              <span class="material-symbols-outlined text-sm">add</span>
+            </button>
+          </div>
+
+          <p class="font-medium text-sm">
+            ${{
+              ((item.adjustedPrice || item.price) / 100) * (item.quantity || 1)
+                | number : "1.0-2"
+            }}
+          </p>
+        </div>
       </div>
     </div>
 
-    <div class="flex justify-between items-center mt-4 pt-2 border-t">
-      <span class="font-poppins text-sm text-gray-700">Subtotal</span>
-      <span class="font-poppins text-sm text-gray-900">
-        ${{ subtotal / 100 | number : "1.0-2" }}
-      </span>
+    <div class="py-6 px-8 mt-auto">
+      <div
+        class="flex justify-between items-center font-text mt-4 mb-5 pt-2 border-t"
+      >
+        <span class="text-sm text-gray-700">Subtotal</span>
+        <span class="text-base">
+          ${{ subtotal / 100 | number : "1.0-2" }}
+        </span>
+      </div>
+      <app-button [style]="'secondary'" [wFull]="true"> Checkout </app-button>
     </div>
-
-    <button
-      (click)="onCheckout()"
-      class="w-full mt-4 p-2 bg-dark-slate-green rounded hover:bg-opacity-90 transition-colors focus:outline-none"
-    >
-      Checkout
-    </button>
   </div>
 </div>
