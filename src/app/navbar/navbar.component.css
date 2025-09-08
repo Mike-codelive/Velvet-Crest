@@ -25,7 +25,7 @@
 }
 
 .navbar-header-link {
-  @apply font-text text-[12px] py-[25px] uppercase border-b-2 border-b-transparent group-hover:border-b-black cursor-pointer;
+  @apply font-text text-xs py-[25px] uppercase border-b-2 border-b-transparent group-hover:border-b-black cursor-pointer;
 }
 
 .navbar-header-logo {
@@ -41,7 +41,7 @@
 }
 
 .navbar-header-icon {
-  @apply text-[16px] cursor-pointer;
+  @apply text-base cursor-pointer;
 }
 
 .navbar-header-search {
@@ -90,11 +90,11 @@
 }
 
 .megamenu-tier-title {
-  @apply capitalize font-text mb-4 text-[12px] font-semibold;
+  @apply capitalize font-text mb-4 text-xs font-semibold;
 }
 
 .megamenu-link {
-  @apply text-[#1e1e1e] cursor-pointer uppercase font-text text-[12px] mb-4;
+  @apply text-[#1e1e1e] cursor-pointer uppercase font-text text-xs mb-4;
 }
 
 .megamenu-link-1 {
@@ -138,7 +138,7 @@
 }
 
 .megamenu-badge-text {
-  @apply text-[12px] text-badge-md-dark;
+  @apply text-xs text-badge-md-dark;
 }
 
 .megamenu-badge-watch {
@@ -198,7 +198,7 @@
 }
 
 .megamenu-title {
-  @apply capitalize mb-4 text-[12px] font-semibold;
+  @apply capitalize mb-4 text-xs font-semibold;
 }
 
 .megamenu-banners {
@@ -245,7 +245,7 @@
 }
 
 .megamenu-menu-secondary-item {
-  @apply capitalize text-[12px] cursor-pointer max-w-fit;
+  @apply capitalize text-xs cursor-pointer max-w-fit;
 }
 
 .megamenu-subcategory-title.is-active {
@@ -269,7 +269,7 @@
 }
 
 .megamenu-subcategory-item {
-  @apply text-[12px] font-text;
+  @apply text-xs font-text;
 }
 
 .megamenu-children-title {
@@ -321,7 +321,7 @@
 }
 
 .menu-drawer-search span {
-  @apply text-[16px];
+  @apply text-base;
 }
 
 .menu-drawer-primary {
@@ -370,7 +370,7 @@
 }
 
 .menu-drawer-secondary-link {
-  @apply mb-4 text-[12px] font-text mx-6 cursor-pointer w-fit;
+  @apply mb-4 text-xs font-text mx-6 cursor-pointer w-fit;
 }
 
 .menu-drawer-bottom {
@@ -378,5 +378,5 @@
 }
 
 .menu-drawer-bottom-link {
-  @apply cursor-pointer uppercase font-semibold text-[12px] font-text;
+  @apply cursor-pointer uppercase font-semibold text-xs font-text;
 }

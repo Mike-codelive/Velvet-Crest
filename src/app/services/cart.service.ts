@@ -59,14 +59,11 @@ export class CartService {
       giftWrap
     );
 
-    console.log('CartService.addItem called with qty:', quantity);
-
     const existingItemIndex = currentItems.findIndex(
       (item) => item.id === product.id && item.selectedColor === selectedColor
     );
 
     if (existingItemIndex > -1) {
-      console.log('Updating existing item');
       const updatedItems = [...currentItems];
       updatedItems[existingItemIndex] = {
         ...updatedItems[existingItemIndex],
@@ -80,7 +77,6 @@ export class CartService {
       };
       this.cartItemsSubject.next(updatedItems);
     } else {
-      console.log('Pushing new item');
       const cartItem: CartItem = {
         ...product,
         price: finalPrice,

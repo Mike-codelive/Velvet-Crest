@@ -29,11 +29,11 @@ footer {
 }
 
 .footer-menu-item {
-  @apply capitalize mb-4 text-[12px];
+  @apply capitalize mb-4 text-xs;
 }
 
 .footer-menu-copyright {
-  @apply py-4 text-[12px] md-wrapper:ml-10 border-t border-gray-footer-line;
+  @apply py-4 text-xs md-wrapper:ml-10 border-t border-gray-footer-line;
 }
 
 .footer-menu-column {
@@ -65,7 +65,7 @@ footer {
 }
 
 .footer-newsletter-form input {
-  @apply w-full border border-black rounded-sm py-3.5 px-4 text-[12px];
+  @apply w-full border border-black rounded-sm py-3.5 px-4 text-xs;
 }
 
 .footer-newsletter-social-links {
@@ -73,5 +73,5 @@ footer {
 }
 
 .footer-newsletter-bottom {
-  @apply hidden md-wrapper:flex justify-end gap-4 py-4 text-[12px] border-t border-gray-footer-line;
+  @apply hidden md-wrapper:flex justify-end gap-4 py-4 text-xs border-t border-gray-footer-line;
 }

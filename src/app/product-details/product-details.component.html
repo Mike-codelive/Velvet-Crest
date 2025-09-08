@@ -128,7 +128,7 @@
             />
             <div
               *ngIf="product.featured"
-              class="absolute capitalize z-30 top-4 left-4 bg-[#edf3f6] rounded-3xl py-1.5 px-4 text-[12px] font-text select-none"
+              class="absolute capitalize z-30 top-4 left-4 bg-[#edf3f6] rounded-3xl py-1.5 px-4 text-xs font-text select-none"
             >
               bestseller
             </div>
@@ -467,7 +467,7 @@
               >
                 <ul class="mt-2">
                   @for (item of section.items; track item) {
-                  <li class="capitalize mb-4 text-[12px]">{{ item }}</li>
+                  <li class="capitalize mb-4 text-xs">{{ item }}</li>
                   }
                 </ul>
               </div>
@@ -483,13 +483,13 @@
       <div class="max-w-[375px] md-wrapper:max-w-[1360px] mx-auto">
         <ul class="flex flex-col md-wrapper:flex-row gap-2">
           <li
-            class="flex items-center justify-between w-[100%] gap-2 text-center font-text text-[12px] font-normal uppercase md-wrapper:flex-col md-wrapper:content-center md-wrapper:w-[25%] md-wrapper:gap-1"
+            class="flex items-center justify-between w-[100%] gap-2 text-center font-text text-xs font-normal uppercase md-wrapper:flex-col md-wrapper:content-center md-wrapper:w-[25%] md-wrapper:gap-1"
           >
             style
             <span class="md-wrapper:text-base capitalize text-sm">Modern</span>
           </li>
           <li
-            class="flex items-center justify-between w-[100%] gap-2 text-center font-text text-[12px] font-normal uppercase md-wrapper:flex-col md-wrapper:content-center md-wrapper:w-[25%] md-wrapper:gap-1"
+            class="flex items-center justify-between w-[100%] gap-2 text-center font-text text-xs font-normal uppercase md-wrapper:flex-col md-wrapper:content-center md-wrapper:w-[25%] md-wrapper:gap-1"
           >
             material
             <span class="md-wrapper:text-base capitalize text-sm"
@@ -497,13 +497,13 @@
             >
           </li>
           <li
-            class="flex items-center justify-between w-[100%] gap-2 text-center font-text text-[12px] font-normal uppercase md-wrapper:flex-col md-wrapper:content-center md-wrapper:w-[25%] md-wrapper:gap-1"
+            class="flex items-center justify-between w-[100%] gap-2 text-center font-text text-xs font-normal uppercase md-wrapper:flex-col md-wrapper:content-center md-wrapper:w-[25%] md-wrapper:gap-1"
           >
             finish
             <span class="md-wrapper:text-base capitalize text-sm">Matte</span>
           </li>
           <li
-            class="flex items-center justify-between w-[100%] gap-2 text-center font-text text-[12px] font-normal uppercase md-wrapper:flex-col md-wrapper:content-center md-wrapper:w-[25%] md-wrapper:gap-1"
+            class="flex items-center justify-between w-[100%] gap-2 text-center font-text text-xs font-normal uppercase md-wrapper:flex-col md-wrapper:content-center md-wrapper:w-[25%] md-wrapper:gap-1"
           >
             assembly
             <span class="md-wrapper:text-base capitalize text-sm"

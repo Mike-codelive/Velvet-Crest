@@ -10,7 +10,10 @@
     <div id="collection-swiper" class="swiper collection-swiper">
       <div class="swiper-wrapper collection-swiper-wrapper">
         @for (slide of slides; track slide.id) {
-        <div class="swiper-slide group" (click)="navigateToShop()">
+        <div
+          class="swiper-slide overflow-y-hidden group"
+          (click)="navigateToShop()"
+        >
           <div class="collection-swiper-img-wrapper">
             <img
               [src]="slide.image"

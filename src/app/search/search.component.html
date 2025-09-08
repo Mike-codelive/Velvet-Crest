@@ -1,4 +1,4 @@
-<div class="search-container max-w-[1132px] mx-auto p-4">
+<div class="wrapper">
   <div class="mb-6">
     <div class="flex flex-col gap-4 font-title font-normal">
       <h1 class="text-[32px]">
@@ -126,16 +126,14 @@
     </div>
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+  >
     <div
       *ngFor="let product of searchResults"
       class="swiper-slide rounded shadow-sm hover:shadow-md transition group"
     >
-      <app-product-card
-        [product]="product"
-        (imageLoad)="onImageLoad()"
-        (imageError)="onImageLoad()"
-      ></app-product-card>
+      <app-product-card [product]="product"></app-product-card>
     </div>
   </div>
 

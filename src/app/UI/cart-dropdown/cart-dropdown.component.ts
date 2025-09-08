@@ -30,12 +30,10 @@ export class CartDropdownComponent implements OnInit, OnDestroy {
     this.cartSubscription = this.cartService.cartItems$.subscribe((items) => {
       this.cartItems = [...items];
       this.subtotal = this.calculateSubtotal();
-      console.log('Cart items updated:', items);
     });
 
     this.openSubscription = this.cartService.isCartOpen$.subscribe((open) => {
       this.isOpen = open;
-      console.log('Cart open state received in dropdown:', open);
     });
   }
 

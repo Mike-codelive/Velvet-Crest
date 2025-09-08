@@ -211,8 +211,6 @@ export class ProductDetailsComponent
   }
 
   addToCart() {
-    console.log('AddToCart called with qty:', this.quantity);
-
     if (this.product && this.quantity > 0) {
       const isSubscribed = this.selectedBuyType === 'Subscribe';
       const giftWrap = this.isGiftWrap;
@@ -222,7 +220,6 @@ export class ProductDetailsComponent
         image: this.product.images[0].url,
       };
 
-      console.log('Before cartService.addItem');
       let selectedColorHex =
         this.selectedColor?.hex ||
         (this.product.colors?.[0]
@@ -237,7 +234,6 @@ export class ProductDetailsComponent
         selectedColorHex,
         isSubscribed ? this.selectedPlan : undefined
       );
-      console.log('After cartService.addItem');
     }
   }
 

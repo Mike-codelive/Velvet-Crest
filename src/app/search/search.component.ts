@@ -166,10 +166,6 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  onImageLoad() {
-    console.log('Image loaded or error occurred');
-  }
-
   getColorLabel(color: string): string {
     if (!color || color === 'All') return 'All';
     const normalized = color.toUpperCase();

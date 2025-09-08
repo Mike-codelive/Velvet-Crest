@@ -1,5 +1,5 @@
 <section id="all-products">
-  <div class="wrapper p-4">
+  <div class="wrapper">
     <h1 class="font-title text-3xl my-6">All Luxe Opal Gems</h1>
     <p class="font-text my-12">
       Our exquisite collection of rare opal gems offers an unparalleled
@@ -32,7 +32,7 @@
       ></div>
       <ng-template #productList>
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
         >
           <app-product-card
             *ngFor="let product of allProducts$ | async"
