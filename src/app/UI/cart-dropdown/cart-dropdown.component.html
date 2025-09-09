@@ -114,7 +114,9 @@
           ${{ subtotal / 100 | number : "1.0-2" }}
         </span>
       </div>
-      <app-button [style]="'secondary'" [wFull]="true"> Checkout </app-button>
+      <app-button (click)="onCheckout()" [style]="'secondary'" [wFull]="true">
+        Checkout
+      </app-button>
     </div>
   </div>
 </div>

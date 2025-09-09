@@ -29,5 +29,11 @@ export const routes: Routes = [
       ),
     title: 'VelvetCrest - All Products',
   },
+  {
+    path: 'checkout',
+    loadComponent: () =>
+      import('./checkout/checkout.component').then((m) => m.CheckoutComponent),
+    title: 'VelvetCrest - Checkout',
+  },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
