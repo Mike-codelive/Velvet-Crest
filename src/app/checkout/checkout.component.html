@@ -1,9 +1,6 @@
-<!-- src/app/pages/checkout/checkout.component.html -->
-
 <div class="max-w-4xl mx-auto p-6">
   <h1 class="text-2xl font-bold mb-4">Checkout</h1>
 
-  <!-- Cart Summary -->
   <div class="mb-6 border rounded p-4">
     <h2 class="text-xl font-semibold mb-2">Your Cart</h2>
     <div
@@ -19,7 +16,6 @@
     </div>
   </div>
 
-  <!-- Checkout Form -->
   <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" class="space-y-4">
     <div>
       <label class="block font-medium">Full Name</label>
@@ -95,5 +91,38 @@
 </div>
 
 <section>
-  <div></div>
+  <div class="grid grid-cols-2">
+    <div class="flex justify-end">col1</div>
+    <div class="bg-[#fafafa]">
+      <div
+        class="sticky max-w-[48rem] w-full right-auto left-auto top-0 bottom-0 p-[3.6rem]"
+      >
+        <div class="relative flex flex-col gap-[1.4rem]">
+          <div *ngFor="let item of cartItems" class="flex">
+            <div class="relative">
+              <img
+                class="w-[64px] h-[64px]"
+                [src]="item.image"
+                [alt]="item.name"
+              />
+              <div
+                class="absolute flex justify-center items-center right-[-7px] top-[-7px] rounded-full text-xs text-white bg-[#0000008f] min-w-[1.2rem] min-h-[1.2rem]"
+              >
+                <p>{{ item.quantity }}</p>
+              </div>
+            </div>
+            <div class="flex flex-col pl-[14px] font-normal">
+              <p class="text-sm">{{ item.name }}, {{ item.company }}</p>
+              <p class="text-[#0000008f]">
+                {{ this.getColorName(item.selectedColor) }}
+              </p>
+            </div>
+            <span>{{
+              item.price * (item.quantity || 1) | currency : "USD"
+            }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

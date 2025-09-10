@@ -1,4 +1,3 @@
-// src/app/pages/checkout/checkout.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -9,6 +8,7 @@ import {
 } from '@angular/forms';
 import { CartService } from './../services/cart.service';
 import { CartItem } from './../models/product-summary.model';
+import { getColorName } from '../../utils/get-color-name';
 
 @Component({
   selector: 'app-checkout',
@@ -38,6 +38,10 @@ export class CheckoutComponent implements OnInit {
       postalCode: ['', Validators.required],
       country: ['', Validators.required],
     });
+  }
+
+  getColorName(hex?: string): string {
+    return hex ? getColorName(hex) : 'Custom Color';
   }
 
   onSubmit() {
