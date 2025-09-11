@@ -5,6 +5,7 @@ import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../models/product-summary.model';
 import { Subscription } from 'rxjs';
 import { ButtonComponent } from '../../button/button.component';
+import { getColorName } from '../../../utils/get-color-name';
 
 @Component({
   selector: 'app-cart-dropdown',
@@ -86,25 +87,8 @@ export class CartDropdownComponent implements OnInit, OnDestroy {
     }
   }
 
-  getColorName(hex: string): string {
-    const hexToNameMap: { [key: string]: string } = {
-      '#000': 'Black',
-      '#FFFFFF': 'White',
-      '#FF0000': 'Red',
-      '#00FF00': 'Lime',
-      '#0000FF': 'Blue',
-      '#FFB900': 'Yellow',
-      '#FFA500': 'Orange',
-      '#800080': 'Purple',
-      '#808080': 'Gray',
-      '#A52A2A': 'Brown',
-      '#FFC0CB': 'Pink',
-      '#00FFFF': 'Cyan',
-      '#008000': 'Green',
-      '#FFD700': 'Gold',
-      '#F5F5DC': 'Beige',
-    };
-    return hexToNameMap[hex.toUpperCase()] || hex;
+  getColorName(hex?: string): string {
+    return hex ? getColorName(hex) : 'Custom Color';
   }
 
   ngOnDestroy() {

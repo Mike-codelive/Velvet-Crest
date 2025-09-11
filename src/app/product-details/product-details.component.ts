@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductColor } from '../models/product-color.model';
 import { CartService } from '../services/cart.service';
 import { ProductSummary } from '../models/product-summary.model';
+import { getColorName } from '../../utils/get-color-name';
 
 Swiper.use([Pagination, Navigation]);
 
@@ -56,42 +57,8 @@ export class ProductDetailsComponent
   allImagesLoaded: boolean = false;
   isGiftWrap: boolean = false;
 
-  private hexColorNames: Record<string, string> = {
-    '#ff0000': 'Red',
-    '#00ff00': 'Green',
-    '#0000ff': 'Blue',
-    '#ffffff': 'White',
-    '#000': 'Black',
-    '#ff69b4': 'Hot Pink',
-    '#ffa500': 'Orange',
-    '#ffff00': 'Yellow',
-    '#800080': 'Purple',
-    '#008000': 'Dark Green',
-    '#c0c0c0': 'Silver',
-    '#808080': 'Gray',
-  };
-
-  private inferColorName(hex: string): string {
-    const normalizedHex = hex.toLowerCase().replace('#', '');
-    if (this.hexColorNames[hex.toLowerCase()]) {
-      return this.hexColorNames[hex.toLowerCase()];
-    }
-    switch (normalizedHex) {
-      case 'ff0000':
-        return 'Red';
-      case 'ffb900':
-        return 'Yellow';
-      case '00ff00':
-        return 'Green';
-      case '0000ff':
-        return 'Blue';
-      case 'ffffff':
-        return 'White';
-      case '000':
-        return 'Black';
-      default:
-        return 'Custom Color';
-    }
+  getColorName(hex?: string): string {
+    return hex ? getColorName(hex) : 'Custom Color';
   }
 
   selectColor(color: ProductColor) {
@@ -254,10 +221,10 @@ export class ProductDetailsComponent
         if (product.colors && Array.isArray(product.colors)) {
           this.colors = product.colors.map((hex: string) => ({
             hex: hex.toLowerCase(),
-            name: this.inferColorName(hex),
+            name: this.getColorName(hex),
           }));
           if (this.colors.length > 0) {
-            this.selectedColor = this.colors[0]; // Default to first color
+            this.selectedColor = this.colors[0];
           }
         }
         this.titleService.setTitle(
