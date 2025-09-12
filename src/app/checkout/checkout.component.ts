@@ -9,6 +9,7 @@ import {
 import { CartService } from './../services/cart.service';
 import { CartItem } from './../models/product-summary.model';
 import { getColorName } from '../../utils/get-color-name';
+import { getSubscriptionDisplay as getSubDisplayUtil } from '../../utils/get-subscription-display';
 
 @Component({
   selector: 'app-checkout',
@@ -44,14 +45,12 @@ export class CheckoutComponent implements OnInit {
     return hex ? getColorName(hex) : 'Custom Color';
   }
 
+  getSubscriptionDisplay(sub?: string): string {
+    return sub ? getSubDisplayUtil(sub) : 'Unknown Frequency';
+  }
+
   onSubmit() {
     if (this.checkoutForm.valid) {
-      console.log('Order placed ✅', {
-        customer: this.checkoutForm.value,
-        items: this.cartItems,
-        subtotal: this.subtotal,
-      });
-      alert('Your order has been placed!');
     } else {
       this.checkoutForm.markAllAsTouched();
     }

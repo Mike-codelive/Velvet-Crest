@@ -6,6 +6,7 @@ import { CartItem } from '../../models/product-summary.model';
 import { Subscription } from 'rxjs';
 import { ButtonComponent } from '../../button/button.component';
 import { getColorName } from '../../../utils/get-color-name';
+import { getSubscriptionDisplay as getSubDisplayUtil } from '../../../utils/get-subscription-display';
 
 @Component({
   selector: 'app-cart-dropdown',
@@ -72,23 +73,12 @@ export class CartDropdownComponent implements OnInit, OnDestroy {
     }
   }
 
-  getSubscriptionDisplay(plan: string): string {
-    switch (plan) {
-      case '1_week':
-        return 'Every 1 Week';
-      case '2_weeks':
-        return 'Every 2 Weeks';
-      case '4_weeks':
-        return 'Every 4 Weeks';
-      case '8_weeks':
-        return 'Every 8 Weeks';
-      default:
-        return 'Unknown Frequency';
-    }
-  }
-
   getColorName(hex?: string): string {
     return hex ? getColorName(hex) : 'Custom Color';
+  }
+
+  getSubscriptionDisplay(sub?: string): string {
+    return sub ? getSubDisplayUtil(sub) : 'Unknown Frequency';
   }
 
   ngOnDestroy() {

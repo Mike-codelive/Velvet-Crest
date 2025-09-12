@@ -74,7 +74,7 @@
 
     <div>
       <label class="block font-medium">Payment Method</label>
-      <select formControlName="paymentMethod" class="w-full border p-2 rounded">
+      <select class="w-full border p-2 rounded">
         <option value="card">Credit/Debit Card</option>
         <option value="paypal">PayPal</option>
         <option value="bank">Bank Transfer</option>
@@ -111,15 +111,24 @@
                 <p>{{ item.quantity }}</p>
               </div>
             </div>
-            <div class="flex flex-col pl-[14px] font-normal">
-              <p class="text-sm">{{ item.name }}, {{ item.company }}</p>
+            <div class="flex flex-1 flex-col pl-[14px] font-normal text-xs">
+              <p>{{ item.name }}, {{ item.company }}</p>
               <p class="text-[#0000008f]">
                 {{ this.getColorName(item.selectedColor) }}
+                <span
+                  *ngIf="item.isSubscribed && item.subscriptionPlan"
+                  class="text-gray-600"
+                >
+                  / {{ getSubscriptionDisplay(item.subscriptionPlan) }}
+                </span>
+                <span *ngIf="item.giftWrap" class="text-gray-600"
+                  >/ Gift Wrap</span
+                >
               </p>
             </div>
-            <span>{{
-              item.price * (item.quantity || 1) | currency : "USD"
-            }}</span>
+            <p class="text-xs">
+              {{ item.price * (item.quantity || 1) | currency : "USD" }}
+            </p>
           </div>
         </div>
       </div>
