@@ -51,11 +51,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.updateBodyScroll();
       }
     );
-    this.cartService.cartItems$.subscribe((items) => {
-      this.cartItemCount = items.reduce(
-        (total, item) => total + (item.quantity || 1),
-        0
-      );
+    this.cartService.cartItems$.subscribe(() => {
+      this.cartItemCount = this.cartService.getCartCount();
     });
   }
 

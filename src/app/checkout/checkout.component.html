@@ -49,10 +49,35 @@
               placeholder="Discount code or gift card"
             />
             <button
-              class="px-3.5 rounded-lg border border-[#dadada] bg-gray-100"
+              class="px-3.5 rounded-lg border border-[#dadada] bg-gray-100 text-gray-600"
             >
               Apply
             </button>
+          </div>
+          <div class="grid text-sm">
+            <div class="flex justify-between">
+              <p>
+                Subtotal - <span>{{ cartItemCount }} items</span>
+              </p>
+              <p>${{ subtotal / 100 | number : "1.0-2" }}</p>
+            </div>
+            <div class="flex justify-between mt-[11px]">
+              <p class="flex items-center gap-2">
+                Shipping
+                <span class="material-symbols-outlined !text-sm h-3.5">
+                  help
+                </span>
+              </p>
+              <p class="text-gray-600">Enter shipping address</p>
+            </div>
+            <div class="flex justify-between mt-[21px]">
+              <p class="text-[19px] font-semibold">Total</p>
+              <p class="text-[19px] font-semibold">
+                <Span class="text-sm text-gray-600 font-normal">USD</Span> ${{
+                  subtotal / 100 | number : "1.0-2"
+                }}
+              </p>
+            </div>
           </div>
         </div>
       </div>

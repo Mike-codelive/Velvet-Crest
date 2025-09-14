@@ -21,6 +21,7 @@ import { getSubscriptionDisplay as getSubDisplayUtil } from '../../utils/get-sub
 export class CheckoutComponent implements OnInit {
   cartItems: CartItem[] = [];
   subtotal: number = 0;
+  cartItemCount: number = 0;
   checkoutForm!: FormGroup;
 
   constructor(private cartService: CartService, private fb: FormBuilder) {}
@@ -28,6 +29,7 @@ export class CheckoutComponent implements OnInit {
   ngOnInit() {
     this.cartService.cartItems$.subscribe((items) => {
       this.cartItems = [...items];
+      this.cartItemCount = this.cartService.getCartCount();
       this.subtotal = this.cartService.getCartTotal();
     });
 
