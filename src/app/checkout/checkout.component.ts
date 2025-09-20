@@ -23,6 +23,7 @@ export class CheckoutComponent implements OnInit {
   subtotal: number = 0;
   cartItemCount: number = 0;
   checkoutForm!: FormGroup;
+  submitted = false;
 
   constructor(private cartService: CartService, private fb: FormBuilder) {}
 
@@ -43,6 +44,10 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  get email() {
+    return this.checkoutForm.get('email')!;
+  }
+
   getColorName(hex?: string): string {
     return hex ? getColorName(hex) : 'Custom Color';
   }
@@ -52,9 +57,17 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.checkoutForm.valid) {
-    } else {
-      this.checkoutForm.markAllAsTouched();
+    this.submitted = true;
+
+    if (this.checkoutForm.invalid) {
+      return;
     }
+
+    console.log('Form submitted:', this.checkoutForm.value);
+
+    // if (this.checkoutForm.valid) {
+    // } else {
+    //   this.checkoutForm.markAllAsTouched();
+    // }
   }
 }

@@ -37,12 +37,58 @@
         <div
           class="relative h-[21px] w-auto flex items-center mt-[17px] mb-[26px]"
         >
-          <div class="w-full h-px bg-gray-400"></div>
+          <div class="w-full h-px bg-[#dfdfdf]"></div>
           <div
             class="absolute top-0 left-1/2 -translate-x-1/2 px-3.5 flex justify-center items-center bg-white"
           >
             <p class="uppercase text-sm text-gray-600 select-none">OR</p>
           </div>
+        </div>
+        <div>
+          <h2 class="text-[21px] font-semibold mb-3.5">Contact</h2>
+          <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              formControlName="email"
+              placeholder="Email"
+              class="border border-gray-400 p-2 rounded w-full"
+              [ngClass]="{
+                'border-red-600 border-2': submitted && email.invalid,
+                'border-gray-300': !(submitted && email.invalid)
+              }"
+            />
+            <div class="min-h-[20px] mt-1">
+              <p
+                class="text-red-700"
+                *ngIf="submitted && email?.errors?.['email']"
+              >
+                Invalid email format
+              </p>
+              <p
+                class="text-red-700"
+                *ngIf="submitted && email?.errors?.['required']"
+              >
+                Enter an Email
+              </p>
+            </div>
+
+            <div class="mt-3.5">
+              <input type="checkbox" name="marketing" id="marketing" />
+              <label class="pl-[11px]" for="marketing"
+                >Email me with news and offers</label
+              >
+            </div>
+
+            <button
+              class="bg-black rounded-lg text-white w-full p-3.5 font-semibold mt-3"
+              type="submit"
+            >
+              Review Order
+            </button>
+          </form>
         </div>
       </div>
     </div>
