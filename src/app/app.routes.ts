@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { CartNotEmptyGuard } from './guards/cart-not-empty.guard';
 
 export const routes: Routes = [
   {
@@ -34,6 +35,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./checkout/checkout.component').then((m) => m.CheckoutComponent),
     title: 'VelvetCrest - Checkout',
+    canActivate: [CartNotEmptyGuard],
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

@@ -10,6 +10,7 @@ import { CartService } from './../services/cart.service';
 import { CartItem } from './../models/product-summary.model';
 import { getColorName } from '../../utils/get-color-name';
 import { getSubscriptionDisplay as getSubDisplayUtil } from '../../utils/get-subscription-display';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -25,10 +26,17 @@ export class CheckoutComponent implements OnInit {
   checkoutForm!: FormGroup;
   submitted = false;
 
-  constructor(private cartService: CartService, private fb: FormBuilder) {}
+  constructor(
+    private cartService: CartService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.cartService.cartItems$.subscribe((items) => {
+      if (!items.length) {
+        this.router.navigate(['/']);
+      }
       this.cartItems = [...items];
       this.cartItemCount = this.cartService.getCartCount();
       this.subtotal = this.cartService.getCartTotal();
