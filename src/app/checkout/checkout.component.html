@@ -54,13 +54,13 @@
               autocomplete="email"
               formControlName="email"
               placeholder="Email"
-              class="border border-gray-400 p-2 rounded w-full"
+              class="border border-gray-400 p-2 rounded w-full placeholder:text-gray-600 placeholder:text-sm"
               [ngClass]="{
-                'border-red-600 border-2': submitted && email.invalid,
-                'border-gray-300': !(submitted && email.invalid)
+                'border-red-600': submitted && email.invalid,
+                'border-gray-400': !(submitted && email.invalid)
               }"
             />
-            <div class="min-h-[20px] mt-1">
+            <div class="min-h-[20px] mt-1 text-sm">
               <p
                 class="text-red-700"
                 *ngIf="submitted && email?.errors?.['email']"
@@ -75,7 +75,7 @@
               </p>
             </div>
 
-            <div class="mt-3.5">
+            <div class="flex items-center mt-3.5">
               <input type="checkbox" name="marketing" id="marketing" />
               <label class="pl-[11px]" for="marketing"
                 >Email me with news and offers</label
