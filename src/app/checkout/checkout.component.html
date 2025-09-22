@@ -84,6 +84,46 @@
 
             <h2 class="text-[21px] font-semibold mb-3.5">Delivery</h2>
 
+            <el-dropdown class="relative w-full" [open]="open">
+              <button
+                class="inline-flex w-full justify-between items-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm ring-1 ring-gray-300 hover:bg-gray-50"
+                (click)="toggleDropdown()"
+              >
+                {{ selectedCountry || "Select your country" }}
+                <svg
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  class="-mr-1 size-5 text-gray-400"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 
+        1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 
+        9.28a.75.75 0 010-1.06z"
+                  />
+                </svg>
+              </button>
+
+              <el-menu
+                anchor="bottom start"
+                popover
+                class="w-full max-w-[400px] max-h-60 overflow-y-auto origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/10 focus:outline-hidden"
+              >
+                <div class="py-1">
+                  <button
+                    *ngFor="let country of countries"
+                    type="button"
+                    (click)="selectCountry(country)"
+                    class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    {{ country }}
+                  </button>
+                </div>
+              </el-menu>
+            </el-dropdown>
+
             <button
               class="bg-black rounded-lg text-white w-full p-3.5 font-semibold mt-3"
               type="submit"

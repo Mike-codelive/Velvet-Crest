@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-checkout',
   standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css'],
@@ -25,6 +26,16 @@ export class CheckoutComponent implements OnInit {
   cartItemCount: number = 0;
   checkoutForm!: FormGroup;
   submitted = false;
+  countries: string[] = [
+    'United States',
+    'Mexico',
+    'Canada',
+    'United Kingdom',
+    'Germany',
+    'France',
+    'Japan',
+    'Australia',
+  ];
 
   constructor(
     private cartService: CartService,
@@ -62,6 +73,19 @@ export class CheckoutComponent implements OnInit {
 
   getSubscriptionDisplay(sub?: string): string {
     return sub ? getSubDisplayUtil(sub) : 'Unknown Frequency';
+  }
+
+  open = false;
+  selectedCountry: string | null = 'Mexico';
+
+  toggleDropdown() {
+    this.open = !this.open;
+  }
+
+  selectCountry(country: string) {
+    this.selectedCountry = country;
+    this.checkoutForm.patchValue({ country });
+    this.open = false;
   }
 
   onSubmit() {
