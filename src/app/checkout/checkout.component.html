@@ -124,6 +124,31 @@
               </el-menu>
             </el-dropdown>
 
+            <div class="flex gap-3.5 mt-3.5">
+              <input
+                class="border border-gray-400 p-2 rounded w-full placeholder:text-gray-600 placeholder:text-sm"
+                type="text"
+                name="firstName"
+                formControlName="firstName"
+                placeholder="First name"
+                [ngClass]="{
+                  'border-red-600': submitted && firstName?.invalid,
+                  'border-gray-400': !(submitted && firstName?.invalid)
+                }"
+              />
+              <input
+                class="border border-gray-400 p-2 rounded w-full placeholder:text-gray-600 placeholder:text-sm"
+                type="text"
+                name="lastName"
+                formControlName="lastName"
+                placeholder="last name"
+                [ngClass]="{
+                  'border-red-600': submitted && lastName?.invalid,
+                  'border-gray-400': !(submitted && lastName?.invalid)
+                }"
+              />
+            </div>
+
             <button
               class="bg-black rounded-lg text-white w-full p-3.5 font-semibold mt-3"
               type="submit"

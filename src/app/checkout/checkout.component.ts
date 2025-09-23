@@ -54,8 +54,9 @@ export class CheckoutComponent implements OnInit {
     });
 
     this.checkoutForm = this.fb.group({
-      fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       address: ['', Validators.required],
       city: ['', Validators.required],
       postalCode: ['', Validators.required],
@@ -65,6 +66,14 @@ export class CheckoutComponent implements OnInit {
 
   get email() {
     return this.checkoutForm.get('email')!;
+  }
+
+  get firstName() {
+    return this.checkoutForm.get('firstName');
+  }
+
+  get lastName() {
+    return this.checkoutForm.get('lastName');
   }
 
   getColorName(hex?: string): string {
