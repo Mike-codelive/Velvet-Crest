@@ -177,6 +177,31 @@
               placeholder="Apartment, suite, etc. (optional)"
             />
 
+            <div class="flex gap-3.5 mt-3.5">
+              <input
+                class="border border-gray-400 p-2 rounded w-full placeholder:text-gray-600 placeholder:text-sm"
+                type="text"
+                name="postalCode"
+                formControlName="postalCode"
+                placeholder="Postal Code"
+                [ngClass]="{
+                  'border-red-600': submitted && postalCode.invalid,
+                  'border-gray-400': !(submitted && postalCode.invalid)
+                }"
+              />
+              <input
+                class="border border-gray-400 p-2 rounded w-full placeholder:text-gray-600 placeholder:text-sm"
+                type="text"
+                name="city"
+                formControlName="city"
+                placeholder="City"
+                [ngClass]="{
+                  'border-red-600': submitted && city.invalid,
+                  'border-gray-400': !(submitted && city.invalid)
+                }"
+              />
+            </div>
+
             <button
               class="bg-black rounded-lg text-white w-full p-3.5 font-semibold mt-3"
               type="submit"

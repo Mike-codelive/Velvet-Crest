@@ -21,6 +21,8 @@ interface CheckoutFormModel {
   address: FormControl<string>;
   apartment: FormControl<string | null>;
   country: FormControl<string>;
+  postalCode: FormControl<string>;
+  city: FormControl<string>;
 }
 
 @Component({
@@ -77,6 +79,8 @@ export class CheckoutComponent implements OnInit {
       address: this.fb.control('', Validators.required),
       apartment: this.fb.control<string | null>(null),
       country: this.fb.control(this.selectedCountry, Validators.required),
+      postalCode: this.fb.control('', Validators.required),
+      city: this.fb.control('', Validators.required),
     });
   }
 
@@ -100,6 +104,12 @@ export class CheckoutComponent implements OnInit {
   }
   get country() {
     return this.checkoutForm.controls.country;
+  }
+  get postalCode() {
+    return this.checkoutForm.controls.postalCode;
+  }
+  get city() {
+    return this.checkoutForm.controls.city;
   }
 
   sanitizeInput(value: string | null): string {
