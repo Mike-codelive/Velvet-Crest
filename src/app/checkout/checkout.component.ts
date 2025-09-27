@@ -143,6 +143,8 @@ export class CheckoutComponent implements OnInit {
       company: this.sanitizeInput(rawValue.company),
       address: this.sanitizeInput(rawValue.address),
       apartment: this.sanitizeInput(rawValue.apartment),
+      postalCode: this.sanitizeInput(rawValue.postalCode),
+      city: this.sanitizeInput(rawValue.city),
     };
 
     console.log('Form submitted:', sanitized);
