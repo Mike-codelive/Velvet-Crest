@@ -23,6 +23,10 @@ interface CheckoutFormModel {
   country: FormControl<string>;
   postalCode: FormControl<string>;
   city: FormControl<string>;
+  phone: FormControl<string>;
+  cardNumber: FormControl<string>;
+  expiry: FormControl<string>;
+  cvc: FormControl<string>;
 }
 
 @Component({
@@ -55,6 +59,8 @@ export class CheckoutComponent implements OnInit {
   open = false;
   selectedCountry: string = 'Mexico';
 
+  selectedPayment: 'card' | 'paypal' = 'card';
+
   constructor(
     private cartService: CartService,
     private fb: NonNullableFormBuilder,
@@ -81,9 +87,29 @@ export class CheckoutComponent implements OnInit {
       country: this.fb.control(this.selectedCountry, Validators.required),
       postalCode: this.fb.control('', Validators.required),
       city: this.fb.control('', Validators.required),
+      phone: this.fb.control('', [
+        Validators.required,
+        Validators.pattern(/^[0-9]{7,15}$/),
+      ]),
+      cardNumber: this.fb.control(
+        '',
+        this.selectedPayment === 'card'
+          ? [Validators.required, Validators.pattern(/^\d{16}$/)]
+          : []
+      ),
+
+      expiry: this.fb.control(
+        '',
+        this.selectedPayment === 'card' ? [Validators.required] : []
+      ),
+      cvc: this.fb.control(
+        '',
+        this.selectedPayment === 'card' ? [Validators.required] : []
+      ),
     });
   }
 
+  // Individual control getters
   get email() {
     return this.checkoutForm.controls.email;
   }
@@ -110,6 +136,18 @@ export class CheckoutComponent implements OnInit {
   }
   get city() {
     return this.checkoutForm.controls.city;
+  }
+  get phone() {
+    return this.checkoutForm.controls.phone;
+  }
+  get cardNumber() {
+    return this.checkoutForm.controls.cardNumber;
+  }
+  get expiry() {
+    return this.checkoutForm.controls.expiry;
+  }
+  get cvc() {
+    return this.checkoutForm.controls.cvc;
   }
 
   sanitizeInput(value: string | null): string {
@@ -148,6 +186,45 @@ export class CheckoutComponent implements OnInit {
     };
 
     console.log('Form submitted:', sanitized);
+  }
+
+  onPhoneInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/\D/g, '');
+    this.checkoutForm.patchValue({ phone: input.value }, { emitEvent: false });
+  }
+
+  onCreditCardInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    let sanitized = input.value.replace(/\D/g, '');
+    const maxLength = 16;
+    if (sanitized.length > maxLength) {
+      sanitized = sanitized.substring(0, maxLength);
+    }
+    input.value = sanitized;
+    this.checkoutForm.patchValue(
+      { cardNumber: sanitized },
+      { emitEvent: false }
+    );
+  }
+
+  selectPayment(method: 'card' | 'paypal') {
+    this.selectedPayment = method;
+
+    if (method === 'card') {
+      this.cardNumber.setValidators([Validators.required]);
+      this.expiry.setValidators([Validators.required]);
+      this.cvc.setValidators([Validators.required]);
+    } else {
+      this.checkoutForm.patchValue({ cardNumber: '', expiry: '', cvc: '' });
+      this.cardNumber.clearValidators();
+      this.expiry.clearValidators();
+      this.cvc.clearValidators();
+    }
+
+    this.cardNumber.updateValueAndValidity();
+    this.expiry.updateValueAndValidity();
+    this.cvc.updateValueAndValidity();
   }
 
   getColorName(hex?: string): string {

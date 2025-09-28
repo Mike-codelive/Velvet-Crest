@@ -202,6 +202,96 @@
               />
             </div>
 
+            <input
+              class="border border-gray-400 p-2 rounded w-full placeholder:text-gray-600 placeholder:text-sm mt-3.5"
+              type="tel"
+              inputmode="numeric"
+              name="phone"
+              formControlName="phone"
+              placeholder="phone"
+              (input)="onPhoneInput($event)"
+              [ngClass]="{
+                'border-red-600': submitted && phone.invalid,
+                'border-gray-400': !(submitted && phone.invalid)
+              }"
+            />
+
+            <h2 class="text-[21px] font-semibold mt-3.5">Payment</h2>
+
+            <h3 class="text-gray-400 text-sm">
+              All transactions are secure and encrypted.
+            </h3>
+
+            <div class="mt-3.5">
+              <div class="grid grid-cols-1 gap-4">
+                <button
+                  type="button"
+                  class="flex items-center p-4 border rounded-lg cursor-pointer"
+                  [ngClass]="{
+                    'border-blue-600': selectedPayment === 'card',
+                    'border-gray-400': selectedPayment !== 'card'
+                  }"
+                  (click)="selectPayment('card')"
+                >
+                  <span>Credit / Debit Card</span>
+                </button>
+
+                <button
+                  type="button"
+                  class="flex items-center p-4 border rounded-lg cursor-pointer"
+                  [ngClass]="{
+                    'border-blue-600': selectedPayment === 'paypal',
+                    'border-gray-400': selectedPayment !== 'paypal'
+                  }"
+                  (click)="selectPayment('paypal')"
+                >
+                  <span>PayPal</span>
+                </button>
+              </div>
+
+              <div class="mt-6">
+                <ng-container *ngIf="selectedPayment === 'card'">
+                  <input
+                    type="text"
+                    formControlName="cardNumber"
+                    (input)="onCreditCardInput($event)"
+                    placeholder="Card number"
+                    class="block w-full p-2 border border-gray-400 rounded mt-3.5 placeholder:text-gray-600 placeholder:text-sm"
+                    [ngClass]="{
+                      'border-red-600': submitted && cardNumber.invalid,
+                      'border-gray-400': !(submitted && cardNumber.invalid)
+                    }"
+                  />
+                  <div class="flex gap-2 mt-3.5">
+                    <input
+                      type="text"
+                      formControlName="expiry"
+                      placeholder="MM / YY"
+                      class="flex-1 p-2 border border-gray-400 rounded placeholder:text-gray-600 placeholder:text-sm"
+                      [ngClass]="{
+                        'border-red-600': submitted && expiry.invalid,
+                        'border-gray-400': !(submitted && expiry.invalid)
+                      }"
+                    />
+                    <input
+                      type="text"
+                      formControlName="cvc"
+                      placeholder="CVC"
+                      class="w-24 p-2 border rounded placeholder:text-gray-600 placeholder:text-sm"
+                      [ngClass]="{
+                        'border-red-600': submitted && cvc.invalid,
+                        'border-gray-400': !(submitted && cvc.invalid)
+                      }"
+                    />
+                  </div>
+                </ng-container>
+
+                <ng-container *ngIf="selectedPayment === 'paypal'">
+                  <div id="paypal-button-container"></div>
+                </ng-container>
+              </div>
+            </div>
+
             <button
               class="bg-black rounded-lg text-white w-full p-3.5 font-semibold mt-3"
               type="submit"
