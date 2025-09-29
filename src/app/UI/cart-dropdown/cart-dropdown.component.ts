@@ -63,6 +63,11 @@ export class CartDropdownComponent implements OnInit, OnDestroy {
     this.cartService.closeCart();
   }
 
+  onNavigateStore() {
+    this.navigationService.navigateToRoute(['/shop']);
+    this.cartService.closeCart();
+  }
+
   onClose() {
     this.cartService.closeCart();
   }

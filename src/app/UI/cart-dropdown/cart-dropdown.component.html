@@ -30,7 +30,9 @@
     <p>Your bag is empty. Not sure where to start?</p>
 
     <div class="mt-auto">
-      <app-button [wFull]="true">SHOP ALL PRODUCTS</app-button>
+      <app-button (click)="onNavigateStore()" [wFull]="true"
+        >SHOP ALL PRODUCTS</app-button
+      >
     </div>
   </div>
 
