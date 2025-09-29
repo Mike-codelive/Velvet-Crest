@@ -1,6 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
-import { filter } from 'rxjs'; // ✅ correct import
+import { filter } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
@@ -22,7 +22,7 @@ export class AppComponent implements AfterViewInit {
         filter(
           (event): event is NavigationEnd => event instanceof NavigationEnd
         )
-      ) // ✅ add type guard
+      )
       .subscribe((event) => {
         this.hideFooter = event.urlAfterRedirects.startsWith('/checkout');
       });

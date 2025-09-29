@@ -12,22 +12,7 @@ import { CartItem } from './../models/product-summary.model';
 import { getColorName } from '../../utils/get-color-name';
 import { getSubscriptionDisplay as getSubDisplayUtil } from '../../utils/get-subscription-display';
 import { Router } from '@angular/router';
-
-interface CheckoutFormModel {
-  email: FormControl<string>;
-  firstName: FormControl<string>;
-  lastName: FormControl<string>;
-  company: FormControl<string | null>;
-  address: FormControl<string>;
-  apartment: FormControl<string | null>;
-  country: FormControl<string>;
-  postalCode: FormControl<string>;
-  city: FormControl<string>;
-  phone: FormControl<string>;
-  cardNumber: FormControl<string>;
-  expiry: FormControl<string>;
-  cvc: FormControl<string>;
-}
+import { CheckoutFormModel } from '../models/checkout-form.model';
 
 @Component({
   selector: 'app-checkout',
@@ -109,7 +94,6 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  // Individual control getters
   get email() {
     return this.checkoutForm.controls.email;
   }
