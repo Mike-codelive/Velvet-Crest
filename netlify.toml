@@ -1,6 +1,6 @@
 [build]
   command = "ng build --configuration production"
-  publish = "dist/velvet-crest"
+  publish = "dist/velvet-crest/browser"
 
 [[redirects]]
   from = "/*"
